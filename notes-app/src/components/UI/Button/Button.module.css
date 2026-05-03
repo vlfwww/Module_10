@@ -1,0 +1,25 @@
+.customButton {
+  background-color: var(--accent-color); 
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  padding: 14px 48px;
+  font: 400 14px "Poppins";
+  color: var(--ui-text-color);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-sizing: border-box;
+  width: auto; 
+}
+
+.customButton:hover {
+  background-color: var(--accent-hover);
+}
+
+:global(.authForm) .customButton {
+  width: 100%;
+}
+
+.customButton.modalButton{
+   color: var(--bg-page);
+}

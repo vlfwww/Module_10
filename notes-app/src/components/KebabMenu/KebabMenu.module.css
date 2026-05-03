@@ -1,0 +1,44 @@
+.kebabMenu {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-content);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 0;
+  font: 400 18px "Poppins";
+  position: absolute;
+  right: -160px;
+  min-width: 180px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  color: var(--text-main);
+
+  @media (max-width: 1400px) {
+    right: auto;
+    left: 18px;
+  }
+
+  & p {
+    padding: 8px 16px;
+    margin: 0;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--bg-hover);
+      border-radius: 8px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .kebabMenu {
+    min-width: 180px;
+    top: 80%;    
+    left: 50%;     
+    right: auto;     
+    transform: translateX(-50%); 
+    margin-top: 8px; 
+    z-index: 100;
+  }
+}

@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-main);
+  text-align: center;
+
+  & .signIn {
+    font: 400 36px "Poppins";
+
+    @media (max-width: 768px) {
+      font-size: 28px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
+    
+    & a {
+      text-decoration: underline;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+  }
+
+  & .signUp {
+    font: 400 16px "Poppins";
+    & a {
+      text-decoration: underline;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+  }
+}

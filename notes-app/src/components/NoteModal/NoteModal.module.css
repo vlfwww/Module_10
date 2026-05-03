@@ -1,0 +1,95 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--modal-overlay);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  padding: 20px;
+
+  & .modalWindow {
+    background-color: var(--bg-form);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 24px;
+    position: relative;
+    color: var(--text-main);
+
+    & form {
+      & .header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        align-items: center;
+        & p {
+          font: 400 36px "Poppins";
+        }
+        & .closeIcon {
+          width: 24px;
+          height: 24px;
+        }
+        & button {
+          width: 24px;
+          height: 24px;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+
+          :global([data-theme="dark"]) & img {
+            filter: invert(1);
+          }
+        }
+      }
+
+      & .footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 8px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    position: fixed;
+    top: 48px;
+    align-items: center;
+    padding-top: 20px; 
+    height: calc(100vh - 48px);
+    & .modalWindow {
+      padding: 16px;
+      border-radius: 12px;
+      & form {
+        & .header {
+          margin-bottom: 16px;
+          & p {
+            font: 400 16px "Poppins";
+          }
+          & .closeIcon {
+            width: 16px;
+            height: 16px;
+          }
+        }
+        & .footer .modalButton {
+          color: var(--text-modal-button) !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .modalWindow {
+    width: 95%;
+    padding: 12px;
+  }
+}

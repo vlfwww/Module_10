@@ -1,0 +1,70 @@
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 32px;
+}
+
+.noteCardsWrapper {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.errorPageWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; 
+  background-color: var(--bg-page);
+}
+
+.errorContent {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.crossIcon{
+  width: 95px;
+  height: 95px;
+  color: var(--text-main);
+}
+
+.errorContent h1, 
+.errorContent p {
+  font: 600 60px "Inter";
+  color: var(--ui-text-color);
+}
+
+
+@media (max-width: 1040px) {
+  .buttonWrapper {
+    justify-content: center; 
+    margin-bottom: 24px;
+  }
+
+  .buttonWrapper button {
+    width: 80%; 
+    max-width: 300px; 
+    color: var(--bg-page);
+  }
+
+  .noteCardsWrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .noteCardsWrapper > div {
+    width: 100%;
+  }
+  .errorPageWrapper .errorContent{
+        & img{
+            width: 80px;
+            height: 73px;
+        }
+        & h1, p{
+           font: 600 20px "Inter"; 
+        }
+    }
+}
