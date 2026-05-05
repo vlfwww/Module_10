@@ -1,0 +1,60 @@
+.notesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 55px;
+
+  & .checkboxRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    align-items: flex-start;
+    width: 100%;
+
+    & input {
+      display: none;
+    }
+
+    & label,
+    & .noteText {
+      font: 400 16px 'Inter';
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      color: var(--text-main);
+      word-break: break-all;
+      overflow-wrap: break-word;
+      white-space: normal;
+      flex: 1;
+      min-width: 0;
+    }
+
+    & label::before {
+      content: '';
+      display: inline-block;
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--accent-color);
+      border-radius: 4px;
+      background-color: var(--bg-content);
+      transition: all 0.2s;
+    }
+
+    & input:checked + label::before {
+      background-color: var(--accent-color);
+      width: 20px;
+      height: 20px;
+      border-color: var(--accent-color);
+      content: '✓';
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+}

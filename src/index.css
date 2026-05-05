@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url('../public/assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../public/assets/fonts/Inter/static/Inter_28pt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../public/assets/fonts/Inter/static/Inter_18pt-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../public/assets/fonts/Inter/static/Inter_24pt-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-page: rgba(255, 255, 255, 1);
+  --bg-content: rgb(255, 255, 255);
+  --bg-form: rgba(250, 250, 250, 1);
+  --bg-ui-elements: rgba(250, 250, 250, 1);
+  --bg-sidebar: rgb(255, 255, 255);
+  --text-main: rgba(37, 36, 34, 1);
+  --text-secondary: rgb(102, 110, 125);
+  --ui-text-color: rgba(27, 32, 55, 1);
+  --text-modal-button: rgb(255, 255, 255);
+  --text-button: #1b2037;
+  --accent-color: rgba(255, 136, 17, 1);
+  --accent-hover: rgba(255, 136, 17, 0.8);
+  --border-color: rgba(224, 226, 231, 1);
+  --bg-hover: rgba(240, 241, 243, 1);
+  --overlay-color: rgba(0, 0, 0, 0.5);
+  --modal-overlay: rgba(27, 32, 55, 0.5);
+  --input-error: rgb(255, 77, 79);
+  --additional-elements-color: rgba(102, 112, 133, 1);
+}
+
+[data-theme='dark'] {
+  --bg-page: #0b0e14;
+  --bg-content: #151921;
+  --bg-sidebar: #151921;
+  --bg-form: #151921;
+  --bg-ui-elements: rgb(54, 56, 58);
+  --ui-text-color: rgb(240, 241, 243);
+  --text-main: rgb(240, 241, 243);
+  --text-secondary: #949ba6;
+  --accent-color: rgba(255, 136, 17, 1);
+  --accent-hover: rgba(255, 136, 17, 0.8);
+  --text-button: #1b2037;
+  --border-color: rgb(45, 50, 61);
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --modal-overlay: rgb(45, 50, 61);
+  --additional-elements-color: rgb(240, 241, 243);
+}

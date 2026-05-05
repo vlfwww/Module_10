@@ -1,0 +1,33 @@
+& .inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+  & .label {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    & p {
+      font: 500 14px 'Poppins';
+      color: var(--text-main);
+    }
+    & img {
+      width: 16px;
+      height: 16px;
+      :global([data-theme='dark']) & {
+        filter: invert(1);
+      }
+    }
+  }
+  & .inputField {
+    background-color: var(--bg-ui-elements);
+    color: var(--text-main);
+    border-radius: 8px;
+    padding: 14px;
+    font: 400 14px 'Poppins';
+    border: 1px solid var(--border-color);
+  }
+  & .inputError {
+    border-color: var(--input-error) !important;
+  }
+}
