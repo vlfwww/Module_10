@@ -6,7 +6,7 @@ import { useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import logoIcon from "../../assets/images/logo.svg";
 import menuIcon from "../../assets/images/menu-burger.svg";
-import profileIcon from "../../assets/images/profile.png";
+import profileIcon from "../../assets/images/profile.jpg";
 import { HeaderProps } from "../../types/common";
 
 const Header: React.FC<HeaderProps> = ({ pageType }) => {
