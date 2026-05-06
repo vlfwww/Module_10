@@ -1,17 +1,19 @@
-import React from 'react';
-import style from './Header.module.css';
-import { useAuth } from '../../context/AuthProvider';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import Sidebar from '../Sidebar/Sidebar';
-import logoIcon from '../../assets/images/logo.svg';
-import menuIcon from '../../assets/images/menu-burger.svg';
-import profileIcon from '../../assets/images/profile.png';
-import { HeaderProps } from '../../types/common';
+import React from "react";
+import style from "./Header.module.css";
+import { useAuth } from "../../context/AuthProvider";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import Sidebar from "../Sidebar/Sidebar";
+import logoIcon from "../../assets/images/logo.svg";
+import menuIcon from "../../assets/images/menu-burger.svg";
+import profileIcon from "../../assets/images/profile.png";
+import { HeaderProps } from "../../types/common";
 
 const Header: React.FC<HeaderProps> = ({ pageType }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const userInfo = user?.email;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -34,12 +36,12 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
             <>
               <div className={style.profileInfo}>
                 <img src={profileIcon} alt="User" />
-                <p>Name Surname</p>
+                <p>{userInfo}</p>
               </div>
             </>
           ) : (
-            pageType !== 'signin' &&
-            pageType !== 'signup' && (
+            pageType !== "signin" &&
+            pageType !== "signup" && (
               <div className={style.buttonsWrapper}>
                 <Link to="/signup" className={style.link}>
                   Sign Up
@@ -52,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
           )}
         </div>
 
-        <div className={`${style.mobileMenu} ${isMenuOpen ? style.open : ''}`}>
+        <div className={`${style.mobileMenu} ${isMenuOpen ? style.open : ""}`}>
           <div className={style.mobileHeader}>
             <div className={style.logoWrapper}>
               <img src={logoIcon} alt="Logo" />

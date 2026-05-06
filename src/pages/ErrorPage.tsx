@@ -1,8 +1,8 @@
-import Footer from '../components/Footer/Footer';
-import Header from '../components/Header/Header';
-import CrossIcon from '../components/UI/Icons/CrossIcon';
-import { useTheme } from '../context/ThemeContext';
-import style from './styles/Pages.module.css';
+import Footer from "../components/Footer/Footer";
+import Header from "../components/Header/Header";
+import CrossIcon from "../components/UI/Icons/CrossIcon";
+import { useTheme } from "../context/ThemeContext";
+import style from "./styles/Pages.module.css";
 
 const ErrorPage = () => {
   const { theme } = useTheme();

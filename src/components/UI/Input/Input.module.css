@@ -1,33 +1,122 @@
-& .inputGroup {
+.inputField::-ms-reveal,
+.inputField::-ms-clear {
+  display: none;
+}
+
+.inputField::-webkit-contacts-auto-fill-button,
+.inputField::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+}
+
+.inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 8px;
   & .label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & .statusIndicator .stateIcon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  & .labelWrapper {
     display: flex;
     gap: 8px;
     align-items: center;
     & p {
-      font: 500 14px 'Poppins';
+      font: 500 14px "Poppins";
       color: var(--text-main);
     }
     & img {
       width: 16px;
       height: 16px;
-      :global([data-theme='dark']) & {
+      :global([data-theme="dark"]) & {
         filter: invert(1);
       }
     }
   }
-  & .inputField {
-    background-color: var(--bg-ui-elements);
-    color: var(--text-main);
-    border-radius: 8px;
-    padding: 14px;
-    font: 400 14px 'Poppins';
-    border: 1px solid var(--border-color);
+  & .inputWrapper {
+    position: relative;
+    width: 100%;
+    & .inputField {
+      background-color: var(--bg-ui-elements);
+      color: var(--additional-elements-color);
+      border-radius: 8px;
+      padding: 14px;
+      font: 400 14px "Poppins";
+      border: 1px solid var(--border-color);
+      outline: none;
+      width: 100%;
+      transition: all 0.3s ease-out;
+      &:focus {
+        border-color: rgba(122, 68, 255, 1);
+        color: var(--text-main);
+      }
+    }
+    & .inputField:disabled {
+      border: 1px solid rgba(157, 166, 203, 1);
+      background-color: rgba(188, 195, 227, 1);
+      &::placeholder {
+        color: rgba(157, 166, 203, 1);
+        font: 400 14px "Poppins";
+      }
+    }
+    & .inputError {
+      border-color: var(--input-error) !important;
+      color: var(--input-error) !important;
+    }
+    & .eyeButton {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      cursor: pointer;
+      background: none;
+      & img {
+        width: 16px;
+        height: 16px;
+      }
+    }
   }
-  & .inputError {
-    border-color: var(--input-error) !important;
+
+  & .errorWrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows 0.3s ease,
+      margin-top 0.3s ease;
+    overflow: hidden;
   }
+  .errorWrapper.visible {
+    grid-template-rows: 1fr;
+    margin-top: 8px;
+  }
+
+  & .errorContainer {
+    min-height: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & .errorTextWrapper {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font: 400 14px "Poppins";
+      & .errorText {
+        color: var(--input-error);
+      }
+      & .successText {
+        color: rgba(255, 136, 17, 1);
+      }
+    }
+  }
+}
+.inputGroup:has(input:disabled) .labelWrapper p {
+  color: rgba(157, 166, 203, 1);
 }

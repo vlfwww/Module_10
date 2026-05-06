@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import style from './NoteModal.module.css';
-import Button from '../UI/Button/Button';
-import Input from '../UI/Input/Input';
-import Textarea from '../UI/Textarea/Textarea';
-import { NoteModalProps } from '../../types/notes';
-import crossIcon from '../../assets/images/cross.svg';
-import envelopeIcon from '../../assets/images/envelope.svg';
-import pencilImage from '../../assets/images/pencil.svg';
+import React, { useState, useEffect } from "react";
+import style from "./NoteModal.module.css";
+import Button from "../UI/Button/Button";
+import Input from "../UI/Input/Input";
+import Textarea from "../UI/Textarea/Textarea";
+import { NoteModalProps } from "../../types/notes";
+import crossIcon from "../../assets/images/cross.svg";
+import envelopeIcon from "../../assets/images/envelope.svg";
+import pencilImage from "../../assets/images/pencil.svg";
 
 const NoteModal: React.FC<NoteModalProps> = ({ isOpen, onClose, onSubmit, initialData }) => {
-  const [title, setTitle] = useState(initialData?.title || '');
-  const [description, setDescription] = useState(initialData?.description || '');
+  const [title, setTitle] = useState(initialData?.title || "");
+  const [description, setDescription] = useState(initialData?.description || "");
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, []);
 
   useEffect(() => {
     if (isOpen) {
-      setTitle(initialData?.title || '');
-      setDescription(initialData?.description || '');
+      setTitle(initialData?.title || "");
+      setDescription(initialData?.description || "");
     }
   }, [isOpen, initialData]);
 
@@ -33,8 +33,8 @@ const NoteModal: React.FC<NoteModalProps> = ({ isOpen, onClose, onSubmit, initia
     e.preventDefault();
     onSubmit(title, description);
     if (!initialData) {
-      setTitle('');
-      setDescription('');
+      setTitle("");
+      setDescription("");
     }
   };
 
@@ -43,7 +43,7 @@ const NoteModal: React.FC<NoteModalProps> = ({ isOpen, onClose, onSubmit, initia
       <div className={style.modalWindow} onClick={(e) => e.stopPropagation()}>
         <form onSubmit={handleSubmit}>
           <div className={style.header}>
-            <p>{initialData ? 'Edit note' : 'Create a new note'}</p>
+            <p>{initialData ? "Edit note" : "Create a new note"}</p>
             <button type="button" onClick={onClose} className={style.closeButton}>
               <img src={crossIcon} alt="close" className={style.closeIcon} />
             </button>
@@ -66,7 +66,7 @@ const NoteModal: React.FC<NoteModalProps> = ({ isOpen, onClose, onSubmit, initia
 
           <div className={style.footer}>
             <Button type="submit" className={style.modalButton}>
-              {initialData ? 'Save' : 'Create'}
+              {initialData ? "Save" : "Create"}
             </Button>
           </div>
         </form>

@@ -1,6 +1,6 @@
-import { useTheme } from '../../context/ThemeContext';
-import ErrorIcon from '../UI/Icons/ErrorIcon';
-import style from './NotFound.module.css';
+import { useTheme } from "../../context/ThemeContext";
+import ErrorIcon from "../UI/Icons/ErrorIcon";
+import style from "./NotFound.module.css";
 
 const NotFound = () => {
   const { theme } = useTheme();

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import style from './NoteList.module.css';
-import NoteCard from '../NoteCard/NoteCard';
-import KebabMenu from '../KebabMenu/KebabMenu';
-import { NoteListProps } from '../../types/notes';
-import { useNotes } from '../../context/NotesContext';
-import kebabMenuIcon from '../../assets/images/menu.svg';
+import React, { useMemo, useState } from "react";
+import style from "./NoteList.module.css";
+import NoteCard from "../NoteCard/NoteCard";
+import KebabMenu from "../KebabMenu/KebabMenu";
+import { NoteListProps } from "../../types/notes";
+import { useNotes } from "../../context/NotesContext";
+import kebabMenuIcon from "../../assets/images/menu.svg";
 
 const NoteList: React.FC<NoteListProps> = ({
   pageType,
@@ -17,9 +17,14 @@ const NoteList: React.FC<NoteListProps> = ({
 }) => {
   const { notes, toggleChecklistItem, uncheckAllItems, toggleNoteCheckboxes } = useNotes();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const currentNote = notes.find((n) => n.id === id);
-  const checkboxes = currentNote?.items || [];
-  const showCheckboxes = currentNote?.showCheckboxes || false;
+
+  const activeNoteData = useMemo(() => {
+    const found = notes.find((n) => n.id === id);
+    return {
+      checkboxes: found?.items || [],
+      showCheckboxes: found?.showCheckboxes || false,
+    };
+  }, [notes, id]);
 
   const handleCheckboxChange = (checkboxId: number): void => {
     toggleChecklistItem(id, checkboxId);
@@ -30,13 +35,14 @@ const NoteList: React.FC<NoteListProps> = ({
     setIsMenuOpen(false);
   };
 
+  const { checkboxes, showCheckboxes } = activeNoteData;
   const hasCheckedItems = checkboxes.some((item) => item.checked);
 
   return (
     <div
-      className={`${style.cardWrapper} ${isMenuOpen ? style.showMenu : ''}`}
+      className={`${style.cardWrapper} ${isMenuOpen ? style.showMenu : ""}`}
       onMouseLeave={() => setIsMenuOpen(false)}
-      onClick={pageType === 'notes' ? onEdit : undefined}
+      onClick={pageType === "notes" ? onEdit : undefined}
     >
       <p className={style.noteTitle}>{title}</p>
       <div onClick={(e) => e.stopPropagation()}>
@@ -68,7 +74,7 @@ const NoteList: React.FC<NoteListProps> = ({
           onUnarchive={() => onUnarchive?.(id)}
           {...(showCheckboxes && hasCheckedItems ? { onUncheckAll: handleUncheckAll } : {})}
         />
-      )}{' '}
+      )}{" "}
     </div>
   );
 };

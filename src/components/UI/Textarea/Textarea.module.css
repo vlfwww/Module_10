@@ -1,31 +1,66 @@
 & .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 16px;
   & .label {
     display: flex;
     gap: 8px;
     align-items: center;
     & p {
-      font: 500 14px 'Poppins';
+      font: 500 14px "Poppins";
     }
     & img {
       width: 16px;
       height: 16px;
-      :global([data-theme='dark']) & {
+      :global([data-theme="dark"]) & {
         filter: invert(1);
       }
     }
   }
-  & textarea {
+  & .textareaField {
     background-color: var(--bg-ui-elements);
     color: var(--additional-elements-color);
     border-radius: 8px;
     padding: 14px;
-    font: 400 14px 'Poppins';
+    font: 400 14px "Poppins";
     border: 1px solid var(--border-color);
     width: 100%;
     resize: none;
+    min-height: 120px;
+    outline: none;
+    transition: border-color 0.3s ease-out;
+  }
+  & .textareaField:focus {
+    border: 1px solid rgba(122, 68, 255, 1);
+    color: var(--text-main-color);
+  }
+  & .inputError {
+    border-color: var(--input-error) !important;
+    color: var(--input-error) !important;
+  }
+  & .errorWrapper {
+    display: grid;
+    grid-template-rows: 1fr;
+    margin-top: 8px;
+    overflow: hidden;
+    & .errorContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 20px;
+      & .errorTextWrapper {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font: 400 12px "Poppins";
+        & .errorText {
+          color: var(--input-error);
+        }
+        & .infoText {
+          color: rgba(102, 112, 133, 1);
+        }
+      }
+    }
   }
 }

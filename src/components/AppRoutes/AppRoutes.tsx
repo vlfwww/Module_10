@@ -1,12 +1,12 @@
-import React from 'react';
-import MainPage from '../../pages/MainPage';
-import { useAuth } from '../../context/AuthProvider';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import TrashPage from '../../pages/TrashPage';
-import ArchivePage from '../../pages/ArchivePage';
-import SignIn from '../../pages/AuthPages/SignIn';
-import SignUp from '../../pages/AuthPages/SignUp';
-import NotFoundPage from '../../pages/NotFoundPage';
+import React from "react";
+import MainPage from "../../pages/MainPage";
+import { useAuth } from "../../context/AuthProvider";
+import { Route, Routes, Navigate } from "react-router-dom";
+import TrashPage from "../../pages/TrashPage";
+import ArchivePage from "../../pages/ArchivePage";
+import SignIn from "../../pages/SignIn";
+import SignUp from "../../pages/SignUp";
+import NotFoundPage from "../../pages/NotFoundPage";
 
 const AppRoutes: React.FC = () => {
   const { isAuthenticated } = useAuth();

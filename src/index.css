@@ -1,27 +1,27 @@
 @font-face {
-  font-family: 'Poppins';
-  src: url('../public/assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-family: "Poppins";
+  src: url("../public/assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('../public/assets/fonts/Inter/static/Inter_28pt-Regular.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("../public/assets/fonts/Inter/static/Inter_28pt-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('../public/assets/fonts/Inter/static/Inter_18pt-Medium.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("../public/assets/fonts/Inter/static/Inter_18pt-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('../public/assets/fonts/Inter/static/Inter_24pt-Bold.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("../public/assets/fonts/Inter/static/Inter_24pt-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -49,11 +49,11 @@
   --bg-hover: rgba(240, 241, 243, 1);
   --overlay-color: rgba(0, 0, 0, 0.5);
   --modal-overlay: rgba(27, 32, 55, 0.5);
-  --input-error: rgb(255, 77, 79);
+  --input-error: rgba(255, 85, 74, 1);
   --additional-elements-color: rgba(102, 112, 133, 1);
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --bg-page: #0b0e14;
   --bg-content: #151921;
   --bg-sidebar: #151921;

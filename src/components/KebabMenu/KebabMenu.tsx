@@ -1,6 +1,6 @@
-import React from 'react';
-import style from './KebabMenu.module.css';
-import { KebabMenuProps } from '../../types/common';
+import React from "react";
+import style from "./KebabMenu.module.css";
+import { KebabMenuProps } from "../../types/common";
 
 const KebabMenu: React.FC<KebabMenuProps> = ({
   pageType,
@@ -13,11 +13,11 @@ const KebabMenu: React.FC<KebabMenuProps> = ({
 }) => {
   return (
     <div className={style.kebabMenu} onClick={(e) => e.stopPropagation()}>
-      {pageType === 'notes' && (
+      {pageType === "notes" && (
         <>
           <p onClick={onDelete}>Delete note</p>
           <p onClick={onToggleCheckboxes}>
-            {showCheckboxes ? 'Hide checkboxes' : 'Show checkboxes'}
+            {showCheckboxes ? "Hide checkboxes" : "Show checkboxes"}
           </p>
 
           {onUncheckAll && <p onClick={onUncheckAll}>Uncheck all</p>}
@@ -26,14 +26,14 @@ const KebabMenu: React.FC<KebabMenuProps> = ({
         </>
       )}
 
-      {pageType === 'trash' && (
+      {pageType === "trash" && (
         <>
           <p onClick={onDelete}>Delete forever</p>
           <p onClick={onArchive}>Archive</p>
         </>
       )}
 
-      {pageType === 'archive' && (
+      {pageType === "archive" && (
         <>
           <p onClick={onUnarchive}>Unarchive</p>
           <p onClick={onDelete}>Delete</p>

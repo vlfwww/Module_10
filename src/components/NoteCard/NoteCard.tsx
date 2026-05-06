@@ -1,6 +1,6 @@
-import React from 'react';
-import style from './NoteCard.module.css';
-import { NoteCardProps } from '../../types/notes';
+import React from "react";
+import style from "./NoteCard.module.css";
+import { NoteCardProps } from "../../types/notes";
 
 const NoteCard: React.FC<NoteCardProps> = ({ items, showCheckboxes, onCheckboxChange }) => {
   return (

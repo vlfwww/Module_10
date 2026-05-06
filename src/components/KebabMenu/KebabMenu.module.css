@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 8px;
   padding: 8px 0;
-  font: 400 18px 'Poppins';
+  font: 400 18px "Poppins";
   position: absolute;
   right: -160px;
   min-width: 180px;

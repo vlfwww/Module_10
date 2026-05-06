@@ -30,7 +30,7 @@
         margin-bottom: 24px;
         align-items: center;
         & p {
-          font: 400 36px 'Poppins';
+          font: 400 36px "Poppins";
         }
         & .closeIcon {
           width: 24px;
@@ -43,7 +43,7 @@
           border: none;
           cursor: pointer;
 
-          :global([data-theme='dark']) & img {
+          :global([data-theme="dark"]) & img {
             filter: invert(1);
           }
         }
@@ -72,7 +72,7 @@
         & .header {
           margin-bottom: 16px;
           & p {
-            font: 400 16px 'Poppins';
+            font: 400 16px "Poppins";
           }
           & .closeIcon {
             width: 16px;

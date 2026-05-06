@@ -8,11 +8,11 @@
 
   & .noteTitle {
     color: var(--text-main);
-    font: 600 20px 'Inter';
+    font: 600 20px "Inter";
     margin-bottom: 16px;
   }
 
-  :global([data-theme='dark']) & .kebabButton img {
+  :global([data-theme="dark"]) & .kebabButton img {
     filter: invert(1);
   }
 

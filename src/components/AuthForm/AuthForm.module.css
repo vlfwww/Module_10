@@ -14,12 +14,12 @@
     width: 375px;
     & h1 {
       text-align: center;
-      font: 600 18px 'Poppins';
+      font: 600 18px "Poppins";
       color: var(--ui-text-color);
     }
     & .subtitle {
       text-align: center;
-      font: 400 14px 'Poppins';
+      font: 400 14px "Poppins";
       color: var(--ui-text-color);
       margin: 2px auto 24px;
       max-width: 221px;
@@ -30,13 +30,13 @@
       & input {
         width: 100%;
       }
-      & button {
+      & .submitButton {
         width: 100%;
       }
     }
     & .policyText {
       text-align: center;
-      font: 400 12px 'Inter';
+      font: 400 12px "Inter";
       color: var(--additional-elements-color);
       margin-top: 24px;
       & span {
@@ -45,13 +45,13 @@
     }
     & .errorText {
       text-align: center;
-      font: 400 14px 'Poppins';
+      font: 400 14px "Poppins";
       color: var(--input-error);
       margin-top: 16px;
     }
     & .footerText {
       text-align: center;
-      font: 400 14px 'Poppins';
+      font: 400 14px "Poppins";
       color: var(--ui-text-color);
       margin-top: 24px;
       & .link {

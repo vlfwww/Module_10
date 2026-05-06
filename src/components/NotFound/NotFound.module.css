@@ -6,7 +6,7 @@
   text-align: center;
   & h1 {
     margin-top: 47px;
-    font: 600 60px 'Inter';
+    font: 600 60px "Inter";
     color: var(--ui-text-color);
   }
   & .errorIcon {
@@ -23,7 +23,7 @@
       height: 73px;
     }
     & h1 {
-      font: 600 20px 'Inter';
+      font: 600 20px "Inter";
     }
   }
 }

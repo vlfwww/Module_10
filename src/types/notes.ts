@@ -1,10 +1,10 @@
-import { PageType } from './common';
+import { PageType } from "./common";
 
 export interface Note {
   id: number;
   title: string | undefined;
   description: string;
-  type: 'text' | 'todo';
+  type: "text" | "todo";
   isDeleted?: boolean;
   isArchived?: boolean;
   items?: CheckboxItem[];

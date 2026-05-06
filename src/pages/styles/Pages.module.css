@@ -33,7 +33,7 @@
 
 .errorContent h1,
 .errorContent p {
-  font: 600 60px 'Inter';
+  font: 600 60px "Inter";
   color: var(--ui-text-color);
 }
 
@@ -64,7 +64,7 @@
     }
     & h1,
     p {
-      font: 600 20px 'Inter';
+      font: 600 20px "Inter";
     }
   }
 }

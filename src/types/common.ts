@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export interface ChildrenProps {
   children: ReactNode;
 }
-export type PageType = 'notes' | 'trash' | 'archive' | 'signin' | 'signup';
+export type PageType = "notes" | "trash" | "archive" | "signin" | "signup";
 
 export interface KebabMenuProps {
   pageType: PageType;
@@ -33,14 +33,22 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   iconSrc: string;
   type?: string;
   isError?: boolean;
+  isValid?: boolean;
+  errorMessage?: string;
+  pageType?: PageType;
 }
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
+  value: string;
   iconSrc?: string;
+  errorMessage?: string;
+  isError?: boolean;
+  isValid?: boolean;
+  pageType?: PageType;
 }
 
-export type Theme = 'light' | 'dark';
+export type Theme = "light" | "dark";
 
 export interface ThemeContextType {
   theme: Theme;

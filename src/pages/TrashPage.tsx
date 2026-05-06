@@ -1,14 +1,18 @@
-import React from 'react';
-import style from './styles/Pages.module.css';
-import NoteList from '../components/NoteList/NoteList';
-import { useNotes } from '../context/NotesContext';
-import Button from '../components/UI/Button/Button';
-import AppLayout from '../components/AppLayout/AppLayout';
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import React, { useMemo } from "react";
+import style from "./styles/Pages.module.css";
+import NoteList from "../components/NoteList/NoteList";
+import { useNotes } from "../context/NotesContext";
+import Button from "../components/UI/Button/Button";
+import AppLayout from "../components/AppLayout/AppLayout";
+import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 
 const TrashPage: React.FC = () => {
   const { notes, deleteForever, archiveNote, deleteAllTrash } = useNotes();
-  const trashNotes = notes.filter((note) => note.isDeleted);
+
+  const trashNotes = useMemo(() => {
+    return notes.filter((note) => note.isDeleted);
+  }, [notes]);
+
   return (
     <AppLayout>
       <div className={style.buttonWrapper}>

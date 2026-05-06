@@ -1,7 +1,14 @@
-import React, { createContext, ReactNode, useState, useContext, useEffect } from 'react';
-import { CheckboxItem, NotesContext } from '../types/notes';
-import { Note } from '../types/notes';
-import { useAuth } from './AuthProvider';
+import React, {
+  createContext,
+  ReactNode,
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+} from "react";
+import { CheckboxItem, NotesContext, Note } from "../types/notes";
+import { useAuth } from "./AuthProvider";
+import { getStorageItem } from "../utils/storage";
 
 const NotesType = createContext<NotesContext | undefined>(undefined);
 
@@ -10,17 +17,13 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const storageKey = user ? `notes-app-data-${user.email}` : null;
 
   const [notes, setNotes] = useState<Note[]>(() => {
-    if (storageKey) {
-      const savedData = localStorage.getItem(storageKey);
-      return savedData ? JSON.parse(savedData) : [];
-    }
-    return [];
+    return storageKey ? getStorageItem(storageKey, []) : [];
   });
 
   useEffect(() => {
     if (storageKey) {
-      const savedData = localStorage.getItem(storageKey);
-      setNotes(savedData ? JSON.parse(savedData) : []);
+      const data = getStorageItem(storageKey, []);
+      setNotes(data);
     } else {
       setNotes([]);
     }
@@ -32,10 +35,10 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   }, [notes, storageKey]);
 
-  const addNote = (title: string, description: string) => {
+  const addNote = useCallback((title: string, description: string) => {
     const parsedItems: CheckboxItem[] = description
-      .split('\n')
-      .filter((line) => line.trim() !== '')
+      .split("\n")
+      .filter((line) => line.trim() !== "")
       .map((line, index) => ({
         id: Date.now() + index,
         name: `item-${index}`,
@@ -47,22 +50,22 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       id: Date.now(),
       title,
       description,
-      type: parsedItems.length > 0 ? 'todo' : 'text',
+      type: parsedItems.length > 0 ? "todo" : "text",
       isDeleted: false,
       items: parsedItems,
       showCheckboxes: false,
     };
 
-    setNotes([...notes, newNote]);
-  };
+    setNotes((prev) => [...prev, newNote]);
+  }, []);
 
-  const updateNote = (id: number, title: string, description: string) => {
+  const updateNote = useCallback((id: number, title: string, description: string) => {
     setNotes((prev) => {
       return prev.map((note) => {
         if (note.id === id) {
           const parsedItems: CheckboxItem[] = description
-            .split('\n')
-            .filter((line) => line.trim() !== '')
+            .split("\n")
+            .filter((line) => line.trim() !== "")
             .map((line, index) => {
               const existingItem = note.items?.find((oldItem) => oldItem.text === line);
 
@@ -79,41 +82,41 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
             title: title,
             description: description,
             items: parsedItems,
-            type: parsedItems.length > 0 ? 'todo' : 'text',
+            type: parsedItems.length > 0 ? "todo" : "text",
           };
         }
         return note;
       });
     });
-  };
+  }, []);
 
-  const deleteNote = (id: number) => {
+  const deleteNote = useCallback((id: number) => {
     setNotes((prev) => prev.map((note) => (note.id === id ? { ...note, isDeleted: true } : note)));
-  };
+  }, []);
 
-  const deleteForever = (id: number) => {
+  const deleteForever = useCallback((id: number) => {
     setNotes((prev) => prev.filter((note) => note.id !== id));
-  };
+  }, []);
 
-  const deleteAllTrash = () => {
+  const deleteAllTrash = useCallback(() => {
     setNotes((prev) => prev.filter((note) => note.isDeleted !== true));
-  };
+  }, []);
 
-  const archiveNote = (id: number) => {
+  const archiveNote = useCallback((id: number) => {
     setNotes((prev) =>
       prev.map((n) => (n.id === id ? { ...n, isArchived: true, isDeleted: false } : n)),
     );
-  };
+  }, []);
 
-  const unarchiveNote = (id: number) => {
+  const unarchiveNote = useCallback((id: number) => {
     setNotes((prev) => prev.map((n) => (n.id === id ? { ...n, isArchived: false } : n)));
-  };
+  }, []);
 
-  const unarchiveAll = () => {
+  const unarchiveAll = useCallback(() => {
     setNotes((prev) => prev.map((n) => ({ ...n, isArchived: false })));
-  };
+  }, []);
 
-  const toggleChecklistItem = (noteId: number, itemId: number) => {
+  const toggleChecklistItem = useCallback((noteId: number, itemId: number) => {
     setNotes((prev) =>
       prev.map((note) => {
         if (note.id === noteId && note.items) {
@@ -127,9 +130,9 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         return note;
       }),
     );
-  };
+  }, []);
 
-  const uncheckAllItems = (noteId: number) => {
+  const uncheckAllItems = useCallback((noteId: number) => {
     setNotes((prev) =>
       prev.map((note) => {
         if (note.id === noteId && note.items) {
@@ -141,15 +144,15 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         return note;
       }),
     );
-  };
+  }, []);
 
-  const toggleNoteCheckboxes = (id: number) => {
+  const toggleNoteCheckboxes = useCallback((id: number) => {
     setNotes((prev) =>
       prev.map((note) =>
         note.id === id ? { ...note, showCheckboxes: !note.showCheckboxes } : note,
       ),
     );
-  };
+  }, []);
 
   return (
     <NotesType.Provider
@@ -176,7 +179,7 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 export const useNotes = () => {
   const context = useContext(NotesType);
   if (!context) {
-    throw new Error('useNotes must be used within a NotesProvider');
+    throw new Error("useNotes must be used within a NotesProvider");
   }
   return context;
 };
