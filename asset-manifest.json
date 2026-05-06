@@ -1,22 +1,30 @@
 {
   "files": {
-    "main.css": "/Module_10/static/css/main.3fe49574.css",
-    "main.js": "/Module_10/static/js/main.987bacde.js",
+    "main.css": "/Module_10/static/css/main.72440e9c.css",
+    "main.js": "/Module_10/static/js/main.2e6f7416.js",
     "static/media/Inter_24pt-Bold.ttf": "/Module_10/static/media/Inter_24pt-Bold.33907c3265998371bea9.ttf",
     "static/media/Inter_18pt-Medium.ttf": "/Module_10/static/media/Inter_18pt-Medium.c51b145d8cf66a74cc74.ttf",
     "static/media/Inter_28pt-Regular.ttf": "/Module_10/static/media/Inter_28pt-Regular.fd012577d3f8e88a8149.ttf",
     "static/media/Poppins-Regular.ttf": "/Module_10/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/logo.svg": "/Module_10/static/media/logo.981e615ddd2334a8737e87c3b419de57.svg",
+    "static/media/fi-rr-eye-crossed.svg": "/Module_10/static/media/fi-rr-eye-crossed.241db066fc69a5310e94f48c9bd551b1.svg",
     "static/media/eye.svg": "/Module_10/static/media/eye.d79b974afe802a619814ca1d5f031964.svg",
+    "static/media/fi-rr-eye.svg": "/Module_10/static/media/fi-rr-eye.974f12854cfa4a468006a56a484d1695.svg",
+    "static/media/Info Tooltip.svg": "/Module_10/static/media/Info Tooltip.06edae94368b6a0f68bf16e9b708a546.svg",
+    "static/media/fi-sr-info-grey.svg": "/Module_10/static/media/fi-sr-info-grey.c564f9735bec7a485f5dd2ef05f051c2.svg",
+    "static/media/fi-sr-info.svg": "/Module_10/static/media/fi-sr-info.c365a0f7a2780b67c2e284e6a1a1de22.svg",
     "static/media/pencil.svg": "/Module_10/static/media/pencil.ed03a3d45b6c2da9994c52c1b90df9d5.svg",
     "static/media/envelope.svg": "/Module_10/static/media/envelope.f39d20f0552f1142a649d5ef37d20755.svg",
+    "static/media/fi-sr-thumbs-up.svg": "/Module_10/static/media/fi-sr-thumbs-up.25294a99b12ba5cd95eddf65bf404f55.svg",
+    "static/media/cross-small.svg": "/Module_10/static/media/cross-small.e86080b321cdaf1993280b7f13dfca34.svg",
     "static/media/cross.svg": "/Module_10/static/media/cross.77c54657d0ca3ce67802c44a0b7a8784.svg",
+    "static/media/check.svg": "/Module_10/static/media/check.f07a2f9a993ecc59dbff51bb72e12762.svg",
     "static/media/menu-burger.svg": "/Module_10/static/media/menu-burger.e5e0371f23c9c59fcab7c2254422b336.svg",
     "static/media/menu.svg": "/Module_10/static/media/menu.57f5d71a0bb86061fd1d1371db89d4a7.svg",
     "index.html": "/Module_10/index.html"
   },
   "entrypoints": [
-    "static/css/main.3fe49574.css",
-    "static/js/main.987bacde.js"
+    "static/css/main.72440e9c.css",
+    "static/js/main.2e6f7416.js"
   ]
 }
