@@ -7,7 +7,7 @@
   & h1 {
     margin-top: 47px;
     font: 600 60px "Inter";
-    color: var(--ui-text-color);
+    color: var(--text-main);
   }
   & .errorIcon {
     width: 200px;

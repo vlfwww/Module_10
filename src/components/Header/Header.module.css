@@ -1,5 +1,5 @@
 .headerWrapper {
-  background-color: var(--bg-ui-elements);
+  background-color: var(--bg-layout-edge);
 }
 
 .header {
@@ -59,11 +59,16 @@
   gap: 10px;
   font: 400 18px "Poppins";
   & .mobileHeader {
-    background-color: var(--bg-ui-elements);
+    background-color: var(--bg-layout-edge);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 14px 12px;
+    & img {
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+    }
   }
   & nav {
     & .mobileAuthLinks {
@@ -76,12 +81,16 @@
         color: var(--text-main);
         padding: 4px;
         &:hover {
-          background-color: var(--bg-hover);
+          background-color: var(--bg-menu-link-hover);
           border-radius: 8px;
         }
       }
     }
   }
+}
+
+:global([data-theme="dark"]) .burgerIcon {
+  filter: invert(1);
 }
 
 .open {

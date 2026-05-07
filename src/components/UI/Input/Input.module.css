@@ -44,8 +44,8 @@
     position: relative;
     width: 100%;
     & .inputField {
-      background-color: var(--bg-ui-elements);
-      color: var(--additional-elements-color);
+      background-color: var(--bg-layout-edge);
+      color: var(--text-secondary);
       border-radius: 8px;
       padding: 14px;
       font: 400 14px "Poppins";
@@ -54,15 +54,15 @@
       width: 100%;
       transition: all 0.3s ease-out;
       &:focus {
-        border-color: rgba(122, 68, 255, 1);
+        border-color: var(--input-focus);
         color: var(--text-main);
       }
     }
     & .inputField:disabled {
-      border: 1px solid rgba(157, 166, 203, 1);
-      background-color: rgba(188, 195, 227, 1);
+      border: 1px solid var(--input-disabled-color);
+      background-color: var(--bg-input-disabled);
       &::placeholder {
-        color: rgba(157, 166, 203, 1);
+        color: var(--input-disabled-color);
         font: 400 14px "Poppins";
       }
     }
@@ -112,11 +112,11 @@
         color: var(--input-error);
       }
       & .successText {
-        color: rgba(255, 136, 17, 1);
+        color: var( --input-success);
       }
     }
   }
 }
 .inputGroup:has(input:disabled) .labelWrapper p {
-  color: rgba(157, 166, 203, 1);
+  color: var(--input-disabled-color);
 }

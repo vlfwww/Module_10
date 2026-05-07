@@ -12,7 +12,9 @@ import { getStorageItem } from "../utils/storage";
 
 const NotesType = createContext<NotesContext | undefined>(undefined);
 
-export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const NotesProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const { user } = useAuth();
   const storageKey = user ? `notes-app-data-${user.email}` : null;
 
@@ -59,39 +61,48 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setNotes((prev) => [...prev, newNote]);
   }, []);
 
-  const updateNote = useCallback((id: number, title: string, description: string) => {
-    setNotes((prev) => {
-      return prev.map((note) => {
-        if (note.id === id) {
-          const parsedItems: CheckboxItem[] = description
-            .split("\n")
-            .filter((line) => line.trim() !== "")
-            .map((line, index) => {
-              const existingItem = note.items?.find((oldItem) => oldItem.text === line);
+  const updateNote = useCallback(
+    (id: number, title: string, description: string) => {
+      setNotes((prev) => {
+        return prev.map((note) => {
+          if (note.id === id) {
+            const parsedItems: CheckboxItem[] = description
+              .split("\n")
+              .filter((line) => line.trim() !== "")
+              .map((line, index) => {
+                const existingItem = note.items?.find(
+                  (oldItem) => oldItem.text === line,
+                );
 
-              return {
-                id: existingItem ? existingItem.id : Date.now() + index,
-                name: `item-${index}`,
-                text: line,
-                checked: existingItem ? existingItem.checked : false,
-              };
-            });
+                return {
+                  id: existingItem ? existingItem.id : Date.now() + index,
+                  name: `item-${index}`,
+                  text: line,
+                  checked: existingItem ? existingItem.checked : false,
+                };
+              });
 
-          return {
-            ...note,
-            title: title,
-            description: description,
-            items: parsedItems,
-            type: parsedItems.length > 0 ? "todo" : "text",
-          };
-        }
-        return note;
+            return {
+              ...note,
+              title: title,
+              description: description,
+              items: parsedItems,
+              type: parsedItems.length > 0 ? "todo" : "text",
+            };
+          }
+          return note;
+        });
       });
-    });
-  }, []);
+    },
+    [],
+  );
 
   const deleteNote = useCallback((id: number) => {
-    setNotes((prev) => prev.map((note) => (note.id === id ? { ...note, isDeleted: true } : note)));
+    setNotes((prev) =>
+      prev.map((note) =>
+        note.id === id ? { ...note, isDeleted: true } : note,
+      ),
+    );
   }, []);
 
   const deleteForever = useCallback((id: number) => {
@@ -104,12 +115,16 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const archiveNote = useCallback((id: number) => {
     setNotes((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, isArchived: true, isDeleted: false } : n)),
+      prev.map((n) =>
+        n.id === id ? { ...n, isArchived: true, isDeleted: false } : n,
+      ),
     );
   }, []);
 
   const unarchiveNote = useCallback((id: number) => {
-    setNotes((prev) => prev.map((n) => (n.id === id ? { ...n, isArchived: false } : n)));
+    setNotes((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, isArchived: false } : n)),
+    );
   }, []);
 
   const unarchiveAll = useCallback(() => {
@@ -149,7 +164,9 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const toggleNoteCheckboxes = useCallback((id: number) => {
     setNotes((prev) =>
       prev.map((note) =>
-        note.id === id ? { ...note, showCheckboxes: !note.showCheckboxes } : note,
+        note.id === id
+          ? { ...note, showCheckboxes: !note.showCheckboxes }
+          : note,
       ),
     );
   }, []);

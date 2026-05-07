@@ -19,8 +19,8 @@
     }
   }
   & .textareaField {
-    background-color: var(--bg-ui-elements);
-    color: var(--additional-elements-color);
+    background-color: var(--bg-layout-edge);
+    color: var(--text-secondary);
     border-radius: 8px;
     padding: 14px;
     font: 400 14px "Poppins";
@@ -32,7 +32,7 @@
     transition: border-color 0.3s ease-out;
   }
   & .textareaField:focus {
-    border: 1px solid rgba(122, 68, 255, 1);
+    border: 1px solid var(--input-focus);
     color: var(--text-main-color);
   }
   & .inputError {
@@ -58,7 +58,7 @@
           color: var(--input-error);
         }
         & .infoText {
-          color: rgba(102, 112, 133, 1);
+          color: var(--text-secondary);
         }
       }
     }

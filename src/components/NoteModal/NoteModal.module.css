@@ -13,7 +13,7 @@
   padding: 20px;
 
   & .modalWindow {
-    background-color: var(--bg-form);
+    background-color: var(--bg-modal);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     max-width: 800px;

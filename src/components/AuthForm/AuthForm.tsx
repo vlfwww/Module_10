@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import style from "./AuthForm.module.css";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
@@ -6,7 +7,6 @@ import envelopeIcon from "../../assets/images/envelope.svg";
 import eyeIcon from "../../assets/images/eye.svg";
 import { validateEmail, validatePassword } from "../../utils/validation";
 import { AuthFormProps } from "../../types/auth";
-import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { useTheme } from "../../context/ThemeContext";

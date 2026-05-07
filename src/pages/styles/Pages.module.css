@@ -34,7 +34,7 @@
 .errorContent h1,
 .errorContent p {
   font: 600 60px "Inter";
-  color: var(--ui-text-color);
+  color: var(--text-main);
 }
 
 @media (max-width: 1040px) {
@@ -46,7 +46,6 @@
   .buttonWrapper button {
     width: 80%;
     max-width: 300px;
-    color: var(--bg-page);
   }
 
   .noteCardsWrapper {

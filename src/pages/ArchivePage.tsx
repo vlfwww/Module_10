@@ -17,7 +17,7 @@ const ArchivePage: React.FC = () => {
     <AppLayout>
       <div className={style.buttonWrapper}>
         <Button className={style.unarchiveAll} onClick={unarchiveAll}>
-          Unarchive
+          Unarchive all
         </Button>
       </div>
 

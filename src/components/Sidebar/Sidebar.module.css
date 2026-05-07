@@ -18,12 +18,12 @@
   }
 
   & .navItem:hover {
-    background-color: var(--bg-hover);
+    background-color: var(--bg-menu-link-hover);
     border-radius: 8px;
   }
 
   & .navItem.active {
-    background-color: var(--bg-hover);
+    background-color: var(--bg-menu-link-hover);
     border-radius: 8px;
   }
 }
