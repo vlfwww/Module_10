@@ -1,0 +1,17 @@
+.errorContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  & .crossIcon {
+    width: 95px;
+    height: 95px;
+    color: var(--text-main);
+  }
+  & h1,
+  p {
+    font: 600 60px "Inter";
+    color: var(--text-main);
+  }
+}

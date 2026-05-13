@@ -15,7 +15,8 @@ const NoteList: React.FC<NoteListProps> = ({
   onEdit,
   title,
 }) => {
-  const { notes, toggleChecklistItem, uncheckAllItems, toggleNoteCheckboxes } = useNotes();
+  const { notes, toggleChecklistItem, uncheckAllItems, toggleNoteCheckboxes } =
+    useNotes();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const activeNoteData = useMemo(() => {
@@ -26,7 +27,7 @@ const NoteList: React.FC<NoteListProps> = ({
     };
   }, [notes, id]);
 
-  const handleCheckboxChange = (checkboxId: number): void => {
+  const handleCheckboxChange = (checkboxId: string): void => {
     toggleChecklistItem(id, checkboxId);
   };
 
@@ -72,7 +73,9 @@ const NoteList: React.FC<NoteListProps> = ({
           showCheckboxes={showCheckboxes}
           onArchive={() => onArchive?.(id)}
           onUnarchive={() => onUnarchive?.(id)}
-          {...(showCheckboxes && hasCheckedItems ? { onUncheckAll: handleUncheckAll } : {})}
+          {...(showCheckboxes && hasCheckedItems
+            ? { onUncheckAll: handleUncheckAll }
+            : {})}
         />
       )}{" "}
     </div>

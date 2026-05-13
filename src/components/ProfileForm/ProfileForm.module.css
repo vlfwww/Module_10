@@ -1,0 +1,26 @@
+.infoForm {
+  width: 579px;
+  & .avatarSection {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    & .avatarImage {
+      border-radius: 1000px;
+      width: 64px;
+      height: 64px;
+    }
+    & .avatarInfo {
+      & .userName {
+        font: 500 16px "Inter";
+        color: var(--text-main);
+      }
+      & .changePhotoBtn {
+        font: 400 16px "Inter";
+        color: var(--text-secondary);
+        border: none;
+        background-color: transparent;
+      }
+    }
+  }
+}

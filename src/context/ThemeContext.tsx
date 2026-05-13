@@ -1,6 +1,7 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useCallback } from "react";
 import React, { createContext, useState, useContext } from "react";
 import { ThemeContextType, Theme } from "../types/common";
+import { getStorageItem } from "../utils/storage";
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
@@ -8,17 +9,17 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    return (localStorage.getItem("theme") as Theme) || "light";
+    return getStorageItem<Theme>("theme", "light");
   });
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
+    localStorage.setItem("theme", JSON.stringify(theme));
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

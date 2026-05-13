@@ -30,15 +30,17 @@ const Input: React.FC<InputProps> = ({
 
   const canShowStrongMsg = pageType === "signup" && isPassword;
 
-  const showErrorMessage = isTouched && isError && !isFocused;
-  const showGeneralSuccess = isTouched && isValid && !isError && !isFocused && canShowSuccess;
+  const showErrorMessage =
+    (pageType === "profile" ? isError : isTouched && isError) && !isFocused;
+  const showGeneralSuccess =
+    isTouched && isValid && !isError && !isFocused && canShowSuccess;
   const showStrongPasswordMessage = showGeneralSuccess && canShowStrongMsg;
 
   return (
     <div className={style.inputGroup}>
       <div className={style.label}>
         <div className={style.labelWrapper}>
-          <img src={iconSrc} alt={label.toLowerCase()} />
+          {iconSrc ? <img src={iconSrc} alt={label.toLowerCase()} /> : ""}
           <p>{label}</p>
         </div>
         <div className={style.statusIndicator}>
@@ -77,12 +79,21 @@ const Input: React.FC<InputProps> = ({
       >
         <div className={style.errorContainer}>
           <div className={style.errorTextWrapper}>
-            <img src={showErrorMessage ? errorCircleIcon : successThumbIcon} alt="status" />
-            <span className={showStrongPasswordMessage ? style.successText : style.errorText}>
+            <img
+              src={showErrorMessage ? errorCircleIcon : successThumbIcon}
+              alt="status"
+            />
+            <span
+              className={
+                showStrongPasswordMessage ? style.successText : style.errorText
+              }
+            >
               {showErrorMessage ? errorMessage : "Your password is strong"}
             </span>
           </div>
-          {showErrorMessage && <img src={infoIcon} alt="info" className={style.infoIcon} />}
+          {showErrorMessage && (
+            <img src={infoIcon} alt="info" className={style.infoIcon} />
+          )}
         </div>
       </div>
     </div>

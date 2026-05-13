@@ -10,6 +10,10 @@
     color: var(--text-main);
     font: 600 20px "Inter";
     margin-bottom: 16px;
+    :global(.listView) & {
+      margin-bottom: 0;
+      min-width: 200px;
+    }
   }
 
   :global([data-theme="dark"]) & .kebabButton img {

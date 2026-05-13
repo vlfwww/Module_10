@@ -19,7 +19,7 @@
     }
   }
   & .textareaField {
-    background-color: var(--bg-layout-edge);
+    background-color: var(--bg-page);
     color: var(--text-secondary);
     border-radius: 8px;
     padding: 14px;

@@ -33,12 +33,12 @@
 
 @media (max-width: 768px) {
   .kebabMenu {
-    min-width: 180px;
-    top: 80%;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    margin-top: 8px;
+    top: auto;
+    bottom: 10%;
+    margin-bottom: 8px;
+    transform: translateX(-30%);
+    right: 0;
+    left: auto;
     z-index: 100;
   }
 }

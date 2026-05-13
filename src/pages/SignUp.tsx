@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
+import { useAuth } from "../context/AuthContext";
 import AuthForm from "../components/AuthForm/AuthForm";
+import AppLayout from "../components/AppLayout/AppLayout";
 
 const SignUp: React.FC = () => {
   const [error, setError] = useState("");
@@ -20,15 +21,17 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <AuthForm
-      title="Create an account"
-      subtitle="Enter your email and password to sign up for this app"
-      buttonText="Sign Up"
-      onSubmit={handleSignUp}
-      error={error}
-      setError={setError}
-      pageType="signup"
-    />
+    <AppLayout hideSidebar pageType="signup">
+      <AuthForm
+        title="Create an account"
+        subtitle="Enter your email and password to sign up for this app"
+        buttonText="Sign Up"
+        onSubmit={handleSignUp}
+        error={error}
+        setError={setError}
+        pageType="signup"
+      />
+    </AppLayout>
   );
 };
 

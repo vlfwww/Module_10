@@ -1,0 +1,20 @@
+.accordion {
+  & .header {
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-modal);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    padding: 24px;
+    & .title {
+      font: 400 20px "Inter";
+      color: var(--text-main);
+    }
+    & .close {
+      transform: rotate(180deg);
+    }
+    margin-bottom: 12px;
+  }
+  margin-bottom: 30px;
+}

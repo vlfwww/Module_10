@@ -7,7 +7,7 @@ import React, {
   useCallback,
 } from "react";
 import { CheckboxItem, NotesContext, Note } from "../types/notes";
-import { useAuth } from "./AuthProvider";
+import { useAuth } from "./AuthContext";
 import { getStorageItem } from "../utils/storage";
 
 const NotesType = createContext<NotesContext | undefined>(undefined);
@@ -42,14 +42,14 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({
       .split("\n")
       .filter((line) => line.trim() !== "")
       .map((line, index) => ({
-        id: Date.now() + index,
+        id: crypto.randomUUID(),
         name: `item-${index}`,
         text: line,
         checked: false,
       }));
 
     const newNote: Note = {
-      id: Date.now(),
+      id: crypto.randomUUID(),
       title,
       description,
       type: parsedItems.length > 0 ? "todo" : "text",
@@ -62,7 +62,7 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   const updateNote = useCallback(
-    (id: number, title: string, description: string) => {
+    (id: string, title: string, description: string) => {
       setNotes((prev) => {
         return prev.map((note) => {
           if (note.id === id) {
@@ -75,7 +75,7 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({
                 );
 
                 return {
-                  id: existingItem ? existingItem.id : Date.now() + index,
+                  id: existingItem ? existingItem.id : crypto.randomUUID(),
                   name: `item-${index}`,
                   text: line,
                   checked: existingItem ? existingItem.checked : false,
@@ -97,7 +97,7 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({
     [],
   );
 
-  const deleteNote = useCallback((id: number) => {
+  const deleteNote = useCallback((id: string) => {
     setNotes((prev) =>
       prev.map((note) =>
         note.id === id ? { ...note, isDeleted: true } : note,
@@ -105,7 +105,7 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({
     );
   }, []);
 
-  const deleteForever = useCallback((id: number) => {
+  const deleteForever = useCallback((id: string) => {
     setNotes((prev) => prev.filter((note) => note.id !== id));
   }, []);
 
@@ -113,7 +113,7 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({
     setNotes((prev) => prev.filter((note) => note.isDeleted !== true));
   }, []);
 
-  const archiveNote = useCallback((id: number) => {
+  const archiveNote = useCallback((id: string) => {
     setNotes((prev) =>
       prev.map((n) =>
         n.id === id ? { ...n, isArchived: true, isDeleted: false } : n,
@@ -121,7 +121,7 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({
     );
   }, []);
 
-  const unarchiveNote = useCallback((id: number) => {
+  const unarchiveNote = useCallback((id: string) => {
     setNotes((prev) =>
       prev.map((n) => (n.id === id ? { ...n, isArchived: false } : n)),
     );
@@ -131,7 +131,7 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({
     setNotes((prev) => prev.map((n) => ({ ...n, isArchived: false })));
   }, []);
 
-  const toggleChecklistItem = useCallback((noteId: number, itemId: number) => {
+  const toggleChecklistItem = useCallback((noteId: string, itemId: string) => {
     setNotes((prev) =>
       prev.map((note) => {
         if (note.id === noteId && note.items) {
@@ -147,7 +147,7 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({
     );
   }, []);
 
-  const uncheckAllItems = useCallback((noteId: number) => {
+  const uncheckAllItems = useCallback((noteId: string) => {
     setNotes((prev) =>
       prev.map((note) => {
         if (note.id === noteId && note.items) {
@@ -161,7 +161,7 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({
     );
   }, []);
 
-  const toggleNoteCheckboxes = useCallback((id: number) => {
+  const toggleNoteCheckboxes = useCallback((id: string) => {
     setNotes((prev) =>
       prev.map((note) =>
         note.id === id

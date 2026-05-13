@@ -46,6 +46,7 @@
   --form-text-color: rgba(27, 32, 55, 1);
   --text-modal-button: rgb(255, 255, 255);
   --accent-color: rgba(255, 136, 17, 1);
+  --slider-color: rgb(255, 255, 255);
   --btn-hover: rgba(8, 185, 78, 1);
   --btn-active: rgba(98, 54, 204, 1);
   --btn-disabled: rgba(188, 195, 227, 1);
@@ -62,15 +63,16 @@
 }
 
 [data-theme="dark"] {
-  --bg-page: rgb(11, 14, 20);
-  --bg-content: rgb(21, 25, 33);
-  --bg-modal: rgb(33, 31, 31);
-  --bg-layout-edge: rgb(54, 56, 58);
-  --bg-menu-link-hover: rgb(54, 56, 58);
-  --text-main: rgb(240, 241, 243);
-  --form-text-color: rgb(228, 234, 247);
-  --text-secondary: rgb(148, 155, 166);
-  --border-color: rgb(45, 50, 61);
-  --modal-overlay: rgb(45, 50, 61);
-  --form-policy-text: rgba(188, 195, 227, 1);
+  --bg-page: rgb(14, 18, 35);
+  --bg-content: rgb(21, 26, 45);
+  --bg-modal: rgb(27, 32, 55);
+  --bg-layout-edge: rgb(27, 32, 55);
+  --border-color: rgb(36, 42, 70);
+  --text-main: rgb(188, 195, 227);
+  --text-secondary: rgb(135, 145, 183);
+  --form-text-color: rgb(188, 195, 227);
+  --form-policy-text: rgb(135, 145, 183);
+  --bg-menu-link-hover: rgb(47, 55, 87);
+  --modal-overlay: rgba(14, 18, 35, 0.85);
+  --slider-color: rgb(255, 136, 17);
 }

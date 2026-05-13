@@ -8,17 +8,28 @@ import crossIcon from "../../assets/images/cross.svg";
 import envelopeIcon from "../../assets/images/envelope.svg";
 import pencilImage from "../../assets/images/pencil.svg";
 
-const NoteModal: React.FC<NoteModalProps> = ({ isOpen, onClose, onSubmit, initialData }) => {
+const NoteModal: React.FC<NoteModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  initialData,
+}) => {
   const [title, setTitle] = useState(initialData?.title || "");
-  const [description, setDescription] = useState(initialData?.description || "");
+  const [description, setDescription] = useState(
+    initialData?.description || "",
+  );
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
 
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, []);
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -44,7 +55,11 @@ const NoteModal: React.FC<NoteModalProps> = ({ isOpen, onClose, onSubmit, initia
         <form onSubmit={handleSubmit}>
           <div className={style.header}>
             <p>{initialData ? "Edit note" : "Create a new note"}</p>
-            <button type="button" onClick={onClose} className={style.closeButton}>
+            <button
+              type="button"
+              onClick={onClose}
+              className={style.closeButton}
+            >
               <img src={crossIcon} alt="close" className={style.closeIcon} />
             </button>
           </div>

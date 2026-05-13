@@ -9,21 +9,36 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
       <nav className={style.nav}>
         <NavLink
           to="/"
-          className={({ isActive }) => `${style.navItem} ${isActive ? style.active : ""}`}
+          className={({ isActive }) =>
+            `${style.navItem} ${isActive ? style.active : ""}`
+          }
         >
           Notes
         </NavLink>
 
         <NavLink
+          to="/profile"
+          className={({ isActive }) =>
+            `${style.navItem} ${isActive ? style.active : ""}`
+          }
+        >
+          Profile
+        </NavLink>
+
+        <NavLink
           to="/archive"
-          className={({ isActive }) => `${style.navItem} ${isActive ? style.active : ""}`}
+          className={({ isActive }) =>
+            `${style.navItem} ${isActive ? style.active : ""}`
+          }
         >
           Archived
         </NavLink>
 
         <NavLink
           to="/trash"
-          className={({ isActive }) => `${style.navItem} ${isActive ? style.active : ""}`}
+          className={({ isActive }) =>
+            `${style.navItem} ${isActive ? style.active : ""}`
+          }
         >
           Trash
         </NavLink>

@@ -8,10 +8,12 @@ import Button from "../components/UI/Button/Button";
 import AppLayout from "../components/AppLayout/AppLayout";
 import { Note } from "../types/notes";
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
-import { useAuth } from "../context/AuthProvider";
+import { useAuth } from "../context/AuthContext";
+import { useSettings } from "../context/SettingsContext";
 
 const MainPage: React.FC = () => {
   const { isAuthenticated } = useAuth();
+  const { isListView } = useSettings();
   const { notes, addNote, updateNote, deleteNote, archiveNote } = useNotes();
 
   const activeNotes = useMemo(() => {
@@ -42,7 +44,9 @@ const MainPage: React.FC = () => {
           <div className={style.buttonWrapper}>
             <Button onClick={() => setIsModalOpen(true)}>Create a note</Button>
           </div>
-          <div className={style.noteCardsWrapper}>
+          <div
+            className={`${style.noteCardsWrapper} ${isListView ? style.listView : ""}`}
+          >
             <ErrorBoundary>
               {activeNotes.map((note) => (
                 <NoteList
@@ -52,6 +56,7 @@ const MainPage: React.FC = () => {
                   onDelete={deleteNote}
                   onEdit={() => setEditNote(note)}
                   onArchive={archiveNote}
+                  viewType={isListView ? "list" : "grid"}
                 />
               ))}
             </ErrorBoundary>
@@ -59,25 +64,19 @@ const MainPage: React.FC = () => {
         </>
       )}
 
-      {isModalOpen && (
-        <NoteModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onSubmit={handleAddNote}
-        />
-      )}
-
-      {editNote && (
-        <NoteModal
-          isOpen={!!editNote}
-          onClose={() => setEditNote(null)}
-          onSubmit={handleUpdateNote}
-          initialData={{
-            title: editNote.title || "",
-            description: editNote.description,
-          }}
-        />
-      )}
+      <NoteModal
+        isOpen={isModalOpen || !!editNote}
+        onClose={() => {
+          setIsModalOpen(false);
+          setEditNote(null);
+        }}
+        onSubmit={editNote ? handleUpdateNote : handleAddNote}
+        initialData={
+          editNote
+            ? { title: editNote.title || "", description: editNote.description }
+            : undefined
+        }
+      />
     </AppLayout>
   );
 };

@@ -5,12 +5,21 @@ export interface AuthContextType {
   register: (email: string, password: string) => boolean;
   logout: () => void;
   refreshToken: () => Promise<string | null>;
+  updateUserInfo: (
+    newEmail: string,
+    newUsername: string,
+    newDescription: string,
+    newAvatar: string,
+  ) => void;
 }
 
 export interface User {
-  id: number;
+  id: string;
   isAuthenticated: boolean;
   email: string;
+  username: string;
+  description?: string;
+  avatar?: string;
 }
 
 export interface UserStorageEntry extends User {
@@ -25,4 +34,9 @@ export interface AuthFormProps {
   error?: string;
   setError: (error: string) => void;
   pageType: "signin" | "signup";
+}
+
+export interface RouteProps {
+  children: React.ReactElement;
+  isAuthenticated: boolean;
 }

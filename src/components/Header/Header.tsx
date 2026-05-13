@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Header.module.css";
-import { useAuth } from "../../context/AuthProvider";
+import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
@@ -13,7 +13,10 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
   const { isAuthenticated, user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const userInfo = user?.email;
+  const userInfo = {
+    email: user?.email,
+    icon: user?.avatar,
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,8 +38,8 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
           {isAuthenticated ? (
             <>
               <div className={style.profileInfo}>
-                <img src={profileIcon} alt="User" />
-                <p>{userInfo}</p>
+                <img src={userInfo.icon || profileIcon} alt="User" />
+                <p>{userInfo.email}</p>
               </div>
             </>
           ) : (
@@ -79,7 +82,9 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
           </nav>
         </div>
 
-        {isMenuOpen && <div className={style.overlay} onClick={toggleMenu}></div>}
+        {isMenuOpen && (
+          <div className={style.overlay} onClick={toggleMenu}></div>
+        )}
       </header>
     </div>
   );

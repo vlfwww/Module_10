@@ -1,0 +1,39 @@
+.settingsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  & .helperText {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--text-secondary);
+    font: 400 14px "Poppins";
+    margin-top: 7px;
+  }
+  & .inputWrapper {
+    max-width: 150px;
+  }
+  & .uploadSection {
+    & .dropZone {
+      border: 2px dashed var(--border-color);
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 32px;
+      & .uploadInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        font: 400 14px "Poppins";
+        & .uploadTitle {
+          color: var(--text-main);
+        }
+        & .uploadSubtitle {
+          color: var(--text-secondary);
+        }
+      }
+    }
+  }
+}

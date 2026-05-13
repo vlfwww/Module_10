@@ -8,11 +8,15 @@ const Button: React.FC<ButtonProps> = ({
   className,
   textColor,
   style: inlineStyle,
+  isFullWidth = false,
   ...props
 }) => {
+  const buttonClasses =
+    `${style.customButton} ${isFullWidth ? style.fullWidth : ""} ${className}`.trim();
+
   return (
     <button
-      className={`${style.customButton} ${className}`}
+      className={buttonClasses}
       onClick={onClick}
       style={{ color: textColor, ...inlineStyle }}
       {...props}

@@ -1,11 +1,20 @@
-import { createContext, useContext, ReactNode, useState, useCallback } from "react";
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useCallback,
+} from "react";
 import { AuthContextType, User, UserStorageEntry } from "../types/auth";
 import { getStorageItem } from "../utils/storage";
+import profileImg from "../assets/images/profile.jpg";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(() => getStorageItem("current_user", null));
+  const [user, setUser] = useState<User | null>(() =>
+    getStorageItem("current_user", null),
+  );
 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() =>
     getStorageItem("is_auth", false),
@@ -14,12 +23,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = useCallback((email: string, password: string): boolean => {
     const users: UserStorageEntry[] = getStorageItem("users", []);
 
-    const foundUser = users.find((u) => u.email === email && u.password === btoa(password));
+    const foundUser = users.find(
+      (u) => u.email === email && u.password === btoa(password),
+    );
 
     if (foundUser) {
       const userData: User = {
         id: foundUser.id,
         email: foundUser.email,
+        username: foundUser.username,
+        description: foundUser.description || "",
+        avatar: foundUser.avatar || profileImg,
         isAuthenticated: true,
       };
 
@@ -27,8 +41,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsAuthenticated(true);
 
       localStorage.setItem("current_user", JSON.stringify(userData));
-      localStorage.setItem("access_token", "fake-access-" + Date.now());
-      localStorage.setItem("refresh_token", "refresh-access-" + Date.now());
+      localStorage.setItem("access_token", `access-${crypto.randomUUID()}`);
+      localStorage.setItem("refresh_token", `refresh-${crypto.randomUUID()}`);
       localStorage.setItem("is_auth", "true");
 
       return true;
@@ -42,11 +56,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       if (users.find((u) => u.email === email)) return false;
 
+      const newId = crypto.randomUUID();
+
       const newUser = {
-        id: Date.now(),
+        id: newId,
         email,
         password: btoa(password),
+        username: `@user${newId.toString().slice(-4)}`,
         isAuthenticated: true,
+        avatar: profileImg,
       };
 
       users.push(newUser);
@@ -75,7 +93,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
 
     try {
-      const newAccessToken = "new_access_" + Math.random();
+      const newAccessToken = `access-${crypto.randomUUID()}`;
       localStorage.setItem("access_token", newAccessToken);
       return newAccessToken;
     } catch (error) {
@@ -85,8 +103,58 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [logout]);
 
+  const updateUserInfo = useCallback(
+    (
+      newEmail: string,
+      newUsername: string,
+      newDescription: string,
+      newAvatar: string,
+    ) => {
+      setUser((prevUser) => {
+        if (!prevUser) return null;
+
+        const updated = {
+          ...prevUser,
+          email: newEmail,
+          username: newUsername,
+          description: newDescription,
+          avatar: newAvatar,
+        };
+
+        localStorage.setItem("current_user", JSON.stringify(updated));
+
+        const usersList: UserStorageEntry[] = getStorageItem("users", []);
+        const updatedList = usersList.map((u) =>
+          u.id === prevUser.id
+            ? {
+                ...u,
+                email: newEmail,
+                username: newUsername,
+                description: newDescription,
+                avatar: newAvatar,
+              }
+            : u,
+        );
+        localStorage.setItem("users", JSON.stringify(updatedList));
+
+        return updated;
+      });
+    },
+    [],
+  );
+
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout, register, refreshToken }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated,
+        login,
+        logout,
+        register,
+        refreshToken,
+        updateUserInfo,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

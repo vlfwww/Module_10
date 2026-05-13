@@ -1,35 +1,66 @@
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import MainPage from "../../pages/MainPage";
-import { useAuth } from "../../context/AuthProvider";
+import { useAuth } from "../../context/AuthContext";
 import TrashPage from "../../pages/TrashPage";
 import ArchivePage from "../../pages/ArchivePage";
 import SignIn from "../../pages/SignIn";
 import SignUp from "../../pages/SignUp";
 import NotFoundPage from "../../pages/NotFoundPage";
+import ProfilePage from "../../pages/ProfilePage";
+import PublicRoute from "./PublicRoute";
+import ProtectedRoute from "./ProtectedRoute";
 
 const AppRoutes: React.FC = () => {
   const { isAuthenticated } = useAuth();
+
   return (
     <Routes>
       <Route
         path="/signin"
-        element={!isAuthenticated ? <SignIn /> : <Navigate to="/" />}
+        element={
+          <PublicRoute isAuthenticated={isAuthenticated}>
+            <SignIn />
+          </PublicRoute>
+        }
       />
       <Route
         path="/signup"
-        element={!isAuthenticated ? <SignUp /> : <Navigate to="/" />}
+        element={
+          <PublicRoute isAuthenticated={isAuthenticated}>
+            <SignUp />
+          </PublicRoute>
+        }
       />
+
       <Route path="/" element={<MainPage />} />
+
       <Route
         path="/archive"
-        element={isAuthenticated ? <ArchivePage /> : <Navigate to="/signin" />}
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <ArchivePage />
+          </ProtectedRoute>
+        }
       />
       <Route
         path="/trash"
-        element={isAuthenticated ? <TrashPage /> : <Navigate to="/signin" />}
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <TrashPage />
+          </ProtectedRoute>
+        }
       />
-      <Route path="/*" element={<NotFoundPage />} />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <ProfilePage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

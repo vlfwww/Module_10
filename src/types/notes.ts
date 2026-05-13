@@ -1,7 +1,7 @@
 import { PageType } from "./common";
 
 export interface Note {
-  id: number;
+  id: string;
   title: string | undefined;
   description: string;
   type: "text" | "todo";
@@ -12,7 +12,7 @@ export interface Note {
 }
 
 export interface CheckboxItem {
-  id: number;
+  id: string;
   name: string;
   text: string;
   checked: boolean;
@@ -21,37 +21,38 @@ export interface CheckboxItem {
 export interface NoteCardProps {
   items: CheckboxItem[];
   showCheckboxes: boolean;
-  onCheckboxChange: (id: number) => void;
+  onCheckboxChange: (id: string) => void;
 }
 
 export interface NoteListProps {
   pageType: PageType;
-  id: number;
-  onDelete: (id: number) => void;
-  onUnarchive?: (id: number) => void;
-  onArchive?: (id: number) => void;
+  id: string;
+  onDelete: (id: string) => void;
+  onUnarchive?: (id: string) => void;
+  onArchive?: (id: string) => void;
   onEdit: () => void;
   title?: string | undefined;
+  viewType?: "list" | "grid";
 }
 
 export interface NoteModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (title: string, description: string) => void;
-  initialData?: { title: string; description: string };
+  initialData: { title: string; description: string } | undefined;
 }
 
 export interface NotesContext {
   notes: Note[];
   addNote: (title: string, description: string) => void;
-  updateNote: (id: number, title: string, description: string) => void;
-  deleteNote: (id: number) => void;
-  deleteForever: (id: number) => void;
+  updateNote: (id: string, title: string, description: string) => void;
+  deleteNote: (id: string) => void;
+  deleteForever: (id: string) => void;
   deleteAllTrash: () => void;
-  archiveNote: (id: number) => void;
-  unarchiveNote: (id: number) => void;
+  archiveNote: (id: string) => void;
+  unarchiveNote: (id: string) => void;
   unarchiveAll: () => void;
-  toggleChecklistItem: (noteId: number, itemId: number) => void;
-  uncheckAllItems: (noteId: number) => void;
-  toggleNoteCheckboxes: (id: number) => void;
+  toggleChecklistItem: (noteId: string, itemId: string) => void;
+  uncheckAllItems: (noteId: string) => void;
+  toggleNoteCheckboxes: (id: string) => void;
 }

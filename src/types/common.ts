@@ -3,7 +3,13 @@ import { ReactNode } from "react";
 export interface ChildrenProps {
   children: ReactNode;
 }
-export type PageType = "notes" | "trash" | "archive" | "signin" | "signup";
+export type PageType =
+  | "notes"
+  | "trash"
+  | "archive"
+  | "signin"
+  | "signup"
+  | "profile";
 
 export interface KebabMenuProps {
   pageType: PageType;
@@ -24,18 +30,21 @@ export interface HeaderProps {
 }
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+  isFullWidth?: boolean;
   textColor?: string;
 }
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  iconSrc: string;
+  iconSrc?: string;
   type?: string;
   isError?: boolean;
   isValid?: boolean;
   errorMessage?: string;
   pageType?: PageType;
+  step?: string;
+  max?: string;
+  min?: string;
 }
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -53,4 +62,25 @@ export type Theme = "light" | "dark";
 export interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
+}
+
+export interface AccordionProps extends ChildrenProps {
+  title: string;
+  defaultOpen?: boolean;
+}
+
+export interface SwitchProps {
+  checked: boolean;
+  onChange: () => void;
+  label?: string;
+}
+
+export interface SettingsContextProps {
+  isListView: boolean;
+  toggleView: () => void;
+}
+
+export interface AppLayoutProps extends ChildrenProps {
+  hideSidebar?: boolean;
+  pageType?: PageType;
 }

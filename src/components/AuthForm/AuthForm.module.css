@@ -10,8 +10,11 @@
   align-items: center;
   flex-direction: column;
   flex: 1;
+  width: 100%;
+  padding: 10px;
   & .authCard {
-    width: 375px;
+    width: 100%;
+    max-width: 375px;
     & h1 {
       text-align: center;
       font: 600 18px "Poppins";

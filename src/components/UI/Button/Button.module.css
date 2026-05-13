@@ -11,6 +11,9 @@
   box-sizing: border-box;
   width: auto;
 }
+.fullWidth {
+  width: 100% !important;
+}
 
 .customButton:hover {
   background-color: var(--btn-hover);
@@ -20,12 +23,8 @@
   background-color: var(--btn-active);
 }
 
-.customButton:disabled{
+.customButton:disabled {
   background-color: var(--btn-disabled);
-}
-
-:global(.authForm) .customButton {
-  width: 100%;
 }
 
 .customButton.modalButton {
