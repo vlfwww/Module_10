@@ -14,6 +14,7 @@ import profileImg from "../../assets/images/eye.svg";
 import { ProfileFormValues } from "../../types/auth";
 import { useNotification } from "../../context/NotificationContext";
 import { Avatar } from "@mui/material";
+import { getUserAvatarPath } from "../../utils/getUserAvatarPath";
 
 const ProfileInfoForm: React.FC = () => {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ const ProfileInfoForm: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { showNotification } = useNotification();
 
-  const [profileImage, setProfileImage] = useState(user?.profileImage || profileImg);
+  const [profileImage, setProfileImage] = useState(getUserAvatarPath(user) || profileImg);
 
   const {
     register,

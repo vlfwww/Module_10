@@ -179,17 +179,13 @@ export const useUnarchiveAll = () => {
   });
 };
 
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-});
-
 export const useUpdateGlobalBackground = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (base64Image: string) => {
       const token = localStorage.getItem("access_token");
-      const response = await api.put(
+      const response = await axios.put(
         "/api/background",
         { backgroundImage: base64Image },
         {
@@ -205,6 +201,7 @@ export const useUpdateGlobalBackground = () => {
     },
   });
 };
+
 export const useUpdateTodoBackground = () => {
   const queryClient = useQueryClient();
 

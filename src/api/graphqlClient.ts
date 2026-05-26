@@ -1,13 +1,12 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-});
-
-export const graphqlRequest = async (query: string, variables?: Record<string, unknown>) => {
+export const graphqlRequest = async <T>(
+  query: string,
+  variables?: Record<string, unknown>,
+): Promise<T> => {
   const token = localStorage.getItem("access_token");
 
-  const response = await api.post(
+  const response = await axios.post(
     "/api/graphql",
     { query, variables },
     {

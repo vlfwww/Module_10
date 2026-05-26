@@ -9,6 +9,7 @@ import logoIcon from "../../assets/images/logo.svg";
 import menuIcon from "../../assets/images/menu-burger.svg";
 import profileIcon from "../../assets/images/eye.svg";
 import { HeaderProps } from "../../types/common";
+import { getUserAvatarPath } from "../../utils/getUserAvatarPath";
 
 const Header: React.FC<HeaderProps> = ({ pageType }) => {
   const { t } = useTranslation();
@@ -19,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
     setIsMenuOpen((prev) => !prev);
   }, []);
 
-  const userAvatarSrc = user?.profileImage || profileIcon;
+  const userAvatarSrc = getUserAvatarPath(user) || profileIcon;
 
   return (
     <div className={style.headerWrapper}>
@@ -42,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
           {isAuthenticated ? (
             <div className={style.profileInfo}>
               <Avatar alt={user?.email || "User"} src={userAvatarSrc} />
-              <p>{user?.email}</p>
+              <p>{user?.username}</p>
             </div>
           ) : (
             pageType !== "signin" &&
@@ -68,6 +69,7 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
               <img src={logoIcon} alt="Logo" />
               <p>sidekick</p>
             </div>
+            <p>{user?.username}</p>
             {isAuthenticated && <Avatar alt="User" src={userAvatarSrc} />}
           </div>
 

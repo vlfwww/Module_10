@@ -21,6 +21,8 @@
   & .burgerIcon {
     display: none;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
   }
 
   & .buttonsWrapper,
@@ -64,22 +66,26 @@
       height: 24px;
     }
   }
-  & nav {
-    & .mobileAuthLinks {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin: 12px;
-      & .mobileLink {
-        text-decoration: none;
-        color: var(--text-main);
-        padding: 4px;
-        &:hover {
-          background-color: var(--bg-menu-link-hover);
-          border-radius: 8px;
-        }
-      }
-    }
+
+  & .mobileAuthLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  & .mobileLink {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--text-main);
+    padding: 8px;
+    width: 90%;
+    margin: 0 15px;
+    display: block;
+  }
+
+  & .mobileLink:hover {
+    background-color: var(--bg-menu-link-hover);
+    border-radius: 8px;
   }
 }
 
