@@ -1,0 +1,186 @@
+{
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "please_wait": "Please wait...",
+    "terms_prefix": "By clicking continue, you agree to our ",
+    "terms": "Terms of Service",
+    "privacy": " and Privacy Policy",
+    "signin_prompt": "Forgot to create an account? ",
+    "signup_link": "Sign up",
+    "signup_prompt": "Already have an account? ",
+    "signin_link": "Sign in"
+  },
+  "auth_message": {
+    "signin_part1": "You need to ",
+    "signin_link": "sign in",
+    "signin_part2": " to be able to create notes.",
+    "signup_part1": "Still don't have an account? ",
+    "signup_link": "Sign up"
+  },
+  "checklist": {
+    "todo_label": "Todo #{{number}}",
+    "delete": "Delete item"
+  },
+  "error_view": {
+    "title": "Oops...",
+    "default_message": "Something bad has just happened.",
+    "retry": "Try Again"
+  },
+  "header": {
+    "signup": "Sign Up",
+    "signin": "Sign In",
+    "menu": "Menu"
+  },
+  "note_card": {
+    "no_items": "No todo items provided.",
+    "no_description": "No description provided."
+  },
+  "note_list": {
+    "menu_label": "Open note menu"
+  },
+  "note_modal": {
+    "edit_title": "Edit note",
+    "create_title": "Create a new note",
+    "title_label": "Title",
+    "desc_label": "Description",
+    "desc_placeholder": "Write description here...",
+    "bg_section": "Note background image:",
+    "upload_btn": "Upload image",
+    "change_btn": "Change image",
+    "uploading": "Uploading...",
+    "remove_btn": "Remove",
+    "checklist_section": "Checklist items:",
+    "add_item": "+ Add item",
+    "error_empty": "The note cannot be empty.",
+    "save": "Save",
+    "create": "Create"
+  },
+  "not_found": {
+    "title": "Page not found"
+  },
+  "profile_form": {
+    "title": "Profile Information",
+    "change_photo": "Change profile photo",
+    "username": "Username",
+    "email": "Email",
+    "description": "Description",
+    "desc_placeholder": "Tell us about yourself...",
+    "save_changes": "Save Profile Changes",
+    "saving": "Saving Changes...",
+    "errors": {
+      "username_required": "Username is required",
+      "username_short": "At least 3 characters",
+      "email_required": "Email is required",
+      "email_invalid": "Email is not valid",
+      "desc_max": "Max length is 200 chars"
+    },
+    "notifications": {
+      "updated": "Profile info has been updated successfully",
+      "error": "Could not update profile",
+      "invalid_image": "Please select a valid image file"
+    }
+  },
+  "settings": {
+    "language": "Language",
+    "theme": "Dark theme",
+    "font_size": "Font size ratio",
+    "font_help": "Adjust the font size ratio for the whole application from 0.8 to 2. Default is 1.",
+    "list_view": "List View",
+    "list_view_help": "Switch Grid View to List View for notes list on the Home page",
+    "upload_title": "Select a file or drag and drop here",
+    "uploading": "Uploading to server...",
+    "upload_subtitle": "JPG, PNG or PDF, file size no more than 10MB",
+    "lang_help": "Select your preferred language",
+    "upload_help": "Upload the image to apply as a note’s background image"
+  },
+  "stats": {
+    "title": "Notes (created, archived, deleted)",
+    "month": "Month",
+    "created": "Created",
+    "archived": "Archived",
+    "deleted": "Deleted",
+    "table_label": "Monthly statistics table"
+  },
+  "accordion": {
+    "toggle": "Toggle section"
+  },
+  "input": {
+    "enter": "Enter",
+    "password_strong": "Your password is strong",
+    "toggle_password": "Toggle password visibility"
+  },
+  "kebab_menu": {
+    "delete": "Delete note",
+    "delete_forever": "Delete forever",
+    "show_checkboxes": "Show checkboxes",
+    "hide_checkboxes": "Hide checkboxes",
+    "uncheck_all": "Uncheck all",
+    "archive": "Archive",
+    "unarchive": "Unarchive"
+  },
+  "loader": {
+    "loading": "Loading notes..."
+  },
+  "notification": {
+    "close": "Close notification"
+  },
+  "sidebar": {
+    "nav_label": "Main navigation",
+    "notes": "Notes",
+    "profile": "Profile",
+    "archive": "Archived",
+    "trash": "Trash"
+  },
+  "textarea": {
+    "limit_reached": "Reached the {{max}} text limit",
+    "max_chars": "Max {{max}} chars"
+  },
+  "archive_page": {
+    "loading": "Loading archived notes...",
+    "error": "Failed to load archive.",
+    "unarchive_all": "Unarchive all",
+    "empty": "Archive is empty"
+  },
+  "error_page": {
+    "default_message": "An unexpected error occurred."
+  },
+  "main_page": {
+    "loading": "Loading notes...",
+    "error": "Failed to load notes",
+    "create_note": "Create a note",
+    "empty": "No notes yet"
+  },
+  "profile_page": {
+    "profile_info": "Profile Info",
+    "statistics": "Statistics",
+    "settings": "Settings",
+    "actions": "Actions",
+    "logout": "Logout"
+  },
+  "signin": {
+    "title": "Sign in into an account",
+    "subtitle": "Enter your email and password to sign in into this app",
+    "button": "Sign In",
+    "error_failed": "Login failed",
+    "email_req": "Email is required",
+    "email_invalid": "Email format is incorrect",
+    "pass_req": "Password is required"
+  },
+  "signup": {
+    "title": "Create an account",
+    "subtitle": "Enter your email and password to sign up for this app",
+    "button": "Sign Up",
+    "error_failed": "Registration failed",
+    "email_req": "Email is required",
+    "email_invalid": "Email format is incorrect",
+    "pass_req": "Password is required",
+    "pass_weak": "Password is too weak"
+  },
+  "trash_page": {
+    "loading": "Loading trash bin...",
+    "error": "Failed to load trash",
+    "delete_all": "Delete all",
+    "empty": "Trash is empty"
+  }
+}
