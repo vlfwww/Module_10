@@ -1,13 +1,17 @@
-import { useTheme } from "../../context/ThemeContext";
+import React from "react";
+import { useTranslation } from "react-i18next";
 import ErrorIcon from "../UI/Icons/ErrorIcon";
 import style from "./NotFound.module.css";
+import { useSettings } from "../../context/SettingsContext";
 
-const NotFound = () => {
-  const { theme } = useTheme();
+const NotFound: React.FC = () => {
+  const { theme } = useSettings();
+  const { t } = useTranslation();
+
   return (
-    <div className={style.notFoundWrapper} data-theme={theme}>
-      <ErrorIcon className={style.errorIcon} />
-      <h1>Page not found</h1>
+    <div className={style.notFoundWrapper} data-theme={theme} role="main">
+      <ErrorIcon className={style.errorIcon} aria-hidden="true" />
+      <h1 role="status">{t("not_found.title")}</h1>
     </div>
   );
 };

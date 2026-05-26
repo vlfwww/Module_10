@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font: 400 18px "Poppins";
+  font: 400 1.125rem "Poppins";
   color: var(--text-main);
 
   & .logoWrapper {
@@ -28,12 +28,6 @@
     display: flex;
     gap: 24px;
     align-items: center;
-
-    & img {
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-    }
   }
   & .buttonsWrapper {
     & a {
@@ -57,7 +51,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font: 400 18px "Poppins";
+  font: 400 1.125rem "Poppins";
   & .mobileHeader {
     background-color: var(--bg-layout-edge);
     display: flex;

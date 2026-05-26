@@ -9,14 +9,14 @@
   text-align: center;
 
   & .signIn {
-    font: 400 36px "Poppins";
+    font: 400 2.25rem "Poppins";
 
     @media (max-width: 768px) {
-      font-size: 28px;
+      font-size: 1.75rem;
     }
 
     @media (max-width: 480px) {
-      font-size: 20px;
+      font-size: 1.25rem;
     }
 
     & a {
@@ -27,7 +27,7 @@
   }
 
   & .signUp {
-    font: 400 16px "Poppins";
+    font: 400 1rem "Poppins";
     & a {
       text-decoration: underline;
       cursor: pointer;

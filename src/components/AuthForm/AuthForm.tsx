@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import style from "./AuthForm.module.css";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 import envelopeIcon from "../../assets/images/envelope.svg";
 import eyeIcon from "../../assets/images/eye.svg";
-import { validateEmail, validatePassword } from "../../utils/validation";
-import { AuthFormProps } from "../../types/auth";
+import { AuthFormProps, AuthInputs } from "../../types/auth";
+import { useAuth } from "../../context/AuthContext";
 
 const AuthForm: React.FC<AuthFormProps> = ({
   title,
@@ -16,82 +18,97 @@ const AuthForm: React.FC<AuthFormProps> = ({
   error,
   setError,
   pageType,
+  validationRules,
 }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { isLoading } = useAuth();
+  const { t } = useTranslation();
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(email, password);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, touchedFields },
+    watch,
+  } = useForm<AuthInputs>({
+    defaultValues: { email: "", password: "" },
+    mode: "onTouched",
+  });
+
+  const emailValue = watch("email");
+  const passwordValue = watch("password");
+
+  const handleFormSubmit = async (data: AuthInputs) => {
+    if (error) setError("");
+    await onSubmit(data.email, data.password);
   };
-
-  const handleFieldChange =
-    (setter: (val: string) => void) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setter(e.target.value);
-      if (error) setError("");
-    };
 
   return (
     <div className={style.authContainer}>
-      <div className={style.authCard}>
-        <h1 className={style.title}>{title}</h1>
+      <div className={style.authCard} role="form" aria-labelledby="form-title">
+        <h1 id="form-title" className={style.title}>
+          {title}
+        </h1>
         <p className={style.subtitle}>{subtitle}</p>
 
-        <form className={style.authForm} onSubmit={handleFormSubmit}>
+        <form className={style.authForm} onSubmit={handleSubmit(handleFormSubmit)}>
           <Input
-            label="Email"
+            label={t("auth.email")}
             iconSrc={envelopeIcon}
             type="email"
-            value={email}
-            onChange={handleFieldChange(setEmail)}
-            isError={email.length > 0 && !validateEmail(email)}
-            isValid={validateEmail(email)}
-            errorMessage="Email is not valid"
             pageType={pageType}
-            required
-          />
-          <Input
-            label="Password"
-            iconSrc={eyeIcon}
-            type="password"
-            value={password}
-            onChange={handleFieldChange(setPassword)}
-            isError={password.length > 0 && !validatePassword(password)}
-            isValid={validatePassword(password)}
-            errorMessage="Incorrect password"
-            pageType={pageType}
-            required
+            disabled={isLoading}
+            isError={touchedFields.email && !!errors.email}
+            isValid={touchedFields.email && !errors.email && emailValue.length > 0}
+            errorMessage={errors.email?.message as string}
+            {...register("email", validationRules.email)}
           />
 
-          <Button className={style.submitButton} textColor="white" isFullWidth>
-            {buttonText}
+          <Input
+            label={t("auth.password")}
+            iconSrc={eyeIcon}
+            type="password"
+            pageType={pageType}
+            disabled={isLoading}
+            isError={touchedFields.password && !!errors.password}
+            isValid={touchedFields.password && !errors.password && passwordValue.length > 0}
+            errorMessage={errors.password?.message as string}
+            {...register("password", validationRules.password)}
+          />
+
+          <Button className={style.submitButton} disabled={isLoading}>
+            {isLoading ? t("auth.please_wait") : buttonText}
           </Button>
         </form>
 
-        {error && <p className={style.errorText}>{error}</p>}
-
-        {pageType === "signin" && (
-          <p className={style.footerText}>
-            Forgot to create an account?{" "}
-            <Link to="/signup" className={style.link}>
-              Sign up
-            </Link>
+        {error && (
+          <p className={style.errorText} role="alert">
+            {error}
           </p>
         )}
 
-        {pageType === "signup" && (
+        {pageType === "signin" ? (
+          <p className={style.footerText}>
+            {t("auth.signin_prompt")}
+            <Link
+              to={isLoading ? "#" : "/signup"}
+              className={isLoading ? style.linkDisabled : style.link}
+            >
+              {t("auth.signup_link")}
+            </Link>
+          </p>
+        ) : (
           <>
             <p className={style.policyText}>
-              By clicking continue, you agree to our{" "}
-              <span className={style.link}>Terms of Service</span> <br />
-              and <span className={style.link}>Privacy Policy</span>
+              {t("auth.terms_prefix")}
+              <span className={style.link}>{t("auth.terms")}</span> <br />
+              {t("auth.privacy")}
             </p>
-
             <p className={style.footerText}>
-              Already have an account?{" "}
-              <Link to="/signin" className={style.link}>
-                Sign in
+              {t("auth.signup_prompt")}
+              <Link
+                to={isLoading ? "#" : "/signin"}
+                className={isLoading ? style.linkDisabled : style.link}
+              >
+                {t("auth.signin_link")}
               </Link>
             </p>
           </>

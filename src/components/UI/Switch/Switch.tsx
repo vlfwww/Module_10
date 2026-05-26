@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useId } from "react";
 import style from "./Switch.module.css";
 import { SwitchProps } from "../../../types/common";
 
 const Switch: React.FC<SwitchProps> = ({ checked, onChange, label }) => {
+  const switchId = useId();
+
   return (
     <div className={style.switchContainer}>
-      <label className={style.switch}>
+      <label className={style.switch} htmlFor={switchId}>
         <input
+          id={switchId}
           type="checkbox"
           checked={checked}
           className={style.switchInput}
@@ -14,9 +17,13 @@ const Switch: React.FC<SwitchProps> = ({ checked, onChange, label }) => {
         />
         <span className={style.slider}></span>
       </label>
-      {label && <span className={style.label}>{label}</span>}
+      {label && (
+        <label className={style.label} htmlFor={switchId}>
+          {label}
+        </label>
+      )}
     </div>
   );
 };
 
-export default Switch;
+export default React.memo(Switch);

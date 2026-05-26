@@ -19,7 +19,7 @@
 
 .noteCardsWrapper.listView > div {
   width: 100%;
-  max-width: 700px;
+  max-width: 800px;
 }
 
 .profileCard {
@@ -27,23 +27,25 @@
   border: 2px solid var(--border-color);
   border-radius: 8px;
   padding: 24px;
-  display: flex;
-  gap: 45px;
   & .actions {
     display: flex;
     flex-direction: column;
     gap: 44px;
     & .actionsTitle {
-      font: 600 28px "Inter";
+      font: 600 1.75rem "Inter";
       color: var(--text-main);
     }
   }
 }
 
-.logoutButton {
-  max-width: 300px;
-  text-align: center;
-  margin-bottom: 30px;
+.userInfo {
+  display: flex;
+  gap: 45px;
+}
+
+.zeroActiveNotes {
+  font: 600 1.75rem "Poppins";
+  color: var(--text-main);
 }
 
 @media (max-width: 1040px) {
@@ -72,7 +74,24 @@
     }
     & h1,
     p {
-      font: 600 20px "Inter";
+      font: 600 1.25rem "Inter";
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .profileCard {
+    flex-direction: column;
+    gap: 32px;
+    padding: 16px;
+  }
+
+  .profileCard .actions {
+    gap: 16px;
+    order: -1;
+  }
+
+  .profileCard .actions .actionsTitle {
+    font-size: 1.375rem;
   }
 }

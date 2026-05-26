@@ -1,42 +1,60 @@
 export interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
-  login: (email: string, password: string) => boolean;
-  register: (email: string, password: string) => boolean;
+  isLoading: boolean;
+  login: (email: string, password: string) => Promise<boolean>;
+  register: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
-  refreshToken: () => Promise<string | null>;
-  updateUserInfo: (
-    newEmail: string,
-    newUsername: string,
-    newDescription: string,
-    newAvatar: string,
-  ) => void;
+  updateUserInfo: (updatedFields: Partial<User>) => Promise<boolean>;
+  getUserInfo: () => Promise<User | null>;
 }
 
 export interface User {
   id: string;
-  isAuthenticated: boolean;
-  email: string;
   username: string;
+  email?: string;
+  firstName?: string;
+  profileImage?: string;
   description?: string;
-  avatar?: string;
+  secondName?: string;
+  lastLogin?: string;
+  creationDate?: string;
+  modifiedDate?: string;
 }
 
-export interface UserStorageEntry extends User {
-  password: string;
+export interface AuthState {
+  user: User | null;
+  isAuthenticated: boolean;
+  token: string | null;
+  isLoading: boolean;
 }
 
 export interface AuthFormProps {
   title: string;
   subtitle: string;
   buttonText: string;
-  onSubmit: (email: string, password: string) => void;
-  error?: string;
-  setError: (error: string) => void;
+  onSubmit: (email: string, password: string) => Promise<void>;
+  error: string;
+  setError: (msg: string) => void;
   pageType: "signin" | "signup";
+  validationRules: {
+    email: object;
+    password: object;
+  };
 }
 
 export interface RouteProps {
   children: React.ReactElement;
   isAuthenticated: boolean;
+}
+
+export interface ProfileFormValues {
+  username: string;
+  email: string;
+  description: string;
+}
+
+export interface AuthInputs {
+  email: string;
+  password: string;
 }

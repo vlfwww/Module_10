@@ -1,76 +1,83 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import style from "./ProfileForm.module.css";
 import { useAuth } from "../../context/AuthContext";
 import { validateEmail } from "../../utils/validation";
-import { getStorageItem } from "../../utils/storage";
 import Input from "../UI/Input/Input";
 import Textarea from "../UI/Textarea/Textarea";
 import Button from "../UI/Button/Button";
 import userIcon from "../../assets/images/fi-sr-user.svg";
 import envelope from "../../assets/images/envelope.svg";
 import pencil from "../../assets/images/pencil.svg";
-import profileImg from "../../assets/images/profile.jpg";
+import profileImg from "../../assets/images/eye.svg";
+import { ProfileFormValues } from "../../types/auth";
+import { useNotification } from "../../context/NotificationContext";
+import { Avatar } from "@mui/material";
 
 const ProfileInfoForm: React.FC = () => {
-  const { user, updateUserInfo } = useAuth();
-
+  const { t } = useTranslation();
+  const { user, updateUserInfo, isLoading } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { showNotification } = useNotification();
 
-  const [username, setUsername] = useState(user?.username || "");
-  const [email, setEmail] = useState(user?.email || "");
-  const [description, setDescription] = useState(user?.description || "");
-  const [avatar, setAvatar] = useState(user?.avatar || profileImg);
+  const [profileImage, setProfileImage] = useState(user?.profileImage || profileImg);
 
-  const isEmailFormatValid = useMemo(() => validateEmail(email), [email]);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors, touchedFields, isValid },
+  } = useForm<ProfileFormValues>({
+    defaultValues: {
+      username: user?.username || "",
+      email: user?.email || "",
+      description: user?.description || "",
+    },
+    mode: "onTouched",
+  });
 
-  const isEmailTaken = useMemo(() => {
-    if (email === user?.email) return false;
-    const allUsers = getStorageItem("users", []);
-    return allUsers.some((u: any) => u.email === email && u.id !== user?.id);
-  }, [email, user]);
+  const usernameValue = watch("username") || "";
+  const emailValue = watch("email") || "";
+  const descriptionValue = watch("description") || "";
 
-  const emailError = useMemo(() => {
-    if (email.length > 0 && !isEmailFormatValid) return "Email is not valid";
-    if (isEmailTaken) return "Email is already in use";
-    return "";
-  }, [email, isEmailFormatValid, isEmailTaken]);
+  useEffect(() => {
+    if (user) {
+      reset({
+        username: user.username || "",
+        email: user.email || "",
+        description: user.description || "",
+      });
+      setProfileImage(user.profileImage || profileImg);
+    }
+  }, [user, reset]);
 
-  const isUsernameTaken = useMemo(() => {
-    if (!username || username === user?.username) return false;
-    const allUsers = getStorageItem("users", []);
-    return allUsers.some(
-      (u: any) => u.username === username && u.id !== user?.id,
-    );
-  }, [username, user]);
-
-  const usernameError = useMemo(() => {
-    if (username.length > 0 && username.length < 3)
-      return "At least 3 characters";
-    if (isUsernameTaken) return "This username is already taken";
-    return "";
-  }, [username, isUsernameTaken]);
-
-  const canSave =
-    !emailError && !usernameError && username.length >= 3 && isEmailFormatValid;
-
-  const handleUpdate = () => {
-    if (canSave) {
-      updateUserInfo(email, username, description, avatar);
+  const handleUpdate = async (data: ProfileFormValues) => {
+    try {
+      await updateUserInfo({
+        ...data,
+        profileImage,
+      });
+      showNotification(t("profile_form.notifications.updated"), "success");
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error ? err.message : t("profile_form.notifications.error");
+      showNotification(errorMessage, "error");
     }
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file || !file.type.startsWith("image/")) {
+      showNotification(t("profile_form.notifications.invalid_image"), "warning");
       return;
     }
 
     const reader = new FileReader();
     reader.onloadend = () => {
-      const imageToString = reader.result as string;
-      setAvatar(imageToString);
+      setProfileImage(reader.result as string);
     };
-
     reader.readAsDataURL(file);
   };
 
@@ -79,7 +86,10 @@ const ProfileInfoForm: React.FC = () => {
   };
 
   return (
-    <div className={style.infoForm}>
+    <div className={style.infoForm} role="form" aria-labelledby="profile-title">
+      <h2 id="profile-title" className={style.srOnly} style={{ display: "none" }}>
+        {t("profile_form.title")}
+      </h2>
       <div className={style.avatarSection}>
         <input
           type="file"
@@ -87,58 +97,67 @@ const ProfileInfoForm: React.FC = () => {
           style={{ display: "none" }}
           accept="image/*"
           onChange={handleFileChange}
+          aria-hidden="true"
         />
-        <img src={avatar} alt="profile" className={style.avatarImage} />
+        <Avatar alt={user?.username || "User"} src={profileImage} className={style.avatarImage} />
         <div className={style.avatarInfo}>
-          <p className={style.userName}>Helena Hills</p>
+          <p className={style.userName}>{user?.username}</p>
           <button
             type="button"
             className={style.changePhotoBtn}
             onClick={handleChangePhotoClick}
+            disabled={isLoading}
           >
-            Change profile photo
+            {t("profile_form.change_photo")}
           </button>
         </div>
       </div>
 
-      <Input
-        label="Username"
-        iconSrc={userIcon}
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        isError={!!usernameError}
-        isValid={username.length >= 3 && !isUsernameTaken}
-        errorMessage={usernameError}
-        pageType="profile"
-      />
+      <form onSubmit={handleSubmit(handleUpdate)}>
+        <Input
+          label={t("profile_form.username")}
+          iconSrc={userIcon}
+          pageType="profile"
+          disabled={isLoading}
+          isError={touchedFields.username && !!errors.username}
+          isValid={touchedFields.username && !errors.username && usernameValue.length >= 3}
+          errorMessage={errors.username?.message}
+          {...register("username", {
+            required: t("profile_form.errors.username_required"),
+            minLength: { value: 3, message: t("profile_form.errors.username_short") },
+          })}
+        />
 
-      <Input
-        label="Email"
-        iconSrc={envelope}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        isError={!!emailError}
-        isValid={isEmailFormatValid && !isEmailTaken}
-        errorMessage={emailError}
-        pageType="profile"
-      />
+        <Input
+          label={t("profile_form.email")}
+          iconSrc={envelope}
+          type="email"
+          pageType="profile"
+          disabled={isLoading}
+          isError={touchedFields.email && !!errors.email}
+          isValid={touchedFields.email && !errors.email && emailValue.length > 0}
+          errorMessage={errors.email?.message}
+          {...register("email", {
+            required: t("profile_form.errors.email_required"),
+            validate: (value) => validateEmail(value) || t("profile_form.errors.email_invalid"),
+          })}
+        />
 
-      <Textarea
-        label="Description"
-        iconSrc={pencil}
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Tell us about yourself..."
-      />
+        <Textarea
+          label={t("profile_form.description")}
+          iconSrc={pencil}
+          placeholder={t("profile_form.desc_placeholder")}
+          disabled={isLoading}
+          value={descriptionValue}
+          {...register("description", {
+            maxLength: { value: 200, message: t("profile_form.errors.desc_max") },
+          })}
+        />
 
-      <Button
-        className={style.saveBtn}
-        textColor="white"
-        onClick={handleUpdate}
-        disabled={!canSave}
-      >
-        Save Profile Changes
-      </Button>
+        <Button type="submit" className={style.saveBtn} disabled={!isValid || isLoading}>
+          {isLoading ? t("profile_form.saving") : t("profile_form.save_changes")}
+        </Button>
+      </form>
     </div>
   );
 };

@@ -1,158 +1,162 @@
+import { createContext, useContext, ReactNode, useCallback, useEffect } from "react";
+import { AuthContextType, User } from "../types/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/index";
 import {
-  createContext,
-  useContext,
-  ReactNode,
-  useState,
-  useCallback,
-} from "react";
-import { AuthContextType, User, UserStorageEntry } from "../types/auth";
-import { getStorageItem } from "../utils/storage";
-import profileImg from "../assets/images/profile.jpg";
+  setCredentials,
+  logoutAction,
+  updateUserAction,
+  setLoadingAction,
+} from "../store/slices/authSlice";
+import { graphqlRequest } from "../api/graphqlClient";
+import {
+  LOGIN_MUTATION,
+  SIGNUP_MUTATION,
+  ME_QUERY,
+  UPDATE_PROFILE_MUTATION,
+} from "../api/authQueries";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(() =>
-    getStorageItem("current_user", null),
+  const dispatch = useDispatch();
+  const { user, isAuthenticated, isLoading } = useSelector((state: RootState) => state.auth);
+
+  const login = useCallback(
+    async (email: string, password: string): Promise<boolean> => {
+      dispatch(setLoadingAction(true));
+      try {
+        const data = await graphqlRequest(LOGIN_MUTATION, { email, password });
+
+        if (!data?.login) {
+          throw new Error("Incorrect email or password");
+        }
+
+        const { token, user: loggedUser } = data.login;
+        dispatch(setCredentials({ user: loggedUser, token }));
+
+        localStorage.setItem("access_token", token);
+        localStorage.setItem("current_user", JSON.stringify(loggedUser));
+        localStorage.setItem("is_auth", "true");
+
+        return true;
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : "Incorrect email or password";
+        throw new Error(msg);
+      } finally {
+        dispatch(setLoadingAction(false));
+      }
+    },
+    [dispatch],
   );
-
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() =>
-    getStorageItem("is_auth", false),
-  );
-
-  const login = useCallback((email: string, password: string): boolean => {
-    const users: UserStorageEntry[] = getStorageItem("users", []);
-
-    const foundUser = users.find(
-      (u) => u.email === email && u.password === btoa(password),
-    );
-
-    if (foundUser) {
-      const userData: User = {
-        id: foundUser.id,
-        email: foundUser.email,
-        username: foundUser.username,
-        description: foundUser.description || "",
-        avatar: foundUser.avatar || profileImg,
-        isAuthenticated: true,
-      };
-
-      setUser(userData);
-      setIsAuthenticated(true);
-
-      localStorage.setItem("current_user", JSON.stringify(userData));
-      localStorage.setItem("access_token", `access-${crypto.randomUUID()}`);
-      localStorage.setItem("refresh_token", `refresh-${crypto.randomUUID()}`);
-      localStorage.setItem("is_auth", "true");
-
-      return true;
-    }
-    return false;
-  }, []);
 
   const register = useCallback(
-    (email: string, password: string): boolean => {
-      const users: UserStorageEntry[] = getStorageItem("users", []);
+    async (email: string, password: string): Promise<boolean> => {
+      try {
+        const data = await graphqlRequest(SIGNUP_MUTATION, { email, password });
 
-      if (users.find((u) => u.email === email)) return false;
+        if (!data?.signup) {
+          throw new Error("Registration failed");
+        }
 
-      const newId = crypto.randomUUID();
-
-      const newUser = {
-        id: newId,
-        email,
-        password: btoa(password),
-        username: `@user${newId.toString().slice(-4)}`,
-        isAuthenticated: true,
-        avatar: profileImg,
-      };
-
-      users.push(newUser);
-      localStorage.setItem("users", JSON.stringify(users));
-
-      return login(email, password);
+        return await login(email, password);
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : "Registration failed";
+        throw new Error(msg);
+      }
     },
     [login],
   );
 
   const logout = useCallback(() => {
+    dispatch(logoutAction());
     localStorage.removeItem("is_auth");
     localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
     localStorage.removeItem("current_user");
-    setUser(null);
-    setIsAuthenticated(false);
-  }, []);
+  }, [dispatch]);
 
-  const refreshToken = useCallback(async () => {
-    const refreshToken = localStorage.getItem("refresh_token");
+  const getUserInfo = useCallback(async (): Promise<User | null> => {
+    const token = localStorage.getItem("access_token");
+    if (!token) return null;
 
-    if (!refreshToken) {
-      logout();
-      return null;
-    }
-
+    dispatch(setLoadingAction(true));
     try {
-      const newAccessToken = `access-${crypto.randomUUID()}`;
-      localStorage.setItem("access_token", newAccessToken);
-      return newAccessToken;
-    } catch (error) {
-      console.error("Refresh token failed", error);
+      const data = await graphqlRequest(ME_QUERY);
+
+      if (!data?.me) {
+        logout();
+        return null;
+      }
+
+      const userData: User = data.me;
+
+      dispatch(updateUserAction(userData));
+      localStorage.setItem("current_user", JSON.stringify(userData));
+      localStorage.setItem("is_auth", "true");
+
+      return userData;
+    } catch (error: unknown) {
+      console.error("Failed to fetch user info", error);
       logout();
       return null;
+    } finally {
+      dispatch(setLoadingAction(false));
     }
-  }, [logout]);
+  }, [logout, dispatch]);
 
   const updateUserInfo = useCallback(
-    (
-      newEmail: string,
-      newUsername: string,
-      newDescription: string,
-      newAvatar: string,
-    ) => {
-      setUser((prevUser) => {
-        if (!prevUser) return null;
+    async (updatedFields: Partial<User>): Promise<boolean> => {
+      const token = localStorage.getItem("access_token");
+      if (!token) throw new Error("No access token found");
 
-        const updated = {
-          ...prevUser,
-          email: newEmail,
-          username: newUsername,
-          description: newDescription,
-          avatar: newAvatar,
-        };
+      dispatch(setLoadingAction(true));
+      try {
+        const data = await graphqlRequest(UPDATE_PROFILE_MUTATION, {
+          input: updatedFields,
+        });
 
-        localStorage.setItem("current_user", JSON.stringify(updated));
+        if (!data?.updateProfile) {
+          throw new Error("Failed to update profile");
+        }
 
-        const usersList: UserStorageEntry[] = getStorageItem("users", []);
-        const updatedList = usersList.map((u) =>
-          u.id === prevUser.id
-            ? {
-                ...u,
-                email: newEmail,
-                username: newUsername,
-                description: newDescription,
-                avatar: newAvatar,
-              }
-            : u,
-        );
-        localStorage.setItem("users", JSON.stringify(updatedList));
+        const serverUser = data.updateProfile;
 
-        return updated;
-      });
+        dispatch(updateUserAction(serverUser));
+        localStorage.setItem("current_user", JSON.stringify(serverUser));
+        return true;
+      } catch (error: unknown) {
+        console.error("Update profile failed", error);
+        const msg = error instanceof Error ? error.message : "Failed to update profile";
+        throw new Error(msg);
+      } finally {
+        dispatch(setLoadingAction(false));
+      }
     },
-    [],
+    [dispatch],
   );
+
+  useEffect(() => {
+    const initializeAuth = async () => {
+      const token = localStorage.getItem("access_token");
+      if (token) {
+        await getUserInfo();
+      }
+    };
+
+    initializeAuth();
+  }, [getUserInfo]);
 
   return (
     <AuthContext.Provider
       value={{
         user,
+        isLoading,
         isAuthenticated,
         login,
         logout,
         register,
-        refreshToken,
         updateUserInfo,
+        getUserInfo,
       }}
     >
       {children}
@@ -162,10 +166,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
-
   if (!context) {
     throw new Error("useAuth must be used within AuthProvider");
   }
-
   return context;
 };

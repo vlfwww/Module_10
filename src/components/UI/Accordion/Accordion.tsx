@@ -3,31 +3,34 @@ import style from "./Accordion.module.css";
 import { AccordionProps } from "../../../types/common";
 import arrowIcon from "../../../assets/images/fi-sr-angle-small-up.svg";
 
-const Accordion: React.FC<AccordionProps> = ({
-  title,
-  children,
-  defaultOpen = true,
-}) => {
+const Accordion: React.FC<AccordionProps> = ({ title, children, defaultOpen = true }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+
   return (
     <div className={style.accordion}>
-      <div
+      <button
+        type="button"
         className={style.header}
         onClick={(e) => {
           e.stopPropagation();
-          setIsOpen(!isOpen);
+          setIsOpen((prev) => !prev);
         }}
+        aria-expanded={isOpen}
       >
         <p className={style.title}>{title}</p>
         <img
           src={arrowIcon}
-          alt="toggleMenu"
+          alt=""
+          aria-hidden="true"
           className={`${style.arrow} ${!isOpen ? style.close : ""}`}
         />
+      </button>
+
+      <div className={`${style.contentWrapper} ${isOpen ? style.open : style.collapsed}`}>
+        <div className={style.content}>{children}</div>
       </div>
-      {isOpen && <div className={style.content}>{children}</div>}
     </div>
   );
 };
 
-export default Accordion;
+export default React.memo(Accordion);

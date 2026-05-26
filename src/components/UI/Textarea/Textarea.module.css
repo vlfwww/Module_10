@@ -8,7 +8,7 @@
     gap: 8px;
     align-items: center;
     & p {
-      font: 500 14px "Poppins";
+      font: 500 0.875rem "Poppins";
     }
     & img {
       width: 16px;
@@ -23,7 +23,7 @@
     color: var(--text-secondary);
     border-radius: 8px;
     padding: 14px;
-    font: 400 14px "Poppins";
+    font: 400 0.875rem "Poppins";
     border: 1px solid var(--border-color);
     width: 100%;
     resize: none;
@@ -53,7 +53,7 @@
         display: flex;
         gap: 8px;
         align-items: center;
-        font: 400 12px "Poppins";
+        font: 400 0.75rem "Poppins";
         & .errorText {
           color: var(--input-error);
         }

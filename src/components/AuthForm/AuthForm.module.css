@@ -17,12 +17,12 @@
     max-width: 375px;
     & h1 {
       text-align: center;
-      font: 600 18px "Poppins";
+      font: 600 1.125rem "Poppins";
       color: var(--form-text-color);
     }
     & .subtitle {
       text-align: center;
-      font: 400 14px "Poppins";
+      font: 400 0.875rem "Poppins";
       color: var(--form-text-color);
       margin: 2px auto 24px;
       max-width: 221px;
@@ -39,7 +39,7 @@
     }
     & .policyText {
       text-align: center;
-      font: 400 12px "Inter";
+      font: 400 0.75rem "Inter";
       color: var(--form-policy-text);
       margin-top: 24px;
       & span {
@@ -48,13 +48,13 @@
     }
     & .errorText {
       text-align: center;
-      font: 400 14px "Poppins";
+      font: 400 0.875rem "Poppins";
       color: var(--input-error);
       margin-top: 16px;
     }
     & .footerText {
       text-align: center;
-      font: 400 14px "Poppins";
+      font: 400 0.875rem "Poppins";
       color: var(--form-text-color);
       margin-top: 24px;
       & .link {

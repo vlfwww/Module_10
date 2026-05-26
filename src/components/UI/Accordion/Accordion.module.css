@@ -1,5 +1,6 @@
 .accordion {
   & .header {
+    width: 100%;
     border: 2px solid var(--border-color);
     background-color: var(--bg-modal);
     display: flex;
@@ -8,7 +9,7 @@
     border-radius: 8px;
     padding: 24px;
     & .title {
-      font: 400 20px "Inter";
+      font: 400 1.25rem "Inter";
       color: var(--text-main);
     }
     & .close {
@@ -17,4 +18,18 @@
     margin-bottom: 12px;
   }
   margin-bottom: 30px;
+}
+
+.contentWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease-out;
+  overflow: hidden;
+  & .content {
+    min-height: 0;
+  }
+}
+
+.contentWrapper.open {
+  grid-template-rows: 1fr;
 }

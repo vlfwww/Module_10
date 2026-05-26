@@ -11,7 +11,7 @@
   }
   & h1,
   p {
-    font: 600 60px "Inter";
+    font: 600 3.75rem "Inter";
     color: var(--text-main);
   }
 }

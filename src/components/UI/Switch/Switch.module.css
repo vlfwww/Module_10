@@ -45,7 +45,7 @@
     }
   }
   & .label {
-    font: 500 16px "Inter";
+    font: 500 1rem "Inter";
     color: var(--text-main);
   }
 }

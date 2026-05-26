@@ -1,31 +1,27 @@
 @font-face {
   font-family: "Poppins";
-  src: url("../public/assets/fonts/Poppins/Poppins-Regular.ttf")
-    format("truetype");
+  src: url("../public/assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url("../public/assets/fonts/Inter/static/Inter_28pt-Regular.ttf")
-    format("truetype");
+  src: url("../public/assets/fonts/Inter/static/Inter_28pt-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url("../public/assets/fonts/Inter/static/Inter_18pt-Medium.ttf")
-    format("truetype");
+  src: url("../public/assets/fonts/Inter/static/Inter_18pt-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url("../public/assets/fonts/Inter/static/Inter_24pt-Bold.ttf")
-    format("truetype");
+  src: url("../public/assets/fonts/Inter/static/Inter_24pt-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -34,6 +30,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    backdrop-filter 0.3s ease;
 }
 
 :root {
@@ -60,6 +61,12 @@
   --input-disabled-color: rgba(157, 166, 203, 1);
   --bg-input-disabled: rgba(188, 195, 227, 1);
   --form-policy-text: rgba(102, 112, 133, 1);
+  --pop-up-success: rgba(255, 136, 17, 0.8);
+  --pop-up-error: rgba(255, 85, 74, 0.8);
+  --pop-up-warning: rgba(255, 193, 74, 1);
+  --pop-up-text-main: rgba(255, 255, 255, 1);
+  --pop-up-text-secondary: rgba(27, 32, 55, 1);
+  --stat-color: rgba(21, 26, 45, 1);
 }
 
 [data-theme="dark"] {
@@ -75,4 +82,5 @@
   --bg-menu-link-hover: rgb(47, 55, 87);
   --modal-overlay: rgba(14, 18, 35, 0.85);
   --slider-color: rgb(255, 136, 17);
+  --stat-color: rgb(135, 145, 183);
 }

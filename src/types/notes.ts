@@ -1,58 +1,74 @@
 import { PageType } from "./common";
 
-export interface Note {
-  id: string;
-  title: string | undefined;
-  description: string;
-  type: "text" | "todo";
-  isDeleted?: boolean;
-  isArchived?: boolean;
-  items?: CheckboxItem[];
-  showCheckboxes: boolean;
+export interface Todo {
+  id: number;
+  title: string;
+  content?: string;
+  items?: CheckListItem[];
+  status?: "NOTES" | "ARCHIVED" | "TRASH";
+  backgroundImage?: string;
+  userId: number;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
-export interface CheckboxItem {
-  id: string;
-  name: string;
+export interface CheckListItem {
+  id: number;
   text: string;
-  checked: boolean;
+  isCompleted: boolean;
 }
 
 export interface NoteCardProps {
-  items: CheckboxItem[];
+  items: CheckListItem[];
   showCheckboxes: boolean;
-  onCheckboxChange: (id: string) => void;
+  onCheckboxChange: (id: number) => void;
+  noteId: number;
+  content: string | undefined;
 }
 
 export interface NoteListProps {
   pageType: PageType;
-  id: string;
-  onDelete: (id: string) => void;
-  onUnarchive?: (id: string) => void;
-  onArchive?: (id: string) => void;
-  onEdit: () => void;
+  id: number;
+  onDelete: (id: number) => void;
+  onUnarchive?: (id: number) => void;
+  onArchive?: (id: number) => void;
+  onEdit?: (note: Todo) => void;
   title?: string | undefined;
-  viewType?: "list" | "grid";
+  content?: string;
+  viewType: "list" | "grid";
+  items?: CheckListItem[] | undefined;
+  backgroundImage?: string | null;
 }
 
 export interface NoteModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (title: string, description: string) => void;
-  initialData: { title: string; description: string } | undefined;
+  onSubmit: (title: string, content: string, items: CheckListItem[]) => void;
+  initialData: Todo | null;
 }
 
 export interface NotesContext {
-  notes: Note[];
-  addNote: (title: string, description: string) => void;
-  updateNote: (id: string, title: string, description: string) => void;
-  deleteNote: (id: string) => void;
-  deleteForever: (id: string) => void;
+  notes: Todo[];
+  filter: "NOTES" | "ARCHIVED" | "TRASH";
+  setFilter: (filter: "NOTES" | "ARCHIVED" | "TRASH") => void;
+  addNote: (title: string, content: string, items: CheckListItem[]) => Promise<void>;
+  updateNote: (todoId: number, title: string, content: string, items: CheckListItem[]) => void;
+  deleteNote: (todoId: number) => void;
+  deleteForever: (todoId: number) => void;
   deleteAllTrash: () => void;
-  archiveNote: (id: string) => void;
-  unarchiveNote: (id: string) => void;
+  archiveNote: (todoId: number) => void;
+  unarchiveNote: (todoId: number) => void;
   unarchiveAll: () => void;
-  toggleChecklistItem: (noteId: string, itemId: string) => void;
-  uncheckAllItems: (noteId: string) => void;
-  toggleNoteCheckboxes: (id: string) => void;
+  toggleChecklistItem: (todoId: number, itemId: number) => void;
+  uncheckAllItems: (todoId: number) => void;
+}
+
+export interface GetTodoResponse {
+  todos: Todo[];
+}
+
+export interface ChecklistSectionProps {
+  items: CheckListItem[];
+  onTextChange: (id: number, text: string) => void;
+  onDelete: (id: number) => void;
 }

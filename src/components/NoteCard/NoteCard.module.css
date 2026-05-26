@@ -2,8 +2,13 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 55px;
-
+  margin-bottom: 20px;
+  flex-grow: 1;
+  margin-bottom: 60px;
+  & .noteText {
+    font: 400 1rem "Inter";
+    color: var(--text-main);
+  }
   & .checkboxRow {
     display: flex;
     align-items: center;
@@ -17,7 +22,7 @@
 
     & label,
     & .noteText {
-      font: 400 16px "Inter";
+      font: 400 1rem "Inter";
       cursor: pointer;
       display: flex;
       align-items: center;

@@ -2,17 +2,35 @@
   "name": "notes-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vlfwww.github.io/Module_10",
   "type": "module",
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.0.1",
+    "@mui/material": "^9.0.1",
+    "@react-spring/web": "^10.0.3",
+    "@reduxjs/toolkit": "^2.12.0",
+    "@sidekick-monorepo/internship-backend": "file:sidekick-monorepo-internship-backend-0.0.1.tgz",
+    "@tanstack/react-query": "^5.100.11",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.16.1",
+    "graphql": "^16.14.0",
+    "graphql-request": "^7.4.0",
+    "i18next": "^26.2.0",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "i18next-http-backend": "^4.0.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
+    "react-hook-form": "^7.76.0",
+    "react-i18next": "^17.0.8",
+    "react-redux": "^9.3.0",
     "react-router-dom": "^7.14.2",
     "react-scripts": "5.0.1",
+    "recharts": "^3.8.1",
+    "styled-components": "^6.4.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -21,7 +39,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "prepare": "husky",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -44,7 +65,18 @@
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/styled-components": "^5.1.36",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "gh-pages": "^6.3.0",
-    "typescript": "^6.0.3"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.3",
+    "typescript": "^4.9.5"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

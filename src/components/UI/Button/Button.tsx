@@ -1,29 +1,13 @@
 import React from "react";
-import style from "./Button.module.css";
+import * as S from "./Button.styles";
 import { ButtonProps } from "../../../types/common";
 
-const Button: React.FC<ButtonProps> = ({
-  children,
-  onClick,
-  className,
-  textColor,
-  style: inlineStyle,
-  isFullWidth = false,
-  ...props
-}) => {
-  const buttonClasses =
-    `${style.customButton} ${isFullWidth ? style.fullWidth : ""} ${className}`.trim();
-
+const Button: React.FC<ButtonProps> = ({ children, onClick, className, type, ...props }) => {
   return (
-    <button
-      className={buttonClasses}
-      onClick={onClick}
-      style={{ color: textColor, ...inlineStyle }}
-      {...props}
-    >
+    <S.CustomButton className={className} onClick={onClick} type={type} {...props}>
       {children}
-    </button>
+    </S.CustomButton>
   );
 };
 
-export default Button;
+export default React.memo(Button);

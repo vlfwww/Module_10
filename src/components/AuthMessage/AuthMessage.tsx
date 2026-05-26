@@ -1,15 +1,22 @@
 import React from "react";
 import style from "./AuthMessage.module.css";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const AuthMessage: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
-    <div className={style.container}>
+    <div className={style.container} role="status">
       <p className={style.signIn}>
-        You need to <Link to="/signin">sign in</Link> to be able to create notes.
+        {t("auth_message.signin_part1")}
+        <Link to="/signin">{t("auth_message.signin_link")}</Link>
+        {t("auth_message.signin_part2")}
       </p>
+
       <p className={style.signUp}>
-        Still don't have an account? <Link to="/signup">Sign up</Link>
+        {t("auth_message.signup_part1")}
+        <Link to="/signup">{t("auth_message.signup_link")}</Link>
       </p>
     </div>
   );
