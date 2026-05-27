@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Module_10/static/css/main.cdf3873d.css",
-    "main.js": "/Module_10/static/js/main.9f1d4a77.js",
+    "main.css": "/Module_10/static/css/main.da9be3a7.css",
+    "main.js": "/Module_10/static/js/main.4148979c.js",
     "static/css/14.1e8f2040.chunk.css": "/Module_10/static/css/14.1e8f2040.chunk.css",
-    "static/js/14.989228ed.chunk.js": "/Module_10/static/js/14.989228ed.chunk.js",
+    "static/js/14.3efc328c.chunk.js": "/Module_10/static/js/14.3efc328c.chunk.js",
     "static/css/783.a19310ae.chunk.css": "/Module_10/static/css/783.a19310ae.chunk.css",
-    "static/js/783.0efbcfc5.chunk.js": "/Module_10/static/js/783.0efbcfc5.chunk.js",
+    "static/js/783.a4199fd4.chunk.js": "/Module_10/static/js/783.a4199fd4.chunk.js",
     "static/css/214.a19310ae.chunk.css": "/Module_10/static/css/214.a19310ae.chunk.css",
-    "static/js/214.aad38763.chunk.js": "/Module_10/static/js/214.aad38763.chunk.js",
+    "static/js/214.b74e4412.chunk.js": "/Module_10/static/js/214.b74e4412.chunk.js",
     "static/css/171.bff34b97.chunk.css": "/Module_10/static/css/171.bff34b97.chunk.css",
     "static/js/171.cf6fada8.chunk.js": "/Module_10/static/js/171.cf6fada8.chunk.js",
     "static/css/281.bff34b97.chunk.css": "/Module_10/static/css/281.bff34b97.chunk.css",
@@ -23,7 +23,7 @@
     "static/js/449.bbcb7261.chunk.js": "/Module_10/static/js/449.bbcb7261.chunk.js",
     "static/js/204.3338ffef.chunk.js": "/Module_10/static/js/204.3338ffef.chunk.js",
     "static/js/33.8b66148c.chunk.js": "/Module_10/static/js/33.8b66148c.chunk.js",
-    "static/js/136.35f37f89.chunk.js": "/Module_10/static/js/136.35f37f89.chunk.js",
+    "static/js/136.546d80b7.chunk.js": "/Module_10/static/js/136.546d80b7.chunk.js",
     "static/media/Inter_24pt-Bold.ttf": "/Module_10/static/media/Inter_24pt-Bold.33907c3265998371bea9.ttf",
     "static/media/Inter_18pt-Medium.ttf": "/Module_10/static/media/Inter_18pt-Medium.c51b145d8cf66a74cc74.ttf",
     "static/media/Inter_28pt-Regular.ttf": "/Module_10/static/media/Inter_28pt-Regular.fd012577d3f8e88a8149.ttf",
@@ -50,7 +50,7 @@
     "static/media/fi-sr-user.svg": "/Module_10/static/media/fi-sr-user.604e152b7c698d175b53fff13e1140dd.svg"
   },
   "entrypoints": [
-    "static/css/main.cdf3873d.css",
-    "static/js/main.9f1d4a77.js"
+    "static/css/main.da9be3a7.css",
+    "static/js/main.4148979c.js"
   ]
 }

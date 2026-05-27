@@ -90,9 +90,13 @@
     "list_view_help": "Switch Grid View to List View for notes list on the Home page",
     "upload_title": "Select a file or drag and drop here",
     "uploading": "Uploading to server...",
-    "upload_subtitle": "JPG, PNG or PDF, file size no more than 10MB",
+    "upload_subtitle": "JPG, PNG, or PDF, file size no more than 10MB",
     "lang_help": "Select your preferred language",
-    "upload_help": "Upload the image to apply as a note’s background image"
+    "upload_help": "Upload the image to apply as a note’s background image",
+    "upload_error_type": "Invalid file type. Please select JPG, PNG, or PDF.",
+    "upload_error_size": "File is too large. Max size is 10MB.",
+    "upload_success": "Background updated successfully!",
+    "upload_fail": "Failed to update background."
   },
   "stats": {
     "title": "Notes (created, archived, deleted)",
@@ -124,6 +128,16 @@
   },
   "notification": {
     "close": "Close notification"
+  },
+  "notification_messages": {
+    "todo_created": "Note created successfully!",
+    "todo_updated": "Note updated successfully!",
+    "unarchived_all": "All notes unarchived!",
+    "todo_unarchived": "Note restored from archive!",
+    "todo_deleted": "Note moved to trash!",
+    "trash_cleared": "Trash bin cleared!",
+    "todo_archived": "Note moved to archive!",
+    "todo_deleted_forever": "Note deleted forever!"
   },
   "sidebar": {
     "nav_label": "Main navigation",
