@@ -26,7 +26,9 @@ export interface HeaderProps {
   pageType?: PageType;
 }
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  isFullWidth?: boolean;
+}
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;

@@ -74,7 +74,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
             {...register("password", validationRules.password)}
           />
 
-          <Button className={style.submitButton} disabled={isLoading}>
+          <Button className={style.submitButton} disabled={isLoading} isFullWidth>
             {isLoading ? t("auth.please_wait") : buttonText}
           </Button>
         </form>

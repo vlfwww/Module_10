@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CustomButton = styled.button`
+export const CustomButton = styled.button<{ $fullWidth?: boolean }>`
   background-color: var(--accent-color);
   border: none;
   border-radius: 8px;
@@ -11,6 +11,7 @@ export const CustomButton = styled.button`
   cursor: pointer;
   transition: background-color 0.2s;
   box-sizing: border-box;
+  width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "auto")};
 
   @media (max-width: 480px) {
     font-size: 0.6rem;
