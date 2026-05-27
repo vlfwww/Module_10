@@ -10,10 +10,12 @@ import ErrorPage from "../pages/ErrorPage";
 import { useSettings } from "../context/SettingsContext";
 import { useChangeTodoStatus, useTodos, useUnarchiveAll } from "../hooks/useTodos";
 import { Todo } from "../types/notes";
+import { useNotification } from "../context/NotificationContext";
 
 const ArchivePage: React.FC = () => {
   const { t } = useTranslation();
   const { isListView } = useSettings();
+  const { showNotification } = useNotification();
 
   const { data, isLoading, error, refetch } = useTodos("ARCHIVED");
   const { mutate: changeTodoStatus } = useChangeTodoStatus();
@@ -23,22 +25,34 @@ const ArchivePage: React.FC = () => {
 
   const handleUnarchiveAll = useCallback(() => {
     if (todos.length > 0) {
-      unarchiveAll(todos);
+      unarchiveAll(todos, {
+        onSuccess: () => showNotification(t("notification_messages.unarchived_all"), "success"),
+      });
     }
-  }, [todos, unarchiveAll]);
+  }, [todos, unarchiveAll, showNotification, t]);
 
   const handleDeleteTodo = useCallback(
     (id: number) => {
-      changeTodoStatus({ id, newStatus: "TRASH" });
+      changeTodoStatus(
+        { id, newStatus: "TRASH" },
+        {
+          onSuccess: () => showNotification(t("notification_messages.todo_deleted"), "success"),
+        },
+      );
     },
-    [changeTodoStatus],
+    [changeTodoStatus, showNotification, t],
   );
 
   const handleUnarchiveTodo = useCallback(
     (id: number) => {
-      changeTodoStatus({ id, newStatus: "NOTES" });
+      changeTodoStatus(
+        { id, newStatus: "NOTES" },
+        {
+          onSuccess: () => showNotification(t("notification_messages.todo_unarchived"), "success"),
+        },
+      );
     },
-    [changeTodoStatus],
+    [changeTodoStatus, showNotification, t],
   );
 
   if (isLoading) {

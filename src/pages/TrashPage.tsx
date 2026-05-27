@@ -10,10 +10,12 @@ import ErrorView from "../components/ErrorView/ErrorView";
 import { useSettings } from "../context/SettingsContext";
 import { useChangeTodoStatus, useDeleteAllTrash, useDeleTodos, useTodos } from "../hooks/useTodos";
 import { Todo } from "../types/notes";
+import { useNotification } from "../context/NotificationContext";
 
 const TrashPage: React.FC = () => {
   const { t } = useTranslation();
   const { isListView } = useSettings();
+  const { showNotification } = useNotification();
 
   const { data, isLoading, isError, error, refetch } = useTodos("TRASH");
   const { mutate: deleteTodo } = useDeleTodos();
@@ -22,17 +24,35 @@ const TrashPage: React.FC = () => {
 
   const todos = useMemo(() => data?.todos || [], [data?.todos]);
 
+  const handleDeletePermanently = useCallback(
+    (id: number) => {
+      deleteTodo(id, {
+        onSuccess: () => {
+          showNotification(t("notification_messages.todo_deleted_forever"), "success");
+        },
+      });
+    },
+    [deleteTodo, showNotification, t],
+  );
+
   const handleCleanTrash = useCallback(() => {
     if (todos.length > 0) {
-      deleteAllTrash(todos);
+      deleteAllTrash(todos, {
+        onSuccess: () => showNotification(t("notification_messages.trash_cleared"), "success"),
+      });
     }
-  }, [todos, deleteAllTrash]);
+  }, [todos, deleteAllTrash, showNotification, t]);
 
   const handleArchiveTodo = useCallback(
     (id: number) => {
-      changeTodoStatus({ id, newStatus: "ARCHIVED" });
+      changeTodoStatus(
+        { id, newStatus: "ARCHIVED" },
+        {
+          onSuccess: () => showNotification(t("notification_messages.todo_archived"), "success"),
+        },
+      );
     },
-    [changeTodoStatus],
+    [changeTodoStatus, showNotification, t],
   );
 
   if (isLoading) {
@@ -75,7 +95,7 @@ const TrashPage: React.FC = () => {
                   pageType="trash"
                   {...note}
                   viewType={isListView ? "list" : "grid"}
-                  onDelete={deleteTodo}
+                  onDelete={handleDeletePermanently}
                   onArchive={handleArchiveTodo}
                 />
               </div>

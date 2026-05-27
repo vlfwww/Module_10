@@ -11,7 +11,6 @@ export function useKebabMenuPlacement(
 
   useLayoutEffect(() => {
     if (!isOpen) {
-      setPlacement("bottom-right");
       return;
     }
 

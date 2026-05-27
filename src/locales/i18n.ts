@@ -11,6 +11,9 @@ export const i18nReady = i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "en",
+    react: {
+      useSuspense: false,
+    },
     backend: {
       loadPath: `${publicUrl}/locales/{{lng}}/{{ns}}.json`,
     },

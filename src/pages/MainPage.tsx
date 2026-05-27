@@ -13,11 +13,13 @@ import { CheckListItem, Todo } from "../types/notes";
 import { useChangeTodoStatus, useCreateTodo, useTodos, useUpdateTodo } from "../hooks/useTodos";
 import ErrorView from "../components/ErrorView/ErrorView";
 import Loader from "../components/UI/Loader/Loader";
+import { useNotification } from "../context/NotificationContext";
 
 const MainPage: React.FC = () => {
   const { t } = useTranslation();
   const { isAuthenticated } = useAuth();
   const { isListView } = useSettings();
+  const { showNotification } = useNotification();
 
   const { data, isLoading, isError, error, refetch } = useTodos("NOTES");
   const { mutate: changeTodoStatus } = useChangeTodoStatus();
@@ -32,32 +34,53 @@ const MainPage: React.FC = () => {
   const handleModalSubmit = useCallback(
     (title: string, content: string, modalItems: CheckListItem[]) => {
       if (editNote) {
-        updateTodo({
-          id: editNote.id,
-          input: { title, content, items: modalItems },
-        });
-        setEditNote(null);
+        updateTodo(
+          { id: editNote.id, input: { title, content, items: modalItems } },
+          {
+            onSuccess: () => {
+              showNotification(t("notification_messages.todo_updated"), "success");
+              setEditNote(null);
+            },
+          },
+        );
       } else {
         const formattedItems = modalItems.map((item) => ({ text: item.text }));
-        createTodo({ title, content, items: formattedItems });
-        setIsModalOpen(false);
+        createTodo(
+          { title, content, items: formattedItems },
+          {
+            onSuccess: () => {
+              showNotification(t("notification_messages.todo_created"), "success");
+              setIsModalOpen(false);
+            },
+          },
+        );
       }
     },
-    [editNote, createTodo, updateTodo],
+    [editNote, createTodo, updateTodo, showNotification, t],
   );
 
   const handleDeleteTodo = useCallback(
     (id: number) => {
-      changeTodoStatus({ id, newStatus: "TRASH" });
+      changeTodoStatus(
+        { id, newStatus: "TRASH" },
+        {
+          onSuccess: () => showNotification(t("notification_messages.todo_deleted"), "success"),
+        },
+      );
     },
-    [changeTodoStatus],
+    [changeTodoStatus, showNotification, t],
   );
 
   const handleArchiveTodo = useCallback(
     (id: number) => {
-      changeTodoStatus({ id, newStatus: "ARCHIVED" });
+      changeTodoStatus(
+        { id, newStatus: "ARCHIVED" },
+        {
+          onSuccess: () => showNotification(t("notification_messages.todo_archived"), "success"),
+        },
+      );
     },
-    [changeTodoStatus],
+    [changeTodoStatus, showNotification, t],
   );
 
   const handleEditTodo = useCallback((note: Todo) => {
