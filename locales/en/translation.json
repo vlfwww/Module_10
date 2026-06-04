@@ -30,7 +30,9 @@
   "header": {
     "signup": "Sign Up",
     "signin": "Sign In",
-    "menu": "Menu"
+    "menu": "Menu",
+    "profile": "Profile",
+    "logout": "Logout"
   },
   "note_card": {
     "no_items": "No todo items provided.",
@@ -41,6 +43,7 @@
   },
   "note_modal": {
     "edit_title": "Edit note",
+    "edit_mode": "Edit mode",
     "create_title": "Create a new note",
     "title_label": "Title",
     "desc_label": "Description",
