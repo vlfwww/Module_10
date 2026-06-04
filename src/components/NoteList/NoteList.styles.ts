@@ -42,7 +42,9 @@ export const CardWrapper = styled.div<{
 
 export const NoteTitle = styled.p<{ $viewType: "list" | "grid" }>`
   color: var(--text-main);
-  font: 600 1.25rem "Inter";
+  font:
+    600 1.25rem "Inter",
+    sans-serif;
   margin-bottom: ${({ $viewType }) => ($viewType === "list" ? "0" : "16px")};
   min-width: ${({ $viewType }) => ($viewType === "list" ? "200px" : "auto")};
 `;

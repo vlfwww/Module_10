@@ -20,7 +20,7 @@ const ProfilePage: React.FC = () => {
   return (
     <AppLayout>
       <div className={style.profileContainer} role="main" aria-label="Profile settings">
-        <Accordion title={t("profile_page.profile_info")}>
+        <Accordion title={t("profile_page.profile_info")} data-testid="info-accordion">
           <div className={`${style.profileCard} ${style.userInfo}`}>
             <ProfileForm />
             <div className={style.actions}>
@@ -32,13 +32,13 @@ const ProfilePage: React.FC = () => {
           </div>
         </Accordion>
 
-        <Accordion title={t("profile_page.statistics")}>
+        <Accordion title={t("profile_page.statistics")} data-testid="statistics-accordion">
           <div className={style.profileCard}>
             <Statistics />
           </div>
         </Accordion>
 
-        <Accordion title={t("profile_page.settings")}>
+        <Accordion title={t("profile_page.settings")} data-testid="settings-accordion">
           <div className={style.profileCard}>
             <ProfileSettings />
           </div>

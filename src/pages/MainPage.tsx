@@ -10,7 +10,12 @@ import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import { useAuth } from "../context/AuthContext";
 import { useSettings } from "../context/SettingsContext";
 import { CheckListItem, Todo } from "../types/notes";
-import { useChangeTodoStatus, useCreateTodo, useTodos, useUpdateTodo } from "../hooks/useTodos";
+import {
+  useChangeTodoStatus,
+  useCreateTodo,
+  useTodos,
+  useUpdateTodo,
+} from "../hooks/useTodos/useTodos";
 import ErrorView from "../components/ErrorView/ErrorView";
 import Loader from "../components/UI/Loader/Loader";
 import { useNotification } from "../context/NotificationContext";
@@ -136,6 +141,7 @@ const MainPage: React.FC = () => {
           className={`${style.noteCardsWrapper} ${isListView ? style.listView : ""}`}
           role="list"
           aria-label="Notes list"
+          data-testid="notes-list-container"
         >
           <ErrorBoundary>
             {todos.map((note: Todo) => (

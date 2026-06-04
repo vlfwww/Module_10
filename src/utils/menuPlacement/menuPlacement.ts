@@ -1,4 +1,4 @@
-import { FALLBACK_PRIORITY, MenuPlacement, MenuSize, ViewportSize } from "../types/common";
+import { FALLBACK_PRIORITY, MenuPlacement, MenuSize, ViewportSize } from "../../types/common";
 
 const VIEWPORT_PADDING = 8;
 

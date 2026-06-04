@@ -8,7 +8,12 @@ import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import Loader from "../components/UI/Loader/Loader";
 import ErrorView from "../components/ErrorView/ErrorView";
 import { useSettings } from "../context/SettingsContext";
-import { useChangeTodoStatus, useDeleteAllTrash, useDeleTodos, useTodos } from "../hooks/useTodos";
+import {
+  useChangeTodoStatus,
+  useDeleteAllTrash,
+  useDeleTodos,
+  useTodos,
+} from "../hooks/useTodos/useTodos";
 import { Todo } from "../types/notes";
 import { useNotification } from "../context/NotificationContext";
 

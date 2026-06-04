@@ -3,7 +3,9 @@
   padding: 12px 24px;
   text-align: center;
   color: var(--accent-color);
-  font: 400 1.125rem "Poppins";
+  font:
+    400 1.125rem "Poppins",
+    sans-serif;
   flex-shrink: 0;
   width: 100%;
   box-sizing: border-box;

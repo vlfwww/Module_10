@@ -10,7 +10,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font: 400 1.125rem "Poppins";
+  font:
+    400 1.125rem "Poppins",
+    sans-serif;
   color: var(--text-main);
 
   & .logoWrapper {
@@ -53,7 +55,9 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font: 400 1.125rem "Poppins";
+  font:
+    400 1.125rem "Poppins",
+    sans-serif;
   & .mobileHeader {
     background-color: var(--bg-layout-edge);
     display: flex;

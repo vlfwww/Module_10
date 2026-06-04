@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { RouteProps } from "../../types/auth";
+import { RouteProps } from "../../../types/auth";
 
 const ProtectedRoute: React.FC<RouteProps> = ({ children, isAuthenticated }) => {
   const location = useLocation();

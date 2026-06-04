@@ -13,6 +13,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
         <NavLink
           to="/"
           className={({ isActive }) => `${style.navItem} ${isActive ? style.active : ""}`}
+          data-testid="notes-link"
         >
           {t("sidebar.notes")}
         </NavLink>
@@ -20,6 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
         <NavLink
           to="/profile"
           className={({ isActive }) => `${style.navItem} ${isActive ? style.active : ""}`}
+          data-testid="profile-link"
         >
           {t("sidebar.profile")}
         </NavLink>
@@ -27,6 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
         <NavLink
           to="/archive"
           className={({ isActive }) => `${style.navItem} ${isActive ? style.active : ""}`}
+          data-testid="archive-link"
         >
           {t("sidebar.archive")}
         </NavLink>
@@ -34,6 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
         <NavLink
           to="/trash"
           className={({ isActive }) => `${style.navItem} ${isActive ? style.active : ""}`}
+          data-testid="trash-link"
         >
           {t("sidebar.trash")}
         </NavLink>

@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { CheckListItem, GetTodoResponse } from "../types/notes";
+import { CheckListItem, GetTodoResponse } from "../../types/notes";
 import {
   CHANGE_TODO_STATUS_MUTATION,
   DELETE_TODO_MUTATION,
@@ -9,8 +9,8 @@ import {
   TOGGLE_CHECKLIST_ITEM_MUTATION,
   UNCHECK_ALL_ITEMS_MUTATION,
   UPDATE_TODO_BACKGROUND_MUTATION,
-} from "../api/todoQueries";
-import { graphqlRequest } from "../api/graphqlClient";
+} from "../../api/todoQueries";
+import { graphqlRequest } from "../../api/graphqlClient";
 import axios from "axios";
 
 export const useTodos = (status?: "NOTES" | "ARCHIVED" | "TRASH") => {

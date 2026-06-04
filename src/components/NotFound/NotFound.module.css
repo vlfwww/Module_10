@@ -7,7 +7,9 @@
   flex: 1;
   & h1 {
     margin-top: 47px;
-    font: 600 3.75rem "Inter";
+    font:
+      600 3.75rem "Inter",
+      sans-serif;
     color: var(--text-main);
   }
   & .errorIcon {
@@ -24,7 +26,9 @@
       height: 73px;
     }
     & h1 {
-      font: 600 1.25rem "Inter";
+      font:
+        600 1.25rem "Inter",
+        sans-serif;
     }
   }
 }

@@ -3,11 +3,11 @@ import style from "./Accordion.module.css";
 import { AccordionProps } from "../../../types/common";
 import arrowIcon from "../../../assets/images/fi-sr-angle-small-up.svg";
 
-const Accordion: React.FC<AccordionProps> = ({ title, children, defaultOpen = true }) => {
+const Accordion: React.FC<AccordionProps> = ({ title, children, defaultOpen = true, ...props }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className={style.accordion}>
+    <div className={style.accordion} {...props}>
       <button
         type="button"
         className={style.header}

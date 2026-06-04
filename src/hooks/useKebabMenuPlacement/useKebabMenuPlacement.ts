@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
-import { computeMenuPlacement } from "../utils/menuPlacement";
-import { MenuPlacement } from "../types/common";
+import { computeMenuPlacement } from "../../utils/menuPlacement/menuPlacement";
+import { MenuPlacement } from "../../types/common";
 
 export function useKebabMenuPlacement(
   isOpen: boolean,

@@ -1,4 +1,4 @@
-import { ReactNode, Ref } from "react";
+import { CSSProperties, ReactNode, Ref } from "react";
 
 export interface ChildrenProps {
   children: ReactNode;
@@ -7,7 +7,7 @@ export type PageType = "notes" | "trash" | "archive" | "signin" | "signup" | "pr
 
 export interface KebabMenuProps {
   pageType: PageType;
-  onDelete: () => void;
+  onDelete?: () => void;
   onUnarchive?: (() => void) | undefined;
   onArchive?: (() => void) | undefined;
   onUncheckAll?: (() => void) | undefined;
@@ -24,6 +24,14 @@ export interface SidebarProps {
 
 export interface HeaderProps {
   pageType?: PageType;
+}
+
+export interface HeaderMenuProps {
+  onLogout: () => void;
+  onClose: () => void;
+  springStyle: CSSProperties | any;
+  menuRef: React.RefObject<HTMLDivElement>;
+  t: (key: string) => string;
 }
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

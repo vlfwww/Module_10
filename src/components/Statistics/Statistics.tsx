@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import * as S from "./Statistics.styles";
-import { useStatistics } from "../../hooks/useStatistics";
+import { useStatistics } from "../../hooks/useStatistics/useStatistics";
 import { useTranslation } from "react-i18next";
 
 const StatisticsSection: React.FC = () => {

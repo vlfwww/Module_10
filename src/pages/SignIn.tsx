@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../context/AuthContext";
 import AuthForm from "./../components/AuthForm/AuthForm";
 import AppLayout from "../components/AppLayout/AppLayout";
-import { validateEmail } from "../utils/validation";
+import { validateEmail } from "../utils/validation/validation";
 import { LocationState } from "../types/common";
 
 const SignIn: React.FC = () => {

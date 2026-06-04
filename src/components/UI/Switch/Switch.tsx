@@ -2,11 +2,11 @@ import React, { useId } from "react";
 import style from "./Switch.module.css";
 import { SwitchProps } from "../../../types/common";
 
-const Switch: React.FC<SwitchProps> = ({ checked, onChange, label }) => {
+const Switch: React.FC<SwitchProps> = ({ checked, onChange, label, ...props }) => {
   const switchId = useId();
 
   return (
-    <div className={style.switchContainer}>
+    <div className={style.switchContainer} data-testid={`switch-${label}`} {...props}>
       <label className={style.switch} htmlFor={switchId}>
         <input
           id={switchId}

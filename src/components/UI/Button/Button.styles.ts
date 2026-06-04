@@ -6,7 +6,9 @@ export const CustomButton = styled.button<{ $fullWidth?: boolean }>`
   border-radius: 8px;
   text-align: center;
   padding: 14px 48px;
-  font: 400 0.875rem "Poppins";
+  font:
+    400 0.875rem "Poppins",
+    sans-serif;
   color: var(--text-modal-button);
   cursor: pointer;
   transition: background-color 0.2s;

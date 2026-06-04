@@ -4,10 +4,10 @@ import NoteCard from "../NoteCard/NoteCard";
 import KebabMenu from "../UI/KebabMenu/KebabMenu";
 import { NoteListProps, Todo } from "../../types/notes";
 import kebabMenuIcon from "../../assets/images/menu.svg";
-import { useToggleChecklistItem, useUncheckAllItems } from "../../hooks/useTodos";
+import { useToggleChecklistItem, useUncheckAllItems } from "../../hooks/useTodos/useTodos";
 import * as S from "./NoteList.styles";
 import { useTransition } from "@react-spring/web";
-import { useKebabMenuPlacement } from "../../hooks/useKebabMenuPlacement";
+import { useKebabMenuPlacement } from "../../hooks/useKebabMenuPlacement/useKebabMenuPlacement";
 
 const NoteList: React.FC<NoteListProps> = ({
   pageType,
@@ -92,6 +92,7 @@ const NoteList: React.FC<NoteListProps> = ({
       onMouseLeave={handleMouseLeave}
       onClick={pageType === "notes" ? handleCardClick : undefined}
       aria-expanded={isMenuOpen}
+      data-testid="card-wrapper"
     >
       <S.NoteTitle $viewType={viewType}>{title}</S.NoteTitle>
 
@@ -108,6 +109,7 @@ const NoteList: React.FC<NoteListProps> = ({
       <S.KebabAnchor ref={kebabAnchorRef}>
         <S.KebabButton
           onClick={handleKebabClick}
+          data-testid="kebab-menu-btn"
           aria-label={t("note_list.menu_label")}
           aria-haspopup="menu"
         >
@@ -117,6 +119,7 @@ const NoteList: React.FC<NoteListProps> = ({
         {menuTransition((styleProps, item) =>
           item ? (
             <KebabMenu
+              data-testid="kebab-menu"
               pageType={pageType}
               onDelete={handleDelete}
               onToggleCheckboxes={handleToggleCheckboxes}

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import style from "./ProfileForm.module.css";
 import { useAuth } from "../../context/AuthContext";
-import { validateEmail } from "../../utils/validation";
+import { validateEmail } from "../../utils/validation/validation";
 import Input from "../UI/Input/Input";
 import Textarea from "../UI/Textarea/Textarea";
 import Button from "../UI/Button/Button";
@@ -14,7 +14,7 @@ import profileImg from "../../assets/images/eye.svg";
 import { ProfileFormValues } from "../../types/auth";
 import { useNotification } from "../../context/NotificationContext";
 import { Avatar } from "@mui/material";
-import { getUserAvatarPath } from "../../utils/getUserAvatarPath";
+import { getUserAvatarPath } from "../../utils/getUserAvatarPath/getUserAvatarPath";
 
 const ProfileInfoForm: React.FC = () => {
   const { t } = useTranslation();
@@ -22,7 +22,8 @@ const ProfileInfoForm: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { showNotification } = useNotification();
 
-  const [profileImage, setProfileImage] = useState(getUserAvatarPath(user) || profileImg);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const avatarSrc = previewImage || getUserAvatarPath(user) || profileImg;
 
   const {
     register,
@@ -50,7 +51,7 @@ const ProfileInfoForm: React.FC = () => {
         email: user.email || "",
         description: user.description || "",
       });
-      setProfileImage(user.profileImage || profileImg);
+      setPreviewImage(null);
     }
   }, [user, reset]);
 
@@ -58,8 +59,9 @@ const ProfileInfoForm: React.FC = () => {
     try {
       await updateUserInfo({
         ...data,
-        profileImage,
+        profileImage: previewImage || user?.profileImage || "",
       });
+      setPreviewImage(null);
       showNotification(t("profile_form.notifications.updated"), "success");
     } catch (err: unknown) {
       const errorMessage =
@@ -77,7 +79,7 @@ const ProfileInfoForm: React.FC = () => {
 
     const reader = new FileReader();
     reader.onloadend = () => {
-      setProfileImage(reader.result as string);
+      setPreviewImage(reader.result as string);
     };
     reader.readAsDataURL(file);
   };
@@ -88,9 +90,9 @@ const ProfileInfoForm: React.FC = () => {
 
   return (
     <div className={style.infoForm} role="form" aria-labelledby="profile-title">
-      <h2 id="profile-title" className={style.srOnly} style={{ display: "none" }}>
+      <p id="profile-title" className={style.srOnly} style={{ display: "none" }}>
         {t("profile_form.title")}
-      </h2>
+      </p>
       <div className={style.avatarSection}>
         <input
           type="file"
@@ -100,7 +102,7 @@ const ProfileInfoForm: React.FC = () => {
           onChange={handleFileChange}
           aria-hidden="true"
         />
-        <Avatar alt={user?.username || "User"} src={profileImage} className={style.avatarImage} />
+        <Avatar alt={user?.username || "User"} src={avatarSrc} className={style.avatarImage} />
         <div className={style.avatarInfo}>
           <p className={style.userName}>{user?.username}</p>
           <button
@@ -116,6 +118,7 @@ const ProfileInfoForm: React.FC = () => {
 
       <form onSubmit={handleSubmit(handleUpdate)}>
         <Input
+          data-testid="username-input"
           label={t("profile_form.username")}
           iconSrc={userIcon}
           pageType="profile"
@@ -155,7 +158,12 @@ const ProfileInfoForm: React.FC = () => {
           })}
         />
 
-        <Button type="submit" className={style.saveBtn} disabled={!isValid || isLoading}>
+        <Button
+          type="submit"
+          data-testid="update-btn"
+          className={style.saveBtn}
+          disabled={!isValid || isLoading}
+        >
           {isLoading ? t("profile_form.saving") : t("profile_form.save_changes")}
         </Button>
       </form>

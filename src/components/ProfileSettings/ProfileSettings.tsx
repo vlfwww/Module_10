@@ -8,7 +8,7 @@ import Input from "../UI/Input/Input";
 import Switch from "../UI/Switch/Switch";
 import { useSettings } from "../../context/SettingsContext";
 import { useNotification } from "../../context/NotificationContext";
-import { useUpdateGlobalBackground } from "../../hooks/useTodos";
+import { useUpdateGlobalBackground } from "../../hooks/useTodos/useTodos";
 
 const ProfileSettings: React.FC = () => {
   const { i18n, t } = useTranslation();
@@ -108,6 +108,7 @@ const ProfileSettings: React.FC = () => {
 
       <div className={style.fontSizeChangeWrapper}>
         <Input
+          data-testid="font-size-input"
           type="number"
           className={style.numberInput}
           value={localFontSize}

@@ -44,15 +44,17 @@ export const KebabMenuContainer = styled(animated.div)<{ $placement: MenuPlaceme
   flex-direction: column;
   gap: 8px;
   padding: 8px 0;
-  font: 400 1.125rem "Poppins";
+  font:
+    400 1.125rem "Poppins",
+    sans-serif;
   position: absolute;
   min-width: 180px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 100;
   color: var(--text-main);
-  transform-origin: ${({ $placement }) => transformOrigin[$placement]};
+  transform-origin: ${({ $placement }) => transformOrigin[$placement as MenuPlacement]};
 
-  ${({ $placement }) => placementStyles[$placement]}
+  ${({ $placement }) => placementStyles[$placement as MenuPlacement]}
 `;
 
 export const KebabMenuItem = styled.div`

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../context/AuthContext";
 import AuthForm from "../components/AuthForm/AuthForm";
 import AppLayout from "../components/AppLayout/AppLayout";
-import { validateEmail, validatePassword } from "../utils/validation";
+import { validateEmail, validatePassword } from "../utils/validation/validation";
 
 const SignUp: React.FC = () => {
   const { t } = useTranslation();

@@ -7,9 +7,9 @@ import React, {
   useCallback,
 } from "react";
 import { Theme, SettingsContextType } from "../types/common";
-import { getStorageItem } from "../utils/storage";
+import { getStorageItem } from "../utils/storage/storage";
 
-const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
+export const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 
 export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => getStorageItem<Theme>("theme", "light"));

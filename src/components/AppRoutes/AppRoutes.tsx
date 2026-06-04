@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import PublicRoute from "./PublicRoute";
-import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute/PublicRoute";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import Loader from "../UI/Loader/Loader";
 
 const MainPage = lazy(() => import("../../pages/MainPage"));

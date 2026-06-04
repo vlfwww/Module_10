@@ -64,17 +64,23 @@ export const Header = styled.div`
   align-items: center;
   flex-shrink: 0;
   & p {
-    font: 400 2.25rem "Poppins";
+    font:
+      400 2.25rem "Poppins",
+      sans-serif;
   }
   @media (max-width: 768px) {
     margin-bottom: 16px;
     & p {
-      font: 400 1rem "Poppins";
+      font:
+        400 1rem "Poppins",
+        sans-serif;
     }
   }
   @media (max-width: 365px) {
     & p {
-      font: 400 0.8rem "Poppins";
+      font:
+        400 0.8rem "Poppins",
+        sans-serif;
     }
   }
 `;
@@ -131,7 +137,9 @@ export const ItemsHeaderRow = styled.div`
   margin-bottom: 12px;
   & p {
     color: var(--text-main);
-    font: 400 1rem "Poppins";
+    font:
+      400 1rem "Poppins",
+      sans-serif;
     margin: 0;
     @media (max-width: 480px) {
       font-size: 0.7rem;
@@ -141,7 +149,9 @@ export const ItemsHeaderRow = styled.div`
 
 export const ErrorMessage = styled.p`
   color: var(--input-error);
-  font: 500 1.063rem "Poppins";
+  font:
+    500 1.063rem "Poppins",
+    sans-serif;
   text-align: center;
   margin-top: 20px;
 `;
@@ -171,7 +181,9 @@ export const BackgroundHeaderRow = styled.div`
 
   & p {
     color: var(--text-main);
-    font: 400 1rem "Poppins";
+    font:
+      400 1rem "Poppins",
+      sans-serif;
     margin: 0;
   }
 `;
@@ -202,11 +214,97 @@ export const RemoveBgButton = styled.button`
   border-radius: 4px;
   padding: 4px 8px;
   color: #fff;
-  font: 400 0.75rem "Poppins";
+  font:
+    400 0.75rem "Poppins",
+    sans-serif;
   cursor: pointer;
   transition: background-color 0.2s;
 
   &:hover {
     background-color: rgba(255, 0, 0, 0.8);
+  }
+`;
+
+export const NotesList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+  min-height: 0;
+  max-height: 550px;
+  overflow-y: scroll;
+  padding-right: 4px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+  }
+`;
+
+export const NoteText = styled.p`
+  font:
+    400 1rem "Inter",
+    sans-serif;
+  color: var(--text-main);
+  word-break: break-word;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  margin-bottom: 10px;
+`;
+
+export const CheckboxRow = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+
+  input {
+    display: none;
+  }
+
+  label {
+    font:
+      400 1rem "Inter",
+      sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    color: var(--text-main);
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+
+  label::before {
+    content: "";
+    display: inline-block;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    background-color: var(--bg-content);
+    transition: all 0.2s;
+  }
+
+  input:checked + label::before {
+    background-color: var(--accent-color);
+    content: "✓";
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  label:active::before {
+    outline: 4px solid rgba(211, 244, 224, 1);
   }
 `;

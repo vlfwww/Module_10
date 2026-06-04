@@ -14,6 +14,7 @@ const KebabMenu: React.FC<KebabMenuProps> = ({
   placement = "bottom-right",
   menuRef,
   springStyle,
+  ...props
 }) => {
   const { t } = useTranslation();
 
@@ -32,6 +33,7 @@ const KebabMenu: React.FC<KebabMenuProps> = ({
       onClick={(e) => e.stopPropagation()}
       role="menu"
       aria-label="Note options"
+      {...props}
     >
       {pageType === "notes" && (
         <>
@@ -40,6 +42,7 @@ const KebabMenu: React.FC<KebabMenuProps> = ({
             tabIndex={0}
             onClick={onDelete}
             onKeyDown={(e) => handleKeyDown(e, onDelete)}
+            data-testid="delete-note-btn"
           >
             {t("kebab_menu.delete")}
           </S.KebabMenuItem>
@@ -66,6 +69,7 @@ const KebabMenu: React.FC<KebabMenuProps> = ({
             tabIndex={0}
             onClick={onArchive}
             onKeyDown={(e) => handleKeyDown(e, onArchive)}
+            data-testid="archive-note-btn"
           >
             {t("kebab_menu.archive")}
           </S.KebabMenuItem>
@@ -79,6 +83,7 @@ const KebabMenu: React.FC<KebabMenuProps> = ({
             tabIndex={0}
             onClick={onDelete}
             onKeyDown={(e) => handleKeyDown(e, onDelete)}
+            data-testid="permanent-delete-btn"
           >
             {t("kebab_menu.delete_forever")}
           </S.KebabMenuItem>
@@ -100,6 +105,7 @@ const KebabMenu: React.FC<KebabMenuProps> = ({
             tabIndex={0}
             onClick={onUnarchive}
             onKeyDown={(e) => handleKeyDown(e, onUnarchive)}
+            data-testid="unarchive-note-btn"
           >
             {t("kebab_menu.unarchive")}
           </S.KebabMenuItem>

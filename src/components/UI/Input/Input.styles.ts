@@ -29,7 +29,9 @@ export const LabelWrapper = styled.div`
   align-items: center;
 
   & p {
-    font: 500 0.875rem "Poppins";
+    font:
+      500 0.875rem "Poppins",
+      sans-serif;
     color: var(--text-main);
     margin: 0;
   }
@@ -59,7 +61,9 @@ export const InputField = styled.input<{ $isError?: boolean }>`
   color: ${({ $isError }) => ($isError ? "var(--input-error)" : "var(--text-secondary)")};
   border-radius: 8px;
   padding: 14px;
-  font: 400 0.875rem "Poppins";
+  font:
+    400 0.875rem "Poppins",
+    sans-serif;
   border: 1px solid ${({ $isError }) => ($isError ? "var(--input-error)" : "var(--border-color)")};
   outline: none;
   width: 100%;
@@ -76,7 +80,9 @@ export const InputField = styled.input<{ $isError?: boolean }>`
 
     &::placeholder {
       color: var(--input-disabled-color);
-      font: 400 0.875rem "Poppins";
+      font:
+        400 0.875rem "Poppins",
+        sans-serif;
     }
   }
 
@@ -132,7 +138,9 @@ export const ErrorTextWrapper = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
-  font: 400 0.875rem "Poppins";
+  font:
+    400 0.875rem "Poppins",
+    sans-serif;
   min-width: 0;
 
   & img {

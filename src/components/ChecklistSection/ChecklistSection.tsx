@@ -15,12 +15,13 @@ const ChecklistSection: React.FC<ChecklistSectionProps> = ({ items, onTextChange
       {items.map((item, index) => {
         if (!item) return null;
         return (
-          <S.ItemRow key={item.id} role="listitem">
+          <S.ItemRow key={item.id} role="listitem" data-testid="check-row">
             <Input
               type="text"
               label={t("checklist.todo_label", { number: index + 1 })}
               value={item.text || ""}
               onChange={(e) => onTextChange(item.id, e.target.value)}
+              data-testid="todo-input"
             />
             <S.DeleteItemButton
               type="button"

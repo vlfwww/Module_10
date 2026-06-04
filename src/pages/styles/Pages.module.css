@@ -32,7 +32,9 @@
     flex-direction: column;
     gap: 44px;
     & .actionsTitle {
-      font: 600 1.75rem "Inter";
+      font:
+        600 1.75rem "Inter",
+        sans-serif;
       color: var(--text-main);
     }
   }
@@ -44,7 +46,9 @@
 }
 
 .zeroActiveNotes {
-  font: 600 1.75rem "Poppins";
+  font:
+    600 1.75rem "Poppins",
+    sans-serif;
   color: var(--text-main);
 }
 
@@ -74,7 +78,9 @@
     }
     & h1,
     p {
-      font: 600 1.25rem "Inter";
+      font:
+        600 1.25rem "Inter",
+        sans-serif;
     }
   }
 }

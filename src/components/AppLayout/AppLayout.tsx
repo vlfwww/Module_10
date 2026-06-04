@@ -23,7 +23,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
       <div className={style.contentWrapper}>
         <div className={style.pageContent}>
           {showSidebar && (
-            <div role="complementary" aria-label="Sidebar navigation">
+            <div aria-label="Sidebar navigation">
               <Sidebar className={style.sidebar} />
             </div>
           )}

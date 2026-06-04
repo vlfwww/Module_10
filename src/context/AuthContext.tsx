@@ -1,5 +1,12 @@
 import { createContext, useContext, ReactNode, useCallback, useEffect } from "react";
-import { AuthContextType, User } from "../types/auth";
+import {
+  AuthContextType,
+  LoginResponse,
+  MeResponse,
+  SignupResponse,
+  UpdateProfileResponse,
+  User,
+} from "../types/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/index";
 import {
@@ -26,7 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     async (email: string, password: string): Promise<boolean> => {
       dispatch(setLoadingAction(true));
       try {
-        const data = await graphqlRequest(LOGIN_MUTATION, { email, password });
+        const data = await graphqlRequest<LoginResponse>(LOGIN_MUTATION, { email, password });
 
         if (!data?.login) {
           throw new Error("Incorrect email or password");
@@ -53,7 +60,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const register = useCallback(
     async (email: string, password: string): Promise<boolean> => {
       try {
-        const data = await graphqlRequest(SIGNUP_MUTATION, { email, password });
+        const data = await graphqlRequest<SignupResponse>(SIGNUP_MUTATION, { email, password });
 
         if (!data?.signup) {
           throw new Error("Registration failed");
@@ -81,7 +88,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     dispatch(setLoadingAction(true));
     try {
-      const data = await graphqlRequest(ME_QUERY);
+      const data = await graphqlRequest<MeResponse>(ME_QUERY);
 
       if (!data?.me) {
         logout();
@@ -111,7 +118,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       dispatch(setLoadingAction(true));
       try {
-        const data = await graphqlRequest(UPDATE_PROFILE_MUTATION, {
+        const data = await graphqlRequest<UpdateProfileResponse>(UPDATE_PROFILE_MUTATION, {
           input: updatedFields,
         });
 

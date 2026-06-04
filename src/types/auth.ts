@@ -58,3 +58,16 @@ export interface AuthInputs {
   email: string;
   password: string;
 }
+
+export interface LoginResponse {
+  login: { token: string; user: User };
+}
+export interface SignupResponse {
+  signup: { token: string; user: User };
+}
+export interface MeResponse {
+  me: User;
+}
+export interface UpdateProfileResponse {
+  updateProfile: User;
+}

@@ -13,10 +13,8 @@
     "@reduxjs/toolkit": "^2.12.0",
     "@sidekick-monorepo/internship-backend": "file:sidekick-monorepo-internship-backend-0.0.1.tgz",
     "@tanstack/react-query": "^5.100.11",
-    "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.16.1",
     "graphql": "^16.14.0",
     "graphql-request": "^7.4.0",
@@ -37,7 +35,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -64,6 +62,11 @@
     ]
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.9.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/styled-components": "^5.1.36",
@@ -71,9 +74,13 @@
     "eslint-plugin-prettier": "^5.5.5",
     "gh-pages": "^6.3.0",
     "husky": "^9.1.7",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.3",
-    "typescript": "^4.9.5"
+    "ts-jest": "^29.4.11",
+    "typescript": "^4.9.5",
+    "util": "^0.12.5"
   },
   "msw": {
     "workerDirectory": [
