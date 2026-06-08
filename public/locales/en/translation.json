@@ -179,7 +179,7 @@
     "title": "Sign in into an account",
     "subtitle": "Enter your email and password to sign in into this app",
     "button": "Sign In",
-    "error_failed": "Login failed",
+    "error_failed": "Incorrect password",
     "email_req": "Email is required",
     "email_invalid": "Email format is incorrect",
     "pass_req": "Password is required"

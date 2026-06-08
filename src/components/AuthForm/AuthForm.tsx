@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -26,12 +26,19 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const {
     register,
     handleSubmit,
+    setError: setFormError,
     formState: { errors, touchedFields },
     watch,
   } = useForm<AuthInputs>({
     defaultValues: { email: "", password: "" },
     mode: "onTouched",
   });
+
+  useEffect(() => {
+    if (error && pageType === "signin") {
+      setFormError("password", { type: "manual", message: error });
+    }
+  }, [error, pageType, setFormError]);
 
   const emailValue = watch("email");
   const passwordValue = watch("password");
@@ -79,7 +86,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
           </Button>
         </form>
 
-        {error && (
+        {error && pageType === "signup" && (
           <p className={style.errorText} role="alert">
             {error}
           </p>

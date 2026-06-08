@@ -23,12 +23,13 @@ const SignIn: React.FC = () => {
   const handleSignIn = useCallback(
     async (email: string, password: string) => {
       try {
+        setError("");
         await login(email, password);
       } catch (err: unknown) {
         setError(t("signin.error_failed"));
       }
     },
-    [login, t],
+    [login, t, setError],
   );
 
   const signInRules = useMemo(
