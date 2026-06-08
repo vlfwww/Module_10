@@ -179,7 +179,7 @@
     "title": "Вход в аккаунт",
     "subtitle": "Введите ваш email и пароль для входа в приложение",
     "button": "Войти",
-    "error_failed": "Ошибка входа",
+    "error_failed": "Неверный пароль",
     "email_req": "Email обязателен",
     "email_invalid": "Некорректный формат email",
     "pass_req": "Пароль обязателен"
