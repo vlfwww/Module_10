@@ -25,8 +25,7 @@ const SignIn: React.FC = () => {
       try {
         await login(email, password);
       } catch (err: unknown) {
-        const errorMessage = err instanceof Error ? err.message : t("signin.error_failed");
-        setError(errorMessage);
+        setError(t("signin.error_failed"));
       }
     },
     [login, t],

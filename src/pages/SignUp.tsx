@@ -18,8 +18,7 @@ const SignUp: React.FC = () => {
         await registerUser(email, password);
         navigate("/");
       } catch (err: unknown) {
-        const errorMessage = err instanceof Error ? err.message : t("signup.error_failed");
-        setError(errorMessage);
+        setError(t("signup.error_failed"));
       }
     },
     [registerUser, navigate, t],
