@@ -1,0 +1,98 @@
+[data-theme="dark"] .settingsContainer {
+  & .uploadSection img {
+    filter: invert(1);
+  }
+}
+
+.settingsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  & .languageSetter {
+    max-width: 300px;
+    & .MuiInputLabel-root {
+      color: var(--text-secondary) !important;
+    }
+
+    & .MuiOutlinedInput-root {
+      color: var(--text-main);
+      border-color: var(--border-color) !important;
+
+      & fieldset {
+        border-color: var(--border-color) !important;
+      }
+    }
+
+    & .MuiPaper-root {
+      background-color: var(--bg-layout-edge) !important;
+      color: var(--text-main) !important;
+    }
+  }
+  & .helperText {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--text-secondary);
+    font:
+      400 0.875rem "Poppins",
+      sans-serif;
+    margin-top: 7px;
+    @media (max-width: 768px) {
+      font-size: 0.6rem;
+    }
+  }
+  & .inputWrapper {
+    max-width: 150px;
+  }
+  & .uploadSection {
+    .dropZone.dragActive {
+      border-color: var(--accent-color);
+      background-color: var(--bg-menu-link-hover);
+    }
+    & .dropZone {
+      border: 2px dashed var(--border-color);
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 32px;
+      cursor: pointer;
+      :global([data-theme="dark"]) & .uploadIcon {
+        filter: invert(1);
+      }
+      & .uploadInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        font:
+          400 0.875rem "Poppins",
+          sans-serif;
+        @media (max-width: 768px) {
+          font-size: 0.6rem;
+        }
+        & .uploadTitle {
+          color: var(--text-main);
+        }
+        & .uploadSubtitle {
+          color: var(--text-secondary);
+        }
+      }
+    }
+    .dropZone.disabled {
+      opacity: 0.6;
+      background-color: var(--bg-input-disabled);
+      border-color: var(--input-disabled-color);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .settingsContainer .uploadSection .dropZone {
+    padding: 12px;
+  }
+
+  .settingsContainer .inputWrapper {
+    max-width: 100%;
+  }
+}
