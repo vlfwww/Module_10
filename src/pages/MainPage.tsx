@@ -19,6 +19,7 @@ import {
 import ErrorView from "../components/ErrorView/ErrorView";
 import Loader from "../components/UI/Loader/Loader";
 import { useNotification } from "../context/NotificationContext";
+import ExtraTodos from "../hooks/ExtraTodos";
 
 const MainPage: React.FC = () => {
   const { t } = useTranslation();
@@ -130,42 +131,7 @@ const MainPage: React.FC = () => {
 
   return (
     <AppLayout pageType="notes">
-      <div className={style.buttonWrapper}>
-        <Button onClick={handleCreateClick}>{t("main_page.create_note")}</Button>
-      </div>
-
-      {todos.length === 0 ? (
-        <p className={style.zeroActiveNotes}>{t("main_page.empty")}</p>
-      ) : (
-        <div
-          className={`${style.noteCardsWrapper} ${isListView ? style.listView : ""}`}
-          role="list"
-          aria-label="Notes list"
-          data-testid="notes-list-container"
-        >
-          <ErrorBoundary>
-            {todos.map((note: Todo) => (
-              <div role="listitem" key={note.id}>
-                <NoteList
-                  pageType="notes"
-                  {...note}
-                  viewType={isListView ? "list" : "grid"}
-                  onDelete={handleDeleteTodo}
-                  onArchive={handleArchiveTodo}
-                  onEdit={handleEditTodo}
-                />
-              </div>
-            ))}
-          </ErrorBoundary>
-        </div>
-      )}
-
-      <NoteModal
-        isOpen={isModalOpen || !!editNote}
-        onClose={handleCloseModal}
-        onSubmit={handleModalSubmit}
-        initialData={editNote}
-      />
+      <ExtraTodos />
     </AppLayout>
   );
 };
