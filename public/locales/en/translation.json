@@ -199,5 +199,8 @@
     "error": "Failed to load trash",
     "delete_all": "Delete all",
     "empty": "Trash is empty"
+  },
+  "extra_todos": {
+    "message": "Hello world"
   }
 }
