@@ -1,0 +1,15 @@
+.footer {
+  background-color: var(--bg-layout-edge);
+  padding: 12px 24px;
+  text-align: center;
+  color: var(--accent-color);
+  font: 400 1.125rem "Poppins";
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+
+  & p {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+}

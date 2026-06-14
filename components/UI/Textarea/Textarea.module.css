@@ -1,0 +1,66 @@
+& .inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  & .label {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    & p {
+      font: 500 0.875rem "Poppins";
+    }
+    & img {
+      width: 16px;
+      height: 16px;
+      :global([data-theme="dark"]) & {
+        filter: invert(1);
+      }
+    }
+  }
+  & .textareaField {
+    background-color: var(--bg-page);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    padding: 14px;
+    font: 400 0.875rem "Poppins";
+    border: 1px solid var(--border-color);
+    width: 100%;
+    resize: none;
+    min-height: 120px;
+    outline: none;
+    transition: border-color 0.3s ease-out;
+  }
+  & .textareaField:focus {
+    border: 1px solid var(--input-focus);
+    color: var(--text-main-color);
+  }
+  & .inputError {
+    border-color: var(--input-error) !important;
+    color: var(--input-error) !important;
+  }
+  & .errorWrapper {
+    display: grid;
+    grid-template-rows: 1fr;
+    margin-top: 8px;
+    overflow: hidden;
+    & .errorContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 20px;
+      & .errorTextWrapper {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font: 400 0.75rem "Poppins";
+        & .errorText {
+          color: var(--input-error);
+        }
+        & .infoText {
+          color: var(--text-secondary);
+        }
+      }
+    }
+  }
+}

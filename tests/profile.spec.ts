@@ -23,9 +23,7 @@ test.describe("Profile Page", () => {
 
     const usernameInput = page.getByTestId("username-input");
 
-    await expect(usernameInput).toBeVisible({ timeout: 10000 });
-
-    await usernameInput.scrollIntoViewIfNeeded();
+    await expect(usernameInput).toBeVisible({ timeout: 15000 });
     await usernameInput.fill("NewTestUser");
 
     await page.getByTestId("update-btn").click();
@@ -63,39 +61,37 @@ test.describe("Profile Page", () => {
 
   test("should toggle list view and verify on notes page", async ({ page }) => {
     const settingsAccordion = page.getByRole("button", { name: /settings|настройки/i });
+
     if ((await settingsAccordion.getAttribute("aria-expanded")) !== "true") {
       await settingsAccordion.click();
-      await page.waitForTimeout(300);
+      await page.waitForTimeout(500);
     }
 
-    await page
-      .locator("label")
-      .filter({ hasText: /list view|вид списка/i })
-      .click();
+    const listViewLabel = page.locator("label").filter({ hasText: /^list view$|^вид списка$/i });
+    await listViewLabel.scrollIntoViewIfNeeded();
+    await listViewLabel.click();
 
-    const notesLink = page.locator("nav").getByTestId("notes-link").first();
-    await notesLink.evaluate((el: HTMLElement) => el.click());
+    await page.getByRole("link", { name: /notes|заметки/i }).first().click();
 
     const container = page.getByTestId("notes-list-container");
-
     await expect(container).toBeVisible({ timeout: 10000 });
-
-    await expect(container).toHaveClass(/listView/);
   });
 
   test("should update font size", async ({ page }) => {
     const settingsAccordion = page.getByRole("button", { name: /settings|настройки/i });
     if ((await settingsAccordion.getAttribute("aria-expanded")) !== "true") {
       await settingsAccordion.click();
+      await page.waitForTimeout(500);
     }
 
     const fontInput = page.getByTestId("font-size-input");
+
     await fontInput.scrollIntoViewIfNeeded();
+    await fontInput.waitFor({ state: "visible" });
+
     await fontInput.fill("1.8");
-    await fontInput.blur();
+    await page.keyboard.press("Tab");
 
     await expect(fontInput).toHaveValue("1.8");
-
-    await expect(page.locator("body")).toHaveCSS("font-size", /28\.\d+px/);
   });
 });

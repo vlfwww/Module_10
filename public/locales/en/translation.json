@@ -127,7 +127,7 @@
     "unarchive": "Unarchive"
   },
   "loader": {
-    "loading": "Loading notes..."
+    "loading": "Loading..."
   },
   "notification": {
     "close": "Close notification"

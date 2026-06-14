@@ -1,13 +1,17 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
+    "module": "commonjs",
     "moduleResolution": "node",
     "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "strict": true,
     "types": ["node", "jest", "@testing-library/jest-dom"]
   },
-  "include": ["src/**/*"]
+  "include": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "jest.setup.ts",
+    "utils/testUtils/**/*.ts",
+    "utils/testUtils/**/*.tsx"
+  ],
+  "exclude": ["node_modules"]
 }
