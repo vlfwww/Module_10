@@ -1,0 +1,9 @@
+User-Agent: *
+Allow: /
+Disallow: /signin
+Disallow: /signup
+Disallow: /profile
+Disallow: /archive
+Disallow: /trash
+
+Sitemap: https://vlfwww.github.io/Module_10/sitemap.xml
