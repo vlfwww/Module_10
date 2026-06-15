@@ -12,6 +12,7 @@ import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import { useTransition } from "@react-spring/web";
 import { useRouter } from "next/navigation";
 import { getUserAvatarPath } from "@/utils/getUserAvatarPath/getUserAvatarPath";
+import { withBasePath } from "@/lib/paths";
 import { useClickOutside } from "@/hooks/useClickOutside/useClickOutside";
 
 const Header: React.FC<HeaderProps> = ({ pageType }) => {
@@ -45,13 +46,14 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
     setIsProfileMenuOpen((prev) => !prev);
   }, []);
 
-  const userAvatarSrc = getUserAvatarPath(user) || "/assets/images/default-avatar.svg";
+  const userAvatarSrc =
+    getUserAvatarPath(user) || withBasePath("/assets/images/default-avatar.svg");
 
   return (
     <div className={style.headerWrapper}>
       <header className={style.header}>
         <div className={style.logoWrapper}>
-          <img src="/assets/images/logo.svg" alt="Sidekick" />
+          <img src={withBasePath("/assets/images/logo.svg")} alt="Sidekick" />
           <p>sidekick</p>
         </div>
 
@@ -61,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
           aria-label={t("header.menu")}
           aria-expanded={isMobileMenuOpen}
         >
-          <img src="/assets/images/menu-burger.svg" alt="" aria-hidden="true" />
+          <img src={withBasePath("/assets/images/menu-burger.svg")} alt="" aria-hidden="true" />
         </button>
 
         <div className={style.desktopMenu}>
@@ -108,7 +110,7 @@ const Header: React.FC<HeaderProps> = ({ pageType }) => {
         >
           <div className={style.mobileHeader}>
             <div className={style.logoWrapper}>
-              <img src="/assets/images/logo.svg" alt="Logo" />
+              <img src={withBasePath("/assets/images/logo.svg")} alt="Logo" />
               <p>sidekick</p>
             </div>
             {isAuthenticated && <Avatar alt="User" src={userAvatarSrc} />}

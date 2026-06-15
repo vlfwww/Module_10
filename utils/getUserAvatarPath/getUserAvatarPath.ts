@@ -1,4 +1,5 @@
 import { User } from "@/types/auth";
+import { withBasePath } from "@/lib/paths";
 
 export const getUserAvatarPath = (user: User | null) => {
   const img = user?.profileImage;
@@ -8,13 +9,6 @@ export const getUserAvatarPath = (user: User | null) => {
     return img;
   }
 
-  let base = process.env.PUBLIC_URL || "";
-  if (base && !base.endsWith("/")) {
-    base += "/";
-  } else if (!base) {
-    base = "/";
-  }
-
-  const cleanImg = img.startsWith("/") ? img.slice(1) : img;
-  return `${base}${cleanImg}`;
+ const cleanImg = img.startsWith("/") ? img : `/${img}`;
+  return withBasePath(cleanImg);
 };

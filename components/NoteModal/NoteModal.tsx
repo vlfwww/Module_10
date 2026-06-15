@@ -9,6 +9,7 @@ import Switch from "../UI/Switch/Switch";
 import ChecklistSection from "../ChecklistSection/ChecklistSection";
 import { NoteModalProps } from "@/types/notes";
 import { useNoteModal } from "@/hooks/useNoteModal/useNoteModal";
+import { withBasePath } from "@/lib/paths";
 import * as S from "./NoteModal.styles";
 
 const NoteModal: React.FC<NoteModalProps> = ({ isOpen, onClose, onSubmit, initialData }) => {
@@ -65,7 +66,11 @@ const NoteModal: React.FC<NoteModalProps> = ({ isOpen, onClose, onSubmit, initia
                 />
               )}
               <S.CloseButton type="button" onClick={onClose} aria-label={t("common.cancel")}>
-                <img src="/assets/images/cross.svg" alt="close" aria-hidden="true" />
+                <img
+                  src={withBasePath("/assets/images/cross.svg")}
+                  alt="close"
+                  aria-hidden="true"
+                />
               </S.CloseButton>
             </S.Header>
 

@@ -9,6 +9,7 @@ import Switch from "../UI/Switch/Switch";
 import { useSettings } from "../../context/SettingsContext";
 import { useNotification } from "../../context/NotificationContext";
 import { useUpdateGlobalBackground } from "@/hooks/useTodos/useTodos";
+import { withBasePath } from "@/lib/paths";
 
 const ProfileSettings: React.FC = () => {
   const { i18n, t } = useTranslation();
@@ -122,7 +123,7 @@ const ProfileSettings: React.FC = () => {
           </Select>
         </FormControl>
         <div className={style.helperText}>
-          <img src="/assets/images/Info Tooltip.svg" alt="" aria-hidden="true" />
+          <img src={withBasePath("/assets/images/Info Tooltip.svg")} alt="" aria-hidden="true" />
           <span>{t("settings.lang_help")}</span>
         </div>
       </div>
@@ -143,7 +144,7 @@ const ProfileSettings: React.FC = () => {
           onBlur={handleFontSizeBlur}
         />
         <div className={style.helperText}>
-          <img src="/assets/images/Info Tooltip.svg" alt="" aria-hidden="true" />
+          <img src={withBasePath("/assets/images/Info Tooltip.svg")} alt="" aria-hidden="true" />
           <span>{t("settings.font_help")}</span>
         </div>
       </div>
@@ -151,7 +152,7 @@ const ProfileSettings: React.FC = () => {
       <div className={style.listViewSetter}>
         <Switch label={t("settings.list_view")} checked={isListView} onChange={toggleView} />
         <div className={style.helperText}>
-          <img src="/assets/images/Info Tooltip.svg" alt="" aria-hidden="true" />
+          <img src={withBasePath("/assets/images/Info Tooltip.svg")} alt="" aria-hidden="true" />
           <span>{t("settings.list_view_help")}</span>
         </div>
       </div>
@@ -175,7 +176,11 @@ const ProfileSettings: React.FC = () => {
           tabIndex={0}
           aria-label={t("settings.upload_title")}
         >
-          <img src="/assets/images/fi-rr-file-download.svg" alt="" aria-hidden="true" />
+          <img
+            src={withBasePath("/assets/images/fi-rr-file-download.svg")}
+            alt=""
+            aria-hidden="true"
+          />
           <div className={style.uploadInfo}>
             <p className={style.uploadTitle}>
               {isUploading ? t("settings.uploading") : t("settings.upload_title")}
@@ -184,7 +189,7 @@ const ProfileSettings: React.FC = () => {
           </div>
         </div>
         <div className={style.helperText}>
-          <img src="/assets/images/Info Tooltip.svg" alt="" aria-hidden="true" />
+          <img src={withBasePath("/assets/images/Info Tooltip.svg")} alt="" aria-hidden="true" />
           <span>{t("settings.upload_help")}</span>
         </div>
       </div>

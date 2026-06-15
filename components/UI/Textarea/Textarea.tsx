@@ -3,6 +3,7 @@
 import React, { useState, useCallback } from "react";
 import style from "./Textarea.module.css";
 import { TextareaProps } from "../../../types/common";
+import { withBasePath } from "@/lib/paths";
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ label, iconSrc, className, value, onFocus, onBlur, ...props }, ref) => {
@@ -32,7 +33,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className={style.inputGroup}>
         <div className={style.label}>
-          {iconSrc && <img src={iconSrc} alt="pencil" className={style.icon} />}
+          {iconSrc && <img src={withBasePath(iconSrc)} alt="pencil" className={style.icon} />}
           <p>{label}</p>
         </div>
 
@@ -52,8 +53,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
               <img
                 src={
                   shouldShowError
-                    ? "/assets/images/fi-sr-info.svg"
-                    : "/assets/images/Info Tooltip.svg"
+                    ? withBasePath("/assets/images/fi-sr-info.svg")
+                    : withBasePath("/assets/images/Info Tooltip.svg")
                 }
                 alt="status"
                 className={shouldShowError ? "" : style.greyIcon}

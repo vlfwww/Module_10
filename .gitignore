@@ -23,6 +23,7 @@ yarn-error.log*
 
 .swc/
 .next/
+out/
 playwright-report/
 playwright/.auth/
 test-results/

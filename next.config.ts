@@ -6,6 +6,7 @@ const basePath = publicUrl === "/" || publicUrl === "" ? undefined : publicUrl;
 const nextConfig: NextConfig = {
   output: "export",
   basePath,
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },

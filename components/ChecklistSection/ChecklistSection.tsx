@@ -1,15 +1,9 @@
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import Input from "../UI/Input/Input";
-import { CheckListItem, ChecklistSectionProps } from "../../types/notes";
+import { CheckListItem, ChecklistItemRowProps, ChecklistSectionProps } from "../../types/notes";
+import { withBasePath } from "@/lib/paths";
 import * as S from "./ChecklistSection.styles";
-
-type ChecklistItemRowProps = {
-  item: CheckListItem;
-  index: number;
-  onTextChange: (id: number, text: string) => void;
-  onDelete: (id: number) => void;
-};
 
 const ChecklistItemRow: React.FC<ChecklistItemRowProps> = ({
   item,
@@ -40,12 +34,12 @@ const ChecklistItemRow: React.FC<ChecklistItemRowProps> = ({
         maxLength={80}
         onChange={handleChange}
       />
-      <S.DeleteItemButton
-        type="button"
-        onClick={handleDelete}
-        aria-label={t("checklist.delete")}
-      >
-        <img src="/assets/images/trash-svgrepo-com.svg" alt="delete" aria-hidden="true" />
+      <S.DeleteItemButton type="button" onClick={handleDelete} aria-label={t("checklist.delete")}>
+        <img
+          src={withBasePath("/assets/images/trash-svgrepo-com.svg")}
+          alt="delete"
+          aria-hidden="true"
+        />
       </S.DeleteItemButton>
     </S.ItemRow>
   );

@@ -3,6 +3,7 @@
 import React, { useState, useId } from "react";
 import { useTranslation } from "react-i18next";
 import { InputProps } from "../../../types/common";
+import { withBasePath } from "@/lib/paths";
 import * as S from "./Input.styles";
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -24,12 +25,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <S.InputGroup>
         <S.Label>
           <S.LabelWrapper>
-            {iconSrc && <img src={iconSrc} alt="" aria-hidden="true" />}
+            {iconSrc && <img src={withBasePath(iconSrc)} alt="" aria-hidden="true" />}
             <p>{label}</p>
           </S.LabelWrapper>
           <S.StatusIndicator aria-live="polite">
-            {showGeneralSuccess && <img src="/assets/images/check.svg" alt="✓" />}
-            {showErrorMessage && <img src="/assets/images/cross-small.svg" alt="✕" />}
+            {showGeneralSuccess && <img src={withBasePath("/assets/images/check.svg")} alt="✓" />}
+            {showErrorMessage && (
+              <img src={withBasePath("/assets/images/cross-small.svg")} alt="✕" />
+            )}
           </S.StatusIndicator>
         </S.Label>
 
@@ -52,8 +55,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <img
                 src={
                   showPassword
-                    ? "/assets/images/fi-rr-eye-crossed.svg"
-                    : "/assets/images/fi-rr-eye.svg"
+                    ? withBasePath("/assets/images/fi-rr-eye-crossed.svg")
+                    : withBasePath("/assets/images/fi-rr-eye.svg")
                 }
                 alt=""
                 aria-hidden="true"
@@ -72,8 +75,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <img
                 src={
                   showErrorMessage
-                    ? "/assets/images/fi-sr-info.svg"
-                    : "/assets/images/fi-sr-thumbs-up.svg"
+                    ? withBasePath("/assets/images/fi-sr-info.svg")
+                    : withBasePath("/assets/images/fi-sr-thumbs-up.svg")
                 }
                 alt=""
                 aria-hidden="true"
@@ -85,7 +88,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               )}
             </S.ErrorTextWrapper>
             {showErrorMessage && (
-              <S.InfoIcon src="/assets/images/Info Tooltip.svg" alt="info" aria-hidden="true" />
+              <S.InfoIcon
+                src={withBasePath("/assets/images/Info Tooltip.svg")}
+                alt="info"
+                aria-hidden="true"
+              />
             )}
           </S.ErrorContainer>
         </S.ErrorWrapper>

@@ -13,6 +13,7 @@ import { ProfileFormValues } from "../../types/auth";
 import { useNotification } from "../../context/NotificationContext";
 import { Avatar } from "@mui/material";
 import { getUserAvatarPath } from "@/utils/getUserAvatarPath/getUserAvatarPath";
+import { withBasePath } from "@/lib/paths";
 
 const ProfileInfoForm: React.FC = () => {
   const { t } = useTranslation();
@@ -21,7 +22,8 @@ const ProfileInfoForm: React.FC = () => {
   const { showNotification } = useNotification();
 
   const [previewImage, setPreviewImage] = useState<string | null>(null);
-  const avatarSrc = previewImage || getUserAvatarPath(user) || "/assets/images/default-avatar.svg";
+  const avatarSrc =
+    previewImage || getUserAvatarPath(user) || withBasePath("/assets/images/default-avatar.svg");
 
   const {
     register,

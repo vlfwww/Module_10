@@ -12,6 +12,7 @@ import {
 } from "@/api/todoQueries";
 import { graphqlRequest } from "@/api/graphqlClient";
 import axios from "axios";
+import { withBasePath } from "@/lib/paths";
 import { CheckListItem, GetTodoResponse } from "@/types/notes";
 
 export const useTodos = (status?: "NOTES" | "ARCHIVED" | "TRASH") => {
@@ -187,7 +188,7 @@ export const useUpdateGlobalBackground = () => {
     mutationFn: async (base64Image: string) => {
       const token = localStorage.getItem("access_token");
       const response = await axios.put(
-        "/api/background",
+        withBasePath("/api/background"),
         { backgroundImage: base64Image },
         {
           headers: {

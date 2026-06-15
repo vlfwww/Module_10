@@ -1,4 +1,5 @@
 import axios from "axios";
+import { withBasePath } from "@/lib/paths";
 
 export const graphqlRequest = async <T>(
   query: string,
@@ -7,7 +8,7 @@ export const graphqlRequest = async <T>(
   const token = localStorage.getItem("access_token");
 
   const response = await axios.post(
-    "/api/graphql",
+    withBasePath("/api/graphql"),
     { query, variables },
     {
       headers: {

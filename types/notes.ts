@@ -80,3 +80,10 @@ export interface ChecklistSectionProps {
   onTextChange: (id: number, text: string) => void;
   onDelete: (id: number) => void;
 }
+
+export type ChecklistItemRowProps = {
+  item: CheckListItem;
+  index: number;
+  onTextChange: (id: number, text: string) => void;
+  onDelete: (id: number) => void;
+};

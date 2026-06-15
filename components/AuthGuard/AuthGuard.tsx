@@ -11,19 +11,18 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isPublicPage = pathname === "/signin" || pathname === "/signup";
+  const normalizedPathname =
+    pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  const isPublicPage = normalizedPathname === "/signin" || normalizedPathname === "/signup";
 
   useEffect(() => {
     if (isLoading) return;
 
     if (!isAuthenticated && !isPublicPage) {
       router.replace("/signin");
-    }
-
-    else if (isAuthenticated && isPublicPage) {
+    } else if (isAuthenticated && isPublicPage) {
       router.replace("/");
     }
-
   }, [isAuthenticated, isLoading, isPublicPage, router]);
 
   if (isLoading && !isPublicPage) return <Loader />;

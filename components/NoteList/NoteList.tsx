@@ -9,6 +9,7 @@ import { useToggleChecklistItem, useUncheckAllItems } from "@/hooks/useTodos/use
 import * as S from "./NoteList.styles";
 import { useTransition } from "@react-spring/web";
 import { useKebabMenuPlacement } from "@/hooks/useKebabMenuPlacement/useKebabMenuPlacement";
+import { withBasePath } from "@/lib/paths";
 
 const NoteList: React.FC<NoteListProps> = ({
   pageType,
@@ -123,7 +124,7 @@ const NoteList: React.FC<NoteListProps> = ({
           aria-label={t("note_list.menu_label")}
           aria-haspopup="menu"
         >
-          <img src="/assets/images/menu.svg" alt="kebab-menu" aria-hidden="true" />
+          <img src={withBasePath("/assets/images/menu.svg")} alt="kebab-menu" aria-hidden="true" />
         </S.KebabButton>
 
         {menuTransition((styleProps, item) =>

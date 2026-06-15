@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import style from "./Accordion.module.css";
-import { AccordionProps } from "../../../types/common";
+import { AccordionProps } from "@/types/common";
+import { withBasePath } from "@/lib/paths";
 
 const Accordion: React.FC<AccordionProps> = ({
   title,
@@ -32,7 +33,7 @@ const Accordion: React.FC<AccordionProps> = ({
       >
         <p className={style.title}>{title}</p>
         <img
-          src="/assets/images/fi-sr-angle-small-up.svg"
+          src={withBasePath("/assets/images/fi-sr-angle-small-up.svg")}
           alt=""
           aria-hidden="true"
           className={`${style.arrow} ${!isOpen ? style.close : ""}`}
