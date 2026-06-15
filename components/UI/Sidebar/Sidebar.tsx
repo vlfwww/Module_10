@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useMemo } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import style from "./Sidebar.module.css";
 import { SidebarProps } from "@/types/common";
 import { routes, AppRoute } from "@/lib/navigation/routes";
 import { useRoutePrefetch } from "@/hooks/useRoutePrefetch/useRoutePrefetch";
+import NavLink from "@/components/UI/NavLink/NavLink";
+import { hasBasePath, isActivePath } from "@/lib/paths";
 
 const navItems = [
   { href: routes.home, labelKey: "sidebar.notes" },
@@ -23,31 +24,31 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
 
   const prefetchHandlers = useMemo(
     () =>
-      navItems.reduce<Record<AppRoute, () => void>>(
-        (handlers, { href }) => {
-          handlers[href] = () => prefetchRoute(href);
-          return handlers;
-        },
-        {} as Record<AppRoute, () => void>,
-      ),
+      hasBasePath()
+        ? ({} as Record<AppRoute, () => void>)
+        : navItems.reduce<Record<AppRoute, () => void>>(
+            (handlers, { href }) => {
+              handlers[href] = () => prefetchRoute(href);
+              return handlers;
+            },
+            {} as Record<AppRoute, () => void>,
+          ),
     [prefetchRoute],
   );
-
-  const isActive = (path: string) => pathname === path;
 
   return (
     <aside className={className || style.sidebar}>
       <nav className={style.nav} aria-label={t("sidebar.nav_label")}>
         {navItems.map(({ href, labelKey }) => (
-          <Link
+          <NavLink
             key={href}
             href={href}
             prefetch
             onMouseEnter={prefetchHandlers[href]}
-            className={`${style.navItem} ${isActive(href) ? style.active : ""}`}
+            className={`${style.navItem} ${isActivePath(pathname, href) ? style.active : ""}`}
           >
             {t(labelKey)}
-          </Link>
+          </NavLink>
         ))}
       </nav>
     </aside>

@@ -24,7 +24,7 @@ describe("Sidebar Component", () => {
   });
 
   test("applies the active class to the current path", () => {
-    (usePathname as jest.Mock).mockReturnValue("/profile");
+    (usePathname as jest.Mock).mockReturnValue("/profile/");
     render(<Sidebar />);
 
     const profileLink = screen.getByText("sidebar.profile");

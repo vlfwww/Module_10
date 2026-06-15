@@ -5,14 +5,14 @@ import Loader from "../UI/Loader/Loader";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { normalizePathname } from "@/lib/paths";
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
 
-  const normalizedPathname =
-    pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  const normalizedPathname = normalizePathname(pathname);
   const isPublicPage = normalizedPathname === "/signin" || normalizedPathname === "/signup";
 
   useEffect(() => {
