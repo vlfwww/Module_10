@@ -5,25 +5,25 @@ import HttpBackend from "i18next-http-backend";
 import { withBasePath } from "@/lib/paths";
 
 export const i18nReady = i18n
-    .use(HttpBackend)
-    .use(LanguageDetector)
-    .use(initReactI18next)
-    .init({
-        fallbackLng: "en",
-        lng: "en",
-        detection: {
-            order: ["localStorage", "navigator"],
-            caches: ["localStorage"],
-        },
-        react: {
-            useSuspense: false,
-        },
-        backend: {
-            loadPath: withBasePath(`/locales/{{lng}}/{{ns}}.json`),
-        },
-        interpolation: {
-            escapeValue: false,
-        },
-    });
+  .use(HttpBackend)
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: "en",
+    supportedLngs: ["en", "ru"],
+    detection: {
+      order: ["localStorage", "navigator"],
+      caches: ["localStorage"],
+    },
+    react: {
+      useSuspense: false,
+    },
+    backend: {
+      loadPath: withBasePath("/locales/{{lng}}/{{ns}}.json"),
+    },
+    interpolation: {
+      escapeValue: false,
+    },
+  });
 
 export default i18n;
