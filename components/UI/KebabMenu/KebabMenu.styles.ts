@@ -44,7 +44,9 @@ export const KebabMenuContainer = styled(animated.div)<{ $placement: MenuPlaceme
   flex-direction: column;
   gap: 8px;
   padding: 8px 0;
-  font: 400 1.125rem "Poppins";
+  font:
+    400 1.125rem "Poppins",
+    sans-serif;
   position: absolute;
   min-width: 180px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);

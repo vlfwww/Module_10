@@ -34,7 +34,9 @@
     gap: 8px;
     align-items: center;
     color: var(--text-secondary);
-    font: 400 0.875rem "Poppins";
+    font:
+      400 0.875rem "Poppins",
+      sans-serif;
     margin-top: 7px;
     @media (max-width: 768px) {
       font-size: 0.6rem;
@@ -63,7 +65,9 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
-        font: 400 0.875rem "Poppins";
+        font:
+          400 0.875rem "Poppins",
+          sans-serif;
         @media (max-width: 768px) {
           font-size: 0.6rem;
         }

@@ -12,11 +12,15 @@
     }
     & .avatarInfo {
       & .userName {
-        font: 500 1rem "Inter";
+        font:
+          500 1rem "Inter",
+          sans-serif;
         color: var(--text-main);
       }
       & .changePhotoBtn {
-        font: 400 1rem "Inter";
+        font:
+          400 1rem "Inter",
+          sans-serif;
         color: var(--text-secondary);
         border: none;
         background-color: transparent;
@@ -33,7 +37,9 @@
     }
   }
   & .statusMessageSection {
-    font: 500 1rem "Inter";
+    font:
+      500 1rem "Inter",
+      sans-serif;
     margin: 12px 0;
     text-align: center;
     & .serverErrorText {

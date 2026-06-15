@@ -9,7 +9,9 @@ export const HeaderMenuContainer = styled(animated.div)`
   flex-direction: column;
   gap: 8px;
   padding: 8px 0;
-  font: 400 1.125rem "Poppins";
+  font:
+    400 1.125rem "Poppins",
+    sans-serif;
   position: absolute;
   top: 100%;
   right: 0;

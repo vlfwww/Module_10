@@ -14,7 +14,9 @@ export const KPIRow = styled.div`
 
 export const Title = styled.p`
   color: var(--text-main);
-  font: 600 1.75rem "Inter";
+  font:
+    600 1.75rem "Inter",
+    sans-serif;
   margin-bottom: 24px;
 `;
 
@@ -30,19 +32,25 @@ export const StatisticCard = styled.div`
 
 export const StatisticCardTitle = styled.h3`
   color: var(--text-secondary);
-  font: 500 0.875rem "Inter";
+  font:
+    500 0.875rem "Inter",
+    sans-serif;
   margin: 0 0 8px 0;
 `;
 
 export const StatisticCardMainValue = styled.p`
   color: var(--text-main);
-  font: 700 2rem "Inter";
+  font:
+    700 2rem "Inter",
+    sans-serif;
   margin: 0;
 `;
 
 export const StatisticCardPastInfo = styled.p`
   color: var(--text-secondary);
-  font: 400 0.875rem "Inter";
+  font:
+    400 0.875rem "Inter",
+    sans-serif;
   margin-top: 4px;
 `;
 
@@ -70,7 +78,9 @@ export const StatsTable = styled.table`
     text-align: left;
     padding: 16px 12px;
     color: var(--text-secondary);
-    font: 500 1rem "Inter";
+    font:
+      500 1rem "Inter",
+      sans-serif;
     border-bottom: 1px solid var(--border-color);
   }
 
@@ -81,7 +91,9 @@ export const StatsTable = styled.table`
   td {
     padding: 16px 12px;
     color: var(--text-main);
-    font: 400 1rem "Inter";
+    font:
+      400 1rem "Inter",
+      sans-serif;
   }
 `;
 

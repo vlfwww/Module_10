@@ -46,7 +46,9 @@ export const CardWrapper = styled.div<{
 
 export const NoteTitle = styled.p<{ $viewType: "list" | "grid" }>`
   color: var(--text-main);
-  font: 600 1.25rem "Inter";
+  font:
+    600 1.25rem "Inter",
+    sans-serif;
   word-break: break-word;
   overflow-wrap: break-word;
   white-space: pre-wrap;

@@ -17,7 +17,9 @@
   }
 
   & .noteText {
-    font: 400 1rem "Inter";
+    font:
+      400 1rem "Inter",
+      sans-serif;
     color: var(--text-main);
     word-break: break-word;
     white-space: pre-wrap;
@@ -38,7 +40,9 @@
 
     & label,
     & .noteText {
-      font: 400 1rem "Inter";
+      font:
+        400 1rem "Inter",
+        sans-serif;
       cursor: pointer;
       display: flex;
       align-items: center;

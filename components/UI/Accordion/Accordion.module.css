@@ -9,7 +9,9 @@
     border-radius: 8px;
     padding: 24px;
     & .title {
-      font: 400 1.25rem "Inter";
+      font:
+        400 1.25rem "Inter",
+        sans-serif;
       color: var(--text-main);
     }
     & .close {
