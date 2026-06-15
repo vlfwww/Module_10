@@ -17,7 +17,7 @@
     "@mui/icons-material": "^9.0.1",
     "@mui/material": "^9.0.1",
     "@react-spring/web": "^10.1.0",
-    "@sidekick-monorepo/internship-backend": "file:vendor/internship-backend",
+    "@sidekick-monorepo/internship-backend": "file:sidekick-monorepo-internship-backend-0.0.1.tgz",
     "@tanstack/react-query": "^5.100.14",
     "axios": "^1.16.1",
     "i18next": "^26.3.0",
