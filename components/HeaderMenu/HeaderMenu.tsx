@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import * as S from "./HeaderMenu.styles";
-import { HeaderMenuProps } from "../../types/common";
-import Link from "next/link";
+import { HeaderMenuProps } from "@/types/common";
 import { routes } from "@/lib/navigation/routes";
+import NavLink from "../UI/NavLink/NavLink";
 
 const HeaderMenu: React.FC<HeaderMenuProps> = ({
   onLogout,
@@ -27,14 +27,14 @@ const HeaderMenu: React.FC<HeaderMenuProps> = ({
       style={springStyle}
       onClick={handleStopPropagation}
     >
-      <Link
+      <NavLink
         href={routes.profile}
         prefetch
         onClick={onClose}
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <S.HeaderMenuItem>{t("header.profile")}</S.HeaderMenuItem>
-      </Link>
+      </NavLink>
       <S.HeaderMenuItem onClick={handleLogoutClick}>{t("header.logout")}</S.HeaderMenuItem>
     </S.HeaderMenuContainer>
   );
