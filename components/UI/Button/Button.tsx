@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./Button.styles";
-import { ButtonProps } from "../../../types/common";
+import { ButtonProps } from "@/types/common";
 
 const Button: React.FC<ButtonProps> = ({
   children,

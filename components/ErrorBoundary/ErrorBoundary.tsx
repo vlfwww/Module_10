@@ -21,9 +21,13 @@ class ErrorBoundary extends Component<Props, State> {
     console.error("ErrorBoundary catch:", error, errorInfo);
   }
 
+  handleReset = () => {
+    this.setState({ hasError: false });
+  };
+
   render() {
     if (this.state.hasError) {
-      return <ErrorView />;
+      return <ErrorView onRetry={this.handleReset} />;
     }
 
     return this.props.children;

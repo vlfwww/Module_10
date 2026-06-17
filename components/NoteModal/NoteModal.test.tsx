@@ -5,10 +5,10 @@ import {
   useTodos,
   useToggleChecklistItem,
   useUpdateTodoBackground,
-} from "../../hooks/useTodos/useTodos";
-import { Todo } from "../../types/notes";
+} from "@/hooks/useTodos/useTodos";
+import { Todo } from "@/types/notes";
 
-jest.mock("../../hooks/useTodos/useTodos", () => ({
+jest.mock("@/hooks/useTodos/useTodos", () => ({
   useTodos: jest.fn(),
   useToggleChecklistItem: jest.fn(),
   useUpdateTodoBackground: jest.fn(),

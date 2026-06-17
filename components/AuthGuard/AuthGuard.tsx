@@ -13,7 +13,10 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   const normalizedPathname = normalizePathname(pathname);
-  const isPublicPage = normalizedPathname === "/signin" || normalizedPathname === "/signup";
+  const isPublicPage =
+    normalizedPathname === "/signin" ||
+    normalizedPathname === "/signup" ||
+    normalizedPathname === "/";
 
   useEffect(() => {
     if (isLoading) return;

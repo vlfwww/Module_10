@@ -1,4 +1,4 @@
-import { User } from "../../types/auth";
+import { User } from "@/types/auth";
 import { getUserAvatarPath } from "./getUserAvatarPath";
 
 describe("getUserAvatarPath", () => {

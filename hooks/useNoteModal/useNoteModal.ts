@@ -71,7 +71,7 @@ export function useNoteModal({ isOpen, onSubmit, initialData }: UseNoteModalPara
       setCurrentBg(null);
     }
     setValidationError(null);
-  }, [isOpen, initialData]);
+  }, [isOpen, initialData?.id]);
 
   const handleFieldChange = useCallback(
     (setter: React.Dispatch<React.SetStateAction<string>>, value: string) => {

@@ -1,6 +1,6 @@
 import React, { useId } from "react";
 import style from "./Switch.module.css";
-import { SwitchProps } from "../../../types/common";
+import { SwitchProps } from "@/types/common";
 
 const Switch: React.FC<SwitchProps> = ({ checked, onChange, label }) => {
   const switchId = useId();

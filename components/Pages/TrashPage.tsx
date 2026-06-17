@@ -16,8 +16,8 @@ import {
   useDeleteTodos,
   useTodos,
 } from "@/hooks/useTodos/useTodos";
-import { Todo } from "../../types/notes";
-import { useNotification } from "../../context/NotificationContext";
+import { Todo } from "@/types/notes";
+import { useNotification } from "@/context/NotificationContext";
 
 const TrashPage: React.FC = () => {
   const { t } = useTranslation();

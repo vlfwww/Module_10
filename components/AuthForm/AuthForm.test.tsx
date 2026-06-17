@@ -1,9 +1,9 @@
 import { act, render, screen } from "@testing-library/react";
 import AuthForm from "./AuthForm";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "@/context/AuthContext";
 import { usePathname } from "next/navigation";
 import userEvent from "@testing-library/user-event";
-import { AuthContextType } from "../../types/auth";
+import { AuthContextType } from "@/types/auth";
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
@@ -30,12 +30,11 @@ const renderWithProviders = (
 
   const contextValue: Partial<AuthContextType> = {
     isLoading,
-
     login: onSubmit,
   };
 
   (usePathname as jest.Mock).mockReturnValue("/singin");
-  
+
   render(
     <AuthContext.Provider value={contextValue as AuthContextType}>
       <AuthForm {...defaultProps} {...props} />
@@ -161,7 +160,6 @@ describe("AuthForm", () => {
     const signInLink = screen.getByRole("link", { name: /auth\.signin_link/i });
 
     expect(signInLink).toHaveClass("linkDisabled");
-
     expect(signInLink).toBeInTheDocument();
   });
 });

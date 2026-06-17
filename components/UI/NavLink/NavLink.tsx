@@ -1,12 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import type { ComponentProps } from "react";
 import { hasBasePath, toNavHref } from "@/lib/paths";
-
-type NavLinkProps = Omit<ComponentProps<typeof Link>, "href"> & {
-  href: string;
-};
+import { NavLinkProps } from "@/types/common";
 
 export default function NavLink({ href, ...props }: NavLinkProps) {
   if (hasBasePath()) {

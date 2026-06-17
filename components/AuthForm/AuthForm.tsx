@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import style from "./AuthForm.module.css";
-import Button from "../../components/UI/Button/Button";
-import Input from "../../components/UI/Input/Input";
-import { AuthFormProps, AuthInputs } from "../../types/auth";
-import { useAuth } from "../../context/AuthContext";
+import Button from "@/components/UI/Button/Button";
+import Input from "@/components/UI/Input/Input";
+import { AuthFormProps, AuthInputs } from "@/types/auth";
+import { useAuth } from "@/context/AuthContext";
 import { routes } from "@/lib/navigation/routes";
 
 const AuthForm: React.FC<AuthFormProps> = ({

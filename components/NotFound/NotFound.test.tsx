@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import NotFound from "./NotFound";
-import { SettingsProvider } from "../../context/SettingsContext";
+import { SettingsProvider } from "@/context/SettingsContext";
 
 describe("NotFound", () => {
   test("renders with correct accessibility roles and content", () => {

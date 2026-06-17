@@ -8,8 +8,8 @@ import React, {
   useContext,
   useCallback,
 } from "react";
-import { Theme, SettingsContextType } from "../types/common";
-import { getStorageItem } from "../utils/storage/storage";
+import { Theme, SettingsContextType } from "@/types/common";
+import { getStorageItem } from "@/utils/storage/storage";
 
 export const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 

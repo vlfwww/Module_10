@@ -1,4 +1,5 @@
-import { ReactNode, Ref } from "react";
+import Link from "next/link";
+import { ComponentProps, ReactNode, Ref } from "react";
 
 export interface ChildrenProps {
   children: ReactNode;
@@ -127,3 +128,7 @@ export interface ErrorViewProps {
   message?: string;
   onRetry?: () => void;
 }
+
+export type NavLinkProps = Omit<ComponentProps<typeof Link>, "href"> & {
+  href: string;
+};

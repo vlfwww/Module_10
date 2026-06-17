@@ -108,11 +108,12 @@ export const CloseButton = styled.button`
   & img {
     width: 24px;
     height: 24px;
-  }
-  @media (max-width: 768px) {
-    width: 16px;
-    height: 16px;
-    margin-right: 15px;
+
+    @media (max-width: 768px) {
+      width: 16px;
+      height: 16px;
+      margin-right: 15px;
+    }
   }
 `;
 
@@ -123,6 +124,7 @@ export const FormContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 20px;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -263,6 +265,12 @@ export const NoteText = styled.p`
   white-space: pre-wrap;
   overflow-wrap: break-word;
   margin-bottom: 10px;
+
+  @media (max-width: 480px) {
+    font:
+      400 0.8rem "Inter",
+      sans-serif;
+  }
 `;
 
 export const CheckboxRow = styled.div`
@@ -289,6 +297,12 @@ export const CheckboxRow = styled.div`
     min-width: 0;
     word-break: break-word;
     white-space: pre-wrap;
+
+    @media (max-width: 480px) {
+      font:
+        400 0.8rem "Inter",
+        sans-serif;
+    }
   }
 
   label::before {

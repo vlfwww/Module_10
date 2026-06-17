@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { KebabMenuProps } from "../../../types/common";
+import { KebabMenuProps } from "@/types/common";
 import * as S from "./KebabMenu.styles";
 
 const KebabMenu: React.FC<KebabMenuProps> = ({

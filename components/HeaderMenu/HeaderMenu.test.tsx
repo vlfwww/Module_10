@@ -3,14 +3,7 @@ import userEvent from "@testing-library/user-event";
 import HeaderMenu from "./HeaderMenu";
 import { renderWithProviders } from "@/utils/testUtils/test-utils";
 import React from "react";
-
-export interface HeaderMenuProps {
-  onLogout: () => void;
-  onClose: () => void;
-  springStyle: React.CSSProperties;
-  menuRef: React.RefObject<HTMLDivElement>;
-  t: (key: string) => string;
-}
+import { HeaderMenuProps } from "@/types/common";
 
 describe("HeaderMenu Component", () => {
   const mockProps: HeaderMenuProps = {

@@ -97,6 +97,18 @@ export const InputField = styled.input<{ $isError?: boolean }>`
     display: none !important;
     pointer-events: none;
   }
+
+  @media (max-width: 480px) {
+    font:
+      400 0.8rem "Poppins",
+      sans-serif;
+
+    &::placeholder {
+      font:
+        400 0.8rem "Poppins",
+        sans-serif;
+    }
+  }
 `;
 
 export const EyeButton = styled.button`

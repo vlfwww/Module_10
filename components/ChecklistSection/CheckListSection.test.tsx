@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import ChecklistSection from "./ChecklistSection";
 import userEvent from "@testing-library/user-event";
-import { CheckListItem } from "../../types/notes";
+import { CheckListItem } from "@/types/notes";
 
 describe("ChecklistSection", () => {
   const mockItems = [

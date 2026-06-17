@@ -27,4 +27,4 @@ const AuthMessage: React.FC = () => {
   );
 };
 
-export default AuthMessage;
+export default React.memo(AuthMessage);

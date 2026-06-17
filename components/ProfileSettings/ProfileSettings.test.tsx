@@ -17,7 +17,7 @@ jest.mock("react-i18next", () => ({
   }),
 }));
 
-jest.mock("../../hooks/useTodos/useTodos");
+jest.mock("@/hooks/useTodos/useTodos");
 
 describe("ProfileSettings Component", () => {
   const mockMutate = jest.fn();

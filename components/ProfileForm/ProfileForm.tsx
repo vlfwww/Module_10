@@ -4,13 +4,13 @@ import React, { useRef, useState, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import style from "./ProfileForm.module.css";
-import { useAuth } from "../../context/AuthContext";
-import { validateEmail } from "../../utils/validation/validation";
+import { useAuth } from "@/context/AuthContext";
+import { validateEmail } from "@/utils/validation/validation";
 import Input from "../UI/Input/Input";
 import Textarea from "../UI/Textarea/Textarea";
 import Button from "../UI/Button/Button";
-import { ProfileFormValues } from "../../types/auth";
-import { useNotification } from "../../context/NotificationContext";
+import { ProfileFormValues } from "@/types/auth";
+import { useNotification } from "@/context/NotificationContext";
 import { Avatar } from "@mui/material";
 import { getUserAvatarPath } from "@/utils/getUserAvatarPath/getUserAvatarPath";
 import { withBasePath } from "@/lib/paths";
@@ -139,6 +139,7 @@ const ProfileInfoForm: React.FC = () => {
         />
 
         <Input
+          data-testid="email-input"
           label={t("profile_form.email")}
           iconSrc="/assets/images/envelope.svg"
           type="email"

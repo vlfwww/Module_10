@@ -4,7 +4,7 @@ import reducer, {
   logoutAction,
   setLoadingAction,
 } from "./authSlice";
-import { AuthState, User } from "../../types/auth";
+import { AuthState, User } from "@/types/auth";
 
 describe("authSlice", () => {
   const initialState: AuthState = {

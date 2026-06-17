@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import NoteCard from "./NoteCard";
-import { CheckListItem } from "../../types/notes";
+import { CheckListItem } from "@/types/notes";
 
 describe("NoteCard Component", () => {
   const mockItems = [

@@ -6,8 +6,8 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import style from "./ProfileSettings.module.css";
 import Input from "../UI/Input/Input";
 import Switch from "../UI/Switch/Switch";
-import { useSettings } from "../../context/SettingsContext";
-import { useNotification } from "../../context/NotificationContext";
+import { useSettings } from "@/context/SettingsContext";
+import { useNotification } from "@/context/NotificationContext";
 import { useUpdateGlobalBackground } from "@/hooks/useTodos/useTodos";
 import { withBasePath } from "@/lib/paths";
 
@@ -180,6 +180,7 @@ const ProfileSettings: React.FC = () => {
             src={withBasePath("/assets/images/fi-rr-file-download.svg")}
             alt=""
             aria-hidden="true"
+            className={style.uploadImage}
           />
           <div className={style.uploadInfo}>
             <p className={style.uploadTitle}>

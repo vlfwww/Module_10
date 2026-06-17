@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import NoteList from "./NoteList";
-import * as hooks from "../../hooks/useTodos/useTodos";
+import * as hooks from "@/hooks/useTodos/useTodos";
 import { UseMutationResult } from "@tanstack/react-query";
 
-jest.mock("../../hooks/useTodos/useTodos", () => ({
+jest.mock("@/hooks/useTodos/useTodos", () => ({
   __esModule: true,
   useToggleChecklistItem: () => ({ mutate: jest.fn() }),
   useUncheckAllItems: () => ({ mutate: jest.fn() }),

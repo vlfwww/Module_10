@@ -8,6 +8,10 @@
     align-items: center;
     border-radius: 8px;
     padding: 24px;
+    @media (max-width: 768px) {
+      padding: 14px;
+    }
+
     & .title {
       font:
         400 1.25rem "Inter",
@@ -19,7 +23,7 @@
     }
     margin-bottom: 12px;
   }
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .contentWrapper {
@@ -34,4 +38,8 @@
 
 .contentWrapper.open {
   grid-template-rows: 1fr;
+}
+
+[data-theme="dark"] .accordion .arrow {
+  filter: invert(1);
 }

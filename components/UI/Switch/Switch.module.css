@@ -51,3 +51,11 @@
     color: var(--text-main);
   }
 }
+
+@media (max-width: 480px) {
+  .switchContainer .label {
+    font:
+      500 0.8rem "Inter",
+      sans-serif;
+  }
+}

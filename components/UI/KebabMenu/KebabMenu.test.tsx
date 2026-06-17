@@ -43,7 +43,7 @@ describe("KebabMenu", () => {
   test("calls onArchive when Enter is pressed", async () => {
     const user = userEvent.setup();
     const mockArchive = jest.fn();
-    render(<KebabMenu pageType="notes" onArchive={mockArchive} />);
+    render(<KebabMenu pageType="notes" onArchive={mockArchive} onDelete={mockOnDelete}/>);
 
     const archiveItem = screen.getByText("kebab_menu.archive");
     archiveItem.focus();
@@ -73,14 +73,14 @@ describe("KebabMenu", () => {
   });
 
   test("renders uncheck_all button when onUncheckAll prop is provided", () => {
-    render(<KebabMenu pageType="notes" onUncheckAll={jest.fn()} />);
+    render(<KebabMenu pageType="notes" onUncheckAll={jest.fn()} onDelete={mockOnDelete} />);
     expect(screen.getByText("kebab_menu.uncheck_all")).toBeInTheDocument();
   });
 
   test("calls onUncheckAll when clicked", async () => {
     const user = userEvent.setup();
     const mockUncheckAll = jest.fn();
-    render(<KebabMenu pageType="notes" onUncheckAll={mockUncheckAll} />);
+    render(<KebabMenu pageType="notes" onUncheckAll={mockUncheckAll} onDelete={mockOnDelete} />);
 
     const btn = screen.getByText("kebab_menu.uncheck_all");
     await user.click(btn);
@@ -89,11 +89,11 @@ describe("KebabMenu", () => {
 
   test("toggles checkboxes label correctly", () => {
     const { rerender } = render(
-      <KebabMenu pageType="notes" showCheckboxes={true} onToggleCheckboxes={jest.fn()} />,
+      <KebabMenu pageType="notes" showCheckboxes={true} onToggleCheckboxes={jest.fn()} onDelete={mockOnDelete}/>,
     );
     expect(screen.getByText("kebab_menu.hide_checkboxes")).toBeInTheDocument();
 
-    rerender(<KebabMenu pageType="notes" showCheckboxes={false} onToggleCheckboxes={jest.fn()} />);
+    rerender(<KebabMenu pageType="notes" showCheckboxes={false} onToggleCheckboxes={jest.fn()} onDelete={mockOnDelete} />);
     expect(screen.getByText("kebab_menu.show_checkboxes")).toBeInTheDocument();
   });
 
@@ -110,7 +110,7 @@ describe("KebabMenu", () => {
   test("calls onArchive when archive is clicked in trash", async () => {
     const user = userEvent.setup();
     const mockArchive = jest.fn();
-    render(<KebabMenu pageType="trash" onArchive={mockArchive} />);
+    render(<KebabMenu pageType="trash" onArchive={mockArchive} onDelete={mockOnDelete} />);
 
     const btn = screen.getByText("kebab_menu.archive");
     await user.click(btn);

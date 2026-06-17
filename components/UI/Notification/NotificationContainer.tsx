@@ -1,7 +1,7 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import style from "./Notification.module.css";
-import { NotificationContainerProps } from "../../../types/notification";
+import { NotificationContainerProps } from "@/types/notification";
 import NotificationItem from "./NotificationItem";
 
 const NotificationContainer: React.FC<NotificationContainerProps> = ({

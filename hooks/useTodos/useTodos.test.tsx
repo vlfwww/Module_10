@@ -13,11 +13,11 @@ import {
   useUpdateTodoBackground,
 } from "./useTodos";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { graphqlRequest } from "../../api/graphqlClient";
+import { graphqlRequest } from "@/api/graphqlClient";
 import axios from "axios";
 import { ReactNode } from "react";
 
-jest.mock("../../api/graphqlClient");
+jest.mock("@/api/graphqlClient");
 jest.mock("axios");
 
 describe("Todos Hooks Comprehensive Test", () => {

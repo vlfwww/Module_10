@@ -1,7 +1,9 @@
-import { screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ProfileInfoForm from "./ProfileForm";
-import { renderWithProviders } from "../../utils/testUtils/test-utils";
+import { renderWithProviders } from "@/utils/testUtils/test-utils";
+import * as notificationContext from "@/context/NotificationContext";
+import { useNotification } from "@/context/NotificationContext";
 
 interface MockAuthValue {
   user: {
@@ -14,11 +16,25 @@ interface MockAuthValue {
   isLoading?: boolean;
 }
 
+jest.mock("@/context/NotificationContext", () => {
+  const originalModule = jest.requireActual("@/context/NotificationContext");
+  return {
+    ...originalModule,
+    useNotification: jest.fn(),
+  };
+});
+
 describe("ProfileInfoForm Component", () => {
   const mockUpdateUserInfo = jest.fn();
+  const mockShowNotification = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
+
+    (useNotification as jest.Mock).mockReturnValue({
+      showNotification: mockShowNotification,
+      hideNotification: jest.fn(),
+    });
   });
 
   test("renders form and fields correctly with initial data", async () => {
@@ -112,5 +128,52 @@ describe("ProfileInfoForm Component", () => {
     const saveBtn = screen.getByRole("button", { name: /profile_form.save_changes/i });
 
     expect(saveBtn).toBeDisabled();
+  });
+
+  test("shows validation errors when input is invalid", async () => {
+    const user = userEvent.setup();
+    renderWithProviders(<ProfileInfoForm />);
+
+    const usernameInput = screen.getByTestId("username-input");
+    const emailInput = screen.getByTestId("email-input");
+
+    await user.clear(usernameInput);
+    await user.type(usernameInput, "Hi");
+    await user.tab();
+
+    expect(await screen.findByText(/profile_form.errors.username_short/i)).toBeInTheDocument();
+
+    await user.clear(emailInput);
+    await user.type(emailInput, "invalid-email");
+    await user.tab();
+
+    expect(await screen.findByText(/profile_form.errors.email_invalid/i)).toBeInTheDocument();
+
+    const saveBtn = screen.getByRole("button", { name: /profile_form.save_changes/i });
+    expect(saveBtn).toBeDisabled();
+  });
+
+  test("shows error notification when update fails", async () => {
+    const user = userEvent.setup();
+    const errorMessage = "Network error";
+
+    mockUpdateUserInfo.mockRejectedValueOnce(new Error(errorMessage));
+
+    const authValue = {
+      user: { username: "Helena", email: "test@test.com", description: "" },
+      updateUserInfo: mockUpdateUserInfo,
+      isLoading: false,
+    };
+
+    renderWithProviders(<ProfileInfoForm />, {
+      authValue: authValue as MockAuthValue,
+    });
+
+    const saveBtn = screen.getByRole("button", { name: /profile_form.save_changes/i });
+    await user.click(saveBtn);
+
+    await waitFor(() => {
+      expect(mockShowNotification).toHaveBeenCalledWith(errorMessage, "error");
+    });
   });
 });

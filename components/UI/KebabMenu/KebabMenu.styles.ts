@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { animated } from "@react-spring/web";
-import { MenuPlacement } from "../../../types/common";
+import { MenuPlacement } from "@/types/common";
 
 const placementStyles: Record<MenuPlacement, ReturnType<typeof css>> = {
   "bottom-right": css`
@@ -48,7 +48,7 @@ export const KebabMenuContainer = styled(animated.div)<{ $placement: MenuPlaceme
     400 1.125rem "Poppins",
     sans-serif;
   position: absolute;
-  min-width: 180px;
+  min-width: 200px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 100;
   color: var(--text-main);

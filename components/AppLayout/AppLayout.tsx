@@ -2,12 +2,12 @@
 
 import React from "react";
 import style from "./AppLayout.module.css";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { AppLayoutProps } from "../../types/common";
+import { AppLayoutProps } from "@/types/common";
 import Sidebar from "../UI/Sidebar/Sidebar";
-import { useSettings } from "../../context/SettingsContext";
+import { useSettings } from "@/context/SettingsContext";
 
 const AppLayout: React.FC<AppLayoutProps> = ({
   children,
@@ -41,4 +41,4 @@ const AppLayout: React.FC<AppLayoutProps> = ({
   );
 };
 
-export default React.memo(AppLayout);
+export default AppLayout;

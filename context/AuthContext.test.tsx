@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { AuthProvider, useAuth } from "./AuthContext";
 import { useDispatch, useSelector } from "react-redux";
-import { graphqlRequest } from "../api/graphqlClient";
+import { graphqlRequest } from "@/api/graphqlClient";
 import {
   setCredentials,
   logoutAction,

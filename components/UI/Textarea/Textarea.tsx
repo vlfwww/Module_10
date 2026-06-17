@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from "react";
 import style from "./Textarea.module.css";
-import { TextareaProps } from "../../../types/common";
+import { TextareaProps } from "@/types/common";
 import { withBasePath } from "@/lib/paths";
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(

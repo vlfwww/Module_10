@@ -2,7 +2,7 @@
 
 import React, { useState, useId } from "react";
 import { useTranslation } from "react-i18next";
-import { InputProps } from "../../../types/common";
+import { InputProps } from "@/types/common";
 import { withBasePath } from "@/lib/paths";
 import * as S from "./Input.styles";
 

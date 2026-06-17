@@ -1,6 +1,5 @@
 import { FALLBACK_PRIORITY, MenuPlacement, MenuSize, ViewportSize } from "@/types/common";
 
-
 const VIEWPORT_PADDING = 8;
 
 function getPredictedRect(

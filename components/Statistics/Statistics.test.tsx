@@ -12,7 +12,7 @@ jest.mock("recharts", () => {
   };
 });
 
-jest.mock("../../hooks/useStatistics/useStatistics");
+jest.mock("@/hooks/useStatistics/useStatistics");
 
 describe("StatisticsSection Component", () => {
   const mockStats = {

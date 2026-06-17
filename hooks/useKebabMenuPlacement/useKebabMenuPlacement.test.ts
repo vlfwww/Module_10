@@ -1,8 +1,8 @@
 import { renderHook, act } from "@testing-library/react";
 import { useKebabMenuPlacement } from "./useKebabMenuPlacement";
-import { computeMenuPlacement } from "../../utils/menuPlacement/menuPlacement";
+import { computeMenuPlacement } from "@/utils/menuPlacement/menuPlacement";
 
-jest.mock("../../utils/menuPlacement/menuPlacement");
+jest.mock("@/utils/menuPlacement/menuPlacement");
 
 describe("useKebabMenuPlacement", () => {
   let anchorRef: { current: HTMLElement | null };

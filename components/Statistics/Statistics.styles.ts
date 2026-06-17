@@ -18,6 +18,13 @@ export const Title = styled.p`
     600 1.75rem "Inter",
     sans-serif;
   margin-bottom: 24px;
+
+  @media (max-width: 768px) {
+    text-align: center;
+    font:
+      600 1.3rem "Inter",
+      sans-serif;
+  }
 `;
 
 export const StatisticCard = styled.div`
@@ -28,6 +35,9 @@ export const StatisticCard = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  @media (max-width: 768px) {
+    padding: 12px;
+  }
 `;
 
 export const StatisticCardTitle = styled.h3`
@@ -69,10 +79,7 @@ export const StatsTable = styled.table`
   border-radius: 12px;
   width: 50%;
   border-collapse: collapse;
-
-  @media (max-width: 1220px) {
-    width: 100%;
-  }
+  table-layout: fixed;
 
   th {
     text-align: left;
@@ -94,6 +101,27 @@ export const StatsTable = styled.table`
     font:
       400 1rem "Inter",
       sans-serif;
+  }
+
+  @media (max-width: 1220px) {
+    width: 100%;
+  }
+  @media (max-width: 480px) {
+    th,
+    td {
+      padding: 10px 5px;
+      font-size: 0.7rem;
+      white-space: nowrap;
+    }
+    td:nth-child(1) {
+      min-width: 80px;
+      width: 40%;
+    }
+
+    td:not(:first-child) {
+      width: 20%;
+      text-align: center;
+    }
   }
 `;
 

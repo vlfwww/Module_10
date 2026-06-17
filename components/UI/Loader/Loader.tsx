@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { CircularProgress, Box, Typography } from "@mui/material";
-import { LoaderProps } from "../../../types/common";
+import { LoaderProps } from "@/types/common";
 
 const Loader: React.FC<LoaderProps> = ({ message }) => {
   const { t } = useTranslation();

@@ -56,15 +56,6 @@ const NoteModal: React.FC<NoteModalProps> = ({ isOpen, onClose, onSubmit, initia
           <S.ModalForm onSubmit={handleFormSubmit}>
             <S.Header>
               <div className="modal-header-title">{headerTitle}</div>
-
-              {initialData && (
-                <Switch
-                  data-testid="edit-mode-switch"
-                  label={t("note_modal.edit_mode")}
-                  checked={isEditMode}
-                  onChange={handleEditModeToggle}
-                />
-              )}
               <S.CloseButton type="button" onClick={onClose} aria-label={t("common.cancel")}>
                 <img
                   src={withBasePath("/assets/images/cross.svg")}
@@ -73,6 +64,15 @@ const NoteModal: React.FC<NoteModalProps> = ({ isOpen, onClose, onSubmit, initia
                 />
               </S.CloseButton>
             </S.Header>
+
+            {initialData && (
+              <Switch
+                data-testid="edit-mode-switch"
+                label={t("note_modal.edit_mode")}
+                checked={isEditMode}
+                onChange={handleEditModeToggle}
+              />
+            )}
 
             <S.FormContent>
               {isEditMode ? (

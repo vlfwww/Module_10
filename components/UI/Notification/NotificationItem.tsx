@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import style from "./Notification.module.css";
-import { NotificationItemProps } from "../../../types/notification";
+import { NotificationItemProps } from "@/types/notification";
 
 const NotificationItem: React.FC<NotificationItemProps> = ({ id, message, type, onClose }) => {
   const { t } = useTranslation();

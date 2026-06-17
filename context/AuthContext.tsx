@@ -1,22 +1,22 @@
 "use client";
 
 import { createContext, useContext, ReactNode, useCallback, useEffect } from "react";
-import { AuthContextType, User } from "../types/auth";
+import { AuthContextType, User } from "@/types/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/index";
+import { RootState } from "@/store/index";
 import {
   setCredentials,
   logoutAction,
   updateUserAction,
   setLoadingAction,
-} from "../store/slices/authSlice";
-import { graphqlRequest } from "../api/graphqlClient";
+} from "@/store/slices/authSlice";
+import { graphqlRequest } from "@/api/graphqlClient";
 import {
   LOGIN_MUTATION,
   SIGNUP_MUTATION,
   ME_QUERY,
   UPDATE_PROFILE_MUTATION,
-} from "../api/authQueries";
+} from "@/api/authQueries";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 

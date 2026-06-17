@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import style from "./NoteCard.module.css";
-import { NoteCardProps } from "../../types/notes";
+import { NoteCardProps } from "@/types/notes";
 
 const NoteCard: React.FC<NoteCardProps> = ({
   items,

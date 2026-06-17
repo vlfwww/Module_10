@@ -1,8 +1,8 @@
 "use client";
 
 import React, { createContext, ReactNode, useCallback, useContext, useState } from "react";
-import { NotificationContextType, Notification, NotificationType } from "../types/notification";
-import NotificationContainer from "../components/UI/Notification/NotificationContainer";
+import { NotificationContextType, Notification, NotificationType } from "@/types/notification";
+import NotificationContainer from "@/components/UI/Notification/NotificationContainer";
 
 const NotificationContext = createContext<NotificationContextType | null>(null);
 

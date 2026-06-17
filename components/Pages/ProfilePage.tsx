@@ -13,6 +13,7 @@ import {
   DynamicStatistics,
 } from "@/lib/dynamic/components";
 import { useRouter } from "next/navigation";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 const ProfilePage: React.FC = () => {
   const { t } = useTranslation();
@@ -28,27 +29,33 @@ const ProfilePage: React.FC = () => {
     <AppLayout>
       <div className={style.profileContainer} role="main" aria-label="Profile settings">
         <Accordion title={t("profile_page.profile_info")} lazyMount>
-          <div className={`${style.profileCard} ${style.userInfo}`}>
-            <DynamicProfileForm />
-            <div className={style.actions}>
-              <p className={style.actionsTitle}>{t("profile_page.actions")}</p>
-              <Button className={style.logoutButton} onClick={handleLogout}>
-                {t("profile_page.logout")}
-              </Button>
+          <ErrorBoundary>
+            <div className={`${style.profileCard} ${style.userInfo}`}>
+              <DynamicProfileForm />
+              <div className={style.actions}>
+                <p className={style.actionsTitle}>{t("profile_page.actions")}</p>
+                <Button className={style.logoutButton} onClick={handleLogout}>
+                  {t("profile_page.logout")}
+                </Button>
+              </div>
             </div>
-          </div>
+          </ErrorBoundary>
         </Accordion>
 
         <Accordion title={t("profile_page.statistics")} defaultOpen={false} lazyMount>
-          <div className={style.profileCard}>
-            <DynamicStatistics />
-          </div>
+          <ErrorBoundary>
+            <div className={style.profileCard}>
+              <DynamicStatistics />
+            </div>
+          </ErrorBoundary>
         </Accordion>
 
         <Accordion title={t("profile_page.settings")} defaultOpen={false} lazyMount>
-          <div className={style.profileCard}>
-            <DynamicProfileSettings />
-          </div>
+          <ErrorBoundary>
+            <div className={style.profileCard}>
+              <DynamicProfileSettings />
+            </div>
+          </ErrorBoundary>
         </Accordion>
       </div>
     </AppLayout>
