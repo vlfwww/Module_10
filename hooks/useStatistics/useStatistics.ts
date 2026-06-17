@@ -80,19 +80,19 @@ export const useStatistics = () => {
     return {
       cardInfo: [
         {
-          title: "Created",
+          titleKey: "stats.created",
           value: created.curr,
-          past: `${calcPercent(created.curr, created.prev)}% month over month`,
+          percent: calcPercent(created.curr, created.prev),
         },
         {
-          title: "Archived",
+          titleKey: "stats.archived",
           value: archived.curr,
-          past: `${calcPercent(archived.curr, archived.prev)}% month over month`,
+          percent: calcPercent(archived.curr, archived.prev),
         },
         {
-          title: "Deleted",
+          titleKey: "stats.deleted",
           value: deleted.curr,
-          past: `${calcPercent(deleted.curr, deleted.prev)}% month over month`,
+          percent: calcPercent(deleted.curr, deleted.prev),
         },
       ],
       chartData: finalChartData,

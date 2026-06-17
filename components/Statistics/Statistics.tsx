@@ -28,9 +28,11 @@ const StatisticsSection: React.FC = () => {
       <S.KPIRow>
         {data.cardInfo.map((card, index) => (
           <S.StatisticCard key={index}>
-            <S.StatisticCardTitle>{card.title}</S.StatisticCardTitle>
+            <S.StatisticCardTitle>{t(card.titleKey)}</S.StatisticCardTitle>
             <S.StatisticCardMainValue>{card.value}</S.StatisticCardMainValue>
-            <S.StatisticCardPastInfo>{card.past}</S.StatisticCardPastInfo>
+            <S.StatisticCardPastInfo>
+              {t("stats.mom", { percent: card.percent })}
+            </S.StatisticCardPastInfo>
           </S.StatisticCard>
         ))}
       </S.KPIRow>
@@ -39,10 +41,10 @@ const StatisticsSection: React.FC = () => {
         <S.StatsTable>
           <thead>
             <tr>
-              <th>Month</th>
-              <th>Created</th>
-              <th>Archived</th>
-              <th>Deleted</th>
+              <th>{t("stats.month")}</th>
+              <th>{t("stats.created")}</th>
+              <th>{t("stats.archived")}</th>
+              <th>{t("stats.deleted")}</th>
             </tr>
           </thead>
           <tbody>

@@ -17,8 +17,8 @@ jest.mock("@/hooks/useStatistics/useStatistics");
 describe("StatisticsSection Component", () => {
   const mockStats = {
     cardInfo: [
-      { title: "Total Tasks", value: "50", past: "+5" },
-      { title: "Completed", value: "40", past: "+2" },
+      { titleKey: "stats.created", value: "50", percent: 5 },
+      { titleKey: "stats.archived", value: "40", percent: 2 },
     ],
     chartData: [
       { date: "Jan", created: 5, archived: 2, deleted: 1 },
@@ -40,9 +40,9 @@ describe("StatisticsSection Component", () => {
   test("renders KPI cards correctly", () => {
     renderWithProviders(<StatisticsSection />);
 
-    expect(screen.getByText("Total Tasks")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /stats.created/i })).toBeInTheDocument();
     expect(screen.getByText("50")).toBeInTheDocument();
-    expect(screen.getByText("Completed")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /stats.archived/i })).toBeInTheDocument();
     expect(screen.getByText("40")).toBeInTheDocument();
   });
 
