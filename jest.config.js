@@ -1,19 +1,27 @@
-import { createDefaultPreset } from "ts-jest";
+const nextJest = require("next/jest");
 
-const tsJestTransformCfg = createDefaultPreset({
-  tsconfig: "tsconfig.test.json",
-}).transform;
+const createJestConfig = nextJest({ dir: "./" });
 
-export default {
-  testEnvironment: "jsdom",
-  transform: {
-    ...tsJestTransformCfg,
-  },
-  testPathIgnorePatterns: ["/node_modules/", "<rootDir>/tests/"],
-  coveragePathIgnorePatterns: ["/node_modules/", "\\.styles\\.ts$", "\\.styles\\.tsx$"],
-  setupFilesAfterEnv: ["<rootDir>/src/jest.setup.ts"],
+const isCoverageRun = process.argv.includes("--coverage");
+
+const customJestConfig = {
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  testEnvironment: "jest-environment-jsdom",
+  maxWorkers: isCoverageRun ? 1 : "50%",
   moduleNameMapper: {
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
-    "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/src/__mocks__/fileMock.ts",
+    "^@/(.*)$": "<rootDir>/$1",
+    "^utils/(.*)$": "<rootDir>/utils/$1",
+    "^hooks/(.*)$": "<rootDir>/hooks/$1",
+    "^components/(.*)$": "<rootDir>/components/$1",
+    "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.ts",
   },
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    "\\.module\\.css$",
+    "\\.styles\\.ts$",
+    "/types/",
+  ],
+  testPathIgnorePatterns: ["/node_modules/", "<rootDir>/tests/", "\\.spec\\.ts$"],
 };
+
+module.exports = createJestConfig(customJestConfig);

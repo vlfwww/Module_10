@@ -1,5 +1,8 @@
 import { defineConfig, devices } from "@playwright/test";
 
+delete process.env.FORCE_COLOR;
+delete process.env.NO_COLOR;
+
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
@@ -7,6 +10,13 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 1,
   reporter: "html",
+
+  webServer: {
+    command: "npm run dev",
+    url: "http://localhost:3000",
+    reuseExistingServer: !process.env.CI,
+    timeout: 120000,
+  },
 
   use: {
     baseURL: "http://localhost:3000",

@@ -1,0 +1,52 @@
+.infoForm {
+  max-width: 579px;
+  width: 100%;
+  & .avatarSection {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    & .avatarImage {
+      width: 64px;
+      height: 64px;
+    }
+    & .avatarInfo {
+      & .userName {
+        font:
+          500 1rem "Inter",
+          sans-serif;
+        color: var(--text-main);
+      }
+      & .changePhotoBtn {
+        font:
+          400 1rem "Inter",
+          sans-serif;
+        color: var(--text-secondary);
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        @media (max-width: 480px) {
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+  & .saveBtn {
+    @media (max-width: 480px) {
+      padding: 12px 28px;
+    }
+  }
+  & .statusMessageSection {
+    font:
+      500 1rem "Inter",
+      sans-serif;
+    margin: 12px 0;
+    text-align: center;
+    & .serverErrorText {
+      color: var(--input-error);
+    }
+    & .serverSuccessText {
+      color: var(--input-success);
+    }
+  }
+}

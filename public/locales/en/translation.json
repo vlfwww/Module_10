@@ -107,7 +107,8 @@
     "created": "Created",
     "archived": "Archived",
     "deleted": "Deleted",
-    "table_label": "Monthly statistics table"
+    "table_label": "Monthly statistics table",
+    "mom": "{{percent}}% month over month"
   },
   "accordion": {
     "toggle": "Toggle section"
@@ -127,7 +128,7 @@
     "unarchive": "Unarchive"
   },
   "loader": {
-    "loading": "Loading notes..."
+    "loading": "Loading..."
   },
   "notification": {
     "close": "Close notification"

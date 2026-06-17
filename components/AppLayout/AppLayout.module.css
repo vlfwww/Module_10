@@ -1,0 +1,54 @@
+.mainPageWrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  min-height: 100vh;
+  width: 100%;
+
+  & .contentWrapper {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+  }
+  & .pageContent {
+    display: flex;
+    max-width: 1600px;
+    flex: 1;
+    gap: 48px;
+    padding: 24px;
+    width: 100%;
+    box-sizing: border-box;
+    @media (max-width: 1040px) {
+      display: block;
+    }
+  }
+}
+
+.mainContent {
+  max-width: 1274px;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+@media (max-width: 1040px) {
+  .pageContent {
+    padding: 16px;
+    gap: 0;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .mainContent {
+    width: 100%;
+    flex: none;
+    height: auto;
+  }
+}

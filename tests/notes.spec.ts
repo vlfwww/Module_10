@@ -27,12 +27,12 @@ test.describe("Notes Management - Mutations", () => {
   test.use({ storageState: "playwright/.auth/user.json" });
 
   test.beforeEach(async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "networkidle" });
+
     const createBtn = page.getByRole("button", { name: /create|создать/i });
     await createBtn.click();
 
     const titleInput = page.getByTestId("modal-title-input");
-    await expect(titleInput).toBeVisible();
     await titleInput.fill("Target Note");
 
     const addItemBtn = page.getByTestId("add-todo-btn");
@@ -44,7 +44,8 @@ test.describe("Notes Management - Mutations", () => {
     await todoInputs.last().fill("Todo-2");
 
     await page.getByTestId("modal-submit-button").click();
-    await expect(titleInput).not.toBeVisible();
+
+    await expect(page.getByTestId("modal-title-input")).not.toBeVisible();
   });
 
   test("should toggle a todo item in a note", async ({ page }) => {
@@ -52,24 +53,31 @@ test.describe("Notes Management - Mutations", () => {
       .locator('[data-testid="card-wrapper"]')
       .filter({ hasText: "Target Note" });
 
+    await noteCard.scrollIntoViewIfNeeded();
     await noteCard.getByTestId("kebab-menu-btn").click();
-    await page.getByRole("menuitem", { name: /show|показать/i }).click();
 
-    const checkbox = noteCard.locator('input[type="checkbox"]').first();
-    await expect(checkbox).toBeAttached({ timeout: 10000 });
+    await page.getByRole("menuitem", { name: /show checkboxes|показать чекбоксы/i }).click();
 
-    await checkbox.evaluate((el: HTMLInputElement) => {
-      el.click();
-    });
+    const todoLabel = noteCard.getByText("Todo-1");
+    await todoLabel.scrollIntoViewIfNeeded();
+    await todoLabel.click();
 
-    await expect(checkbox).toBeChecked();
+    await expect(noteCard.locator('input[type="checkbox"]').first()).toBeChecked();
   });
 
   test("should edit an existing note", async ({ page }) => {
     await page.getByText("Target Note").click();
 
-    await page.getByTestId("edit-mode-switch").click({ force: true });
-    await page.getByTestId("modal-title-input").fill("Updated Title");
+    const modal = page.getByRole("dialog");
+    await expect(modal).toBeVisible();
+
+    const titleInput = page.getByTestId("modal-title-input");
+
+    if (!(await titleInput.isVisible())) {
+      await modal.getByText(/edit mode|режим редактирования/i).click();
+    }
+
+    await titleInput.fill("Updated Title");
     await page.getByTestId("modal-submit-button").click();
 
     await expect(page.getByText("Updated Title")).toBeVisible();
